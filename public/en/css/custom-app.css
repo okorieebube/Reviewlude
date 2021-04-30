@@ -1,3 +1,14 @@
-.screenshot-frame {
-    background-image: url(../img/phone-frame2.png);
+.subscribe-form {
+    width: 40%;
+}
+.home-search{
+height: 45px !important;
+}
+
+
+
+@media screen and (max-width: 991px) and (min-width: 0px) {
+.subscribe-form{
+    display: none;
+}
 }

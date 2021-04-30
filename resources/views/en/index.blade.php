@@ -21,8 +21,11 @@
                     <div class="row align-items-center justify-content-center">
                         <div class="col-md-8 col-lg-7">
                             <div class="hero-content-left text-white text-center mt-5 ptb-100">
-                                <h1 class="text-white text-capitalize">The best businesses are here </h1>
-                                <p class="lead">Find out exactly how customers feel about businesses. Also get your business reviewed here. </p>
+                                <h1 class="text-white text-capitalize">
+                                    {{-- The best businesses live here --}}
+                                    Read reviews. write reviews.
+                                     </h1>
+                                <p class="lead">Find out exactly how customers feel about different business & services around the globe. </p>
 
                                 <a href="#" class="btn google-play-btn">Get Started</a>
                             </div>
@@ -62,8 +65,8 @@
                 <div class="col-lg-6 col-md-10">
                     <div class="section-heading mb-5">
                         <span class="badge badge-success badge-pill">Key features</span>
-                        <h5 class="h5 mt-3 mb-6">We will helps you to build beautiful websites that stand out and
-                            automatically adapt to your style.</h5>
+                        <h5 class="h5 mt-3 mb-6">We help your
+                            business explore how consumers feel about your services.</h5>
                     </div>
                 </div>
             </div>
@@ -124,8 +127,7 @@
             <div class="row align-items-center justify-content-between">
                 <div class="col-md-6">
                     <div class="about-content-left section-heading">
-                        <h2>We help drive your
-                            business <span>forward faster</span></h2>
+                        <h2 class="">ReviewLude helps great businesses <span>get customer feedbacks</span></h2>
                         <p>Proactively syndicate open-source e-markets after low-risk high-yield synergy. Professionally
                             simplify visionary technology before team driven sources. </p>
 
@@ -139,7 +141,7 @@
                         <div class="single-feature mb-4">
                             <div class="d-flex align-items-center mb-2">
                                 <span class="ti-dashboard rounded mr-3 icon icon-color-2"></span>
-                                <h5 class="mb-0">Increase conversion</h5>
+                                <h5 class="mb-0">Trust & Safety</h5>
                             </div>
                             <p>Phosfluorescently empower compelling intellectual capital and revolutionary web services. Compellingly develop cross-media.</p>
                         </div>
@@ -147,7 +149,7 @@
                         <div class="single-feature mb-4">
                             <div class="d-flex align-items-center mb-2">
                                 <span class="ti-alarm-clock rounded mr-3 icon icon-color-3"></span>
-                                <h5 class="mb-0">24/7 Support</h5>
+                                <h5 class="mb-0">Thriving Community</h5>
                             </div>
                             <p>Phosfluorescently matrix enterprise-wide metrics vis-a-vis extensive imperatives. Energistically empower best-of-breed human</p>
                         </div>
@@ -186,105 +188,6 @@
     </section>
     <!--our video promo section end-->
 
-    <!--features section start-->
-    <div id="features" class="feature-section ptb-100 gray-light-bg">
-        <div class="container">
-
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="section-heading text-center mb-5">
-                        <h2>Quick & Easy Process with <br>
-                            <span>best features</span></h2>
-                        <p>Objectively deliver professional value with diverse web-readiness.
-                            Collaboratively transition wireless customer service without goal-oriented catalysts for
-                            change. Collaboratively.</p>
-
-                    </div>
-                </div>
-            </div>
-
-            <!--feature new style start-->
-            <div class="row row-grid align-items-center">
-                <div class="col-lg-4">
-                    <div class="d-flex align-items-start mb-5">
-                        <div class="pr-4">
-                            <div class="icon icon-shape icon-color-1 rounded-circle">
-                                <span class="ti-face-smile"></span>
-                            </div>
-                        </div>
-                        <div class="icon-text">
-                            <h5>Responsive web design</h5>
-                            <p class="mb-0">Modular and interchangable componente between layouts and even demos.</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-start mb-5">
-                        <div class="pr-4">
-                            <div class="icon icon-shape icon-color-2 rounded-circle">
-                                <span class="ti-vector"></span>
-                            </div>
-                        </div>
-                        <div class="icon-text">
-                            <h5>Loaded with features</h5>
-                            <p class="mb-0">Modular and interchangable componente between layouts and even demos.</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-start">
-                        <div class="pr-4">
-                            <div class="icon icon-shape icon-color-3 rounded-circle">
-                                <span class="ti-headphone-alt"></span>
-                            </div>
-                        </div>
-                        <div class="icon-text">
-                            <h5>Friendly online support</h5>
-                            <p class="mb-0">Modular and interchangable componente between layouts and even demos.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="position-relative">
-                        <img alt="Image placeholder" src="img/image-15.png" class="img-center img-fluid">
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="d-flex align-items-start mb-5">
-                        <div class="pr-4">
-                            <div class="icon icon-shape icon-color-4 rounded-circle">
-                                <span class="ti-layout-media-right"></span>
-                            </div>
-                        </div>
-                        <div class="icon-text">
-                            <h5>Free updates forever</h5>
-                            <p class="mb-0">Modular and interchangable componente between layouts and even demos.</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-start mb-5">
-                        <div class="pr-4">
-                            <div class="icon icon-shape icon-color-5 rounded-circle">
-                                <span class="ti-layout-cta-right"></span>
-                            </div>
-                        </div>
-                        <div class="icon-text">
-                            <h5>Built with Sass</h5>
-                            <p class="mb-0">Modular and interchangable componente between layouts and even demos.</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-start">
-                        <div class="pr-4">
-                            <div class="icon icon-shape icon-color-6 rounded-circle">
-                                <span class="ti-palette"></span>
-                            </div>
-                        </div>
-                        <div class="icon-text">
-                            <h5>Infinite colors</h5>
-                            <p class="mb-0">Modular and interchangable componente between layouts and even demos.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--feature new style end-->
-        </div>
-    </div>
-    <!--features section end-->
 
     <!--our team section start-->
     {{-- <section id="team" class="team-member-section ptb-100">

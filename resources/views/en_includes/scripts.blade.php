@@ -20,6 +20,11 @@
 <script src="{{ asset('en/js/validator.min.js')}}"></script>
 <!--custom js-->
 <script src="{{ asset('en/js/scripts.js')}}"></script>
+<!-- Snackbar toaster -->
+<script src="{{ asset('en/custom/js-snackbar/dist/js-snackbar.js') }}"></script>
+<script src="{{ asset('en/custom/js-snackbar/dist/site.js') }}"></script>
+<!-- Snackbar toaster -->
+<script src="{{asset('en/custom/Basic-function.js')}}"></script>
 </body>
 
 </html>
