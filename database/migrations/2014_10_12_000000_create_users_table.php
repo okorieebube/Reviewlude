@@ -19,13 +19,13 @@ class CreateUsersTable extends Migration
             $table->string('user_type');
             $table->string('email');
             $table->string('full_name')->nullable();
-            $table->string('password');
-            $table->string('website')->nullable();
-            $table->string('company_name')->nullable();
+            $table->text('password');
+            $table->text('website')->nullable();
+            $table->text('company_name')->nullable();
             $table->string('job_title')->nullable();
             $table->string('phone')->nullable();
-            $table->string('is_email_validated')->nullable();
-            $table->string('is_blocked')->nullable();
+            $table->string('is_email_validated')->default(false);
+            $table->string('is_blocked')->default(false);
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

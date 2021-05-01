@@ -32,7 +32,7 @@
                                 <p class="text-muted mb-0">Made with love by developers for developers.</p>
                             </div>
                             <form class="login-signup-form register_form">
-
+                                @csrf
                                 <!-- Password -->
                                 <div class="form-group">
                                     <!-- Input group -->
@@ -43,7 +43,7 @@
                                             <span class="ti-lock color-primary"></span>
                                         </div>
                                         <input type="text" class="form-control"
-                                               placeholder="Company name">
+                                            name="company_name"   placeholder="Company name">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -53,7 +53,7 @@
                                             <span class="ti-lock color-primary"></span>
                                         </div>
                                         <input type="email" class="form-control"
-                                               placeholder="Work email">
+                                            name="email"   placeholder="Work email">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -63,7 +63,7 @@
                                             <span class="ti-lock color-primary"></span>
                                         </div>
                                         <input type="password" class="form-control"
-                                               placeholder="Password">
+                                            name="password"   placeholder="Password">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -73,7 +73,7 @@
                                             <span class="ti-lock color-primary"></span>
                                         </div>
                                         <input type="password" class="form-control"
-                                               placeholder="Confirm Password">
+                                            name="password_confirmation"   placeholder="Confirm Password">
                                     </div>
                                 </div>
 
@@ -92,7 +92,7 @@
 
                         </div>
                         <div class="card-footer px-md-5 bg-transparent border-top"><small>Already have an account?</small>
-                            <a href="login.html" class="small">Sign in</a></div>
+                            <a href="{{ route('login') }}" class="small">Sign in</a></div>
                     </div>
                 </div>
             </div>
@@ -122,18 +122,18 @@
         // process form for creating live stream
         $('.register_btn').click(async function(e) {
             e.preventDefault();
-            console.log('yh');return;
+            // console.log('yh');return;
             let data = [];
             // basic info
             let register = $('.register_form').serializeArray();
-            // console.log(enroll);
+            console.log(register);
             // return;
 
             // append to form data object
-            let form_data = set_form_data(enroll);
-            let returned = await ajaxRequest('/course/enroll/{{ Request::segment(3) }}', form_data);
+            let form_data = set_form_data(register);
+            let returned = await ajaxRequest('/register_business', form_data);
             // console.log(returned);return;
-            validator(returned, '/course/checkout/{{ Request::segment(3) }}');
+            validator(returned, '/register/business');
         });
 
     });

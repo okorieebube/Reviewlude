@@ -71,9 +71,10 @@
     display: inline-flex;
     box-sizing: border-box;
     border-radius: 3px;
-    color: #eee;
+    color: #707070;
     font-size: 16px;
-    background-color: #262626;
+    /* background-color: #262626; */
+    background-color: #fff;
     vertical-align: bottom;
     box-shadow: 0 0 4px 0 black;
     margin: 0 10px;
@@ -93,11 +94,15 @@
 
 .js-snackbar__message {
     display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 88%;
+
 }
 
 .js-snackbar__status {
     display: none;
-    min-width: 15px;
+    min-width: 5px;
     margin-right: 5px;
     border-radius: 3px 0 0 3px;
     background-color: transparent;
@@ -113,7 +118,7 @@
 }
 
 .js-snackbar__status.js-snackbar--success  {
-    background-color: #4caf50;
+    background-color: #1ee0ac;
 }
 
 .js-snackbar__status.js-snackbar--warning  {
@@ -121,7 +126,9 @@
 }
 
  .js-snackbar__status.js-snackbar--danger {
-    background-color: #b90909;
+    background-color: #e85347;
+    /* background-color: rgba(150, 41, 230, 1); */
+    /* rgba(150, 41, 230, 1) */
 }
 
  .js-snackbar__status.js-snackbar--info {
@@ -137,7 +144,7 @@
     width: 20px;
     text-align: center;
     margin: 0 5px;
-    font-family: monospace;
+    /* font-family: monospace ; */
 }
 
 .js-snackbar__action {

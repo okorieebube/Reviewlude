@@ -13,7 +13,7 @@
 function throw_snackbar(message, status) {
     SnackBar({
         message: message,
-        width: "400px",
+        width: "350px",
         fixed: true,
         status: status, // success | warning | danger | info
         timeout: 5000, // ms

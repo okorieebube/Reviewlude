@@ -33,14 +33,15 @@
                             </div>
 
                             <!--login form-->
-                            <form class="login-signup-form">
+                            <form class="login-signup-form login_form">
+                                @csrf
                                 <div class="form-group">
                                     <label class="pb-1">Email Address</label>
                                     <div class="input-group input-group-merge">
                                         <div class="input-icon">
                                             <span class="ti-email color-primary"></span>
                                         </div>
-                                        <input type="email" class="form-control" placeholder="name@yourdomain.com">
+                                        <input type="email" name="email" class="form-control" placeholder="name@yourdomain.com">
                                     </div>
                                 </div>
                                 <!-- Password -->
@@ -59,12 +60,12 @@
                                         <div class="input-icon">
                                             <span class="ti-lock color-primary"></span>
                                         </div>
-                                        <input type="password" class="form-control" placeholder="Enter your password">
+                                        <input type="password" name="password" class="form-control" placeholder="Enter your password">
                                     </div>
                                 </div>
 
                                 <!-- Submit -->
-                                <button class="btn btn-lg btn-block solid-btn border-radius mt-4 mb-3">
+                                <button class="btn btn-lg btn-block solid-btn border-radius mt-4 mb-3 login_btn">
                                     Sign in
                                 </button>
 
@@ -87,3 +88,33 @@
 <!--body content wrap end-->
 <!--footer section end-->
 @include('en_includes.scripts')
+<script>
+
+$(document).ready(function() {
+
+
+    // $('.enroll_modal').click(function(e) {
+    //     e.preventDefault();
+    //     append_id('enroll_id', '.enroll_form', '#enroll_modal', this)
+    //     $('#enroll_modal').modal('toggle');
+    // });
+
+    // process form for creating live stream
+    $('.login_btn').click(async function(e) {
+        e.preventDefault();
+        // console.log('yh');return;
+        let data = [];
+        // basic info
+        let login = $('.login_form').serializeArray();
+        console.log(login);
+        // return;
+
+        // append to form data object
+        let form_data = set_form_data(login);
+        let returned = await ajaxRequest('/login_acct', form_data);
+        // console.log(returned);return;
+        validator(returned, '/user/');
+    });
+
+});
+</script>
