@@ -16,20 +16,21 @@ class registerController extends Controller
 {
     use appFunction;
 
-    // function __construct(
-    //     Like $like, course_model $course_model, course_category_model $course_category_model, Review $review, live_stream_model $live_stream_model, SavedCourses $savedCourses, User $user, Subscribe $subscribe, courseEnrollment $courseEnrollment
-    // ){
-    //     $this->middleware('auth',  ['except' => ['activateCoursesStatus', 'deleteCourses']]);
-    //     $this->like = $like;
-    //     $this->course_model = $course_model;
-    //     $this->course_category_model = $course_category_model;
-    //     $this->review = $review;
-    //     $this->live_stream_model = $live_stream_model;
-    //     $this->savedCourses = $savedCourses;
-    //     $this->user = $user;
-    //     $this->subscribe = $subscribe;
-    //     $this->courseEnrollment = $courseEnrollment;
-    // }
+    function __construct(User $User)
+    {
+        // $this->middleware('auth',  ['except' => ['activateCoursesStatus', 'deleteCourses']]);
+        $this->User = $User;
+    }
+
+
+    public function business_register_page()
+    {
+        return view('en.business_register');
+    }
+    public function reviewer_register_page()
+    {
+        return view('en.reviewer_register');
+    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -41,6 +42,7 @@ class registerController extends Controller
     {
         return Validator::make($data, [
             'company_name' => ['required', 'string', 'max:255'],
+            'full_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'confirmed'], //'min:8'
         ]);
@@ -55,11 +57,16 @@ class registerController extends Controller
                 return response()->json(['errors' => $validator->errors(), 'status' => false]);
             }
 
+            $full_name = explode(' ', $request->input('full_name'));
+            $first_name = $full_name[0];
+            $last_name = $full_name[1];
 
             $user = User::create([
                 'unique_id' => $this->rand_id(),
                 'user_type' => 'business',
                 'email' => $request->input('email'),
+                'first_name' => $first_name,
+                'last_name' => $last_name,
                 'password' => Hash::make($request->input('password')),
                 'company_name' => $request->input('company_name'),
             ]);
@@ -69,10 +76,9 @@ class registerController extends Controller
             } else {
                 Mail::to($user->email)->send(new accountConfirmation($user));
 
-                $error = 'Business Registered Successfully!';
+                $error = 'Proceed to your Email, for confirmation!';
                 return response()->json(["message" => $error, 'status' => true]);
             }
-
         } catch (Exception $e) {
 
             $error = $e->getMessage();
@@ -80,6 +86,36 @@ class registerController extends Controller
                 'errors' => [$error],
             ];
             return response()->json(["errors" => $error, 'status' => false]);
+        }
+    }
+
+    public function email_confirmation($user_id)
+    {
+        try {
+
+            $conditions = [
+                ['unique_id', $user_id]
+            ];
+
+            $User = $this->User->getSingle($conditions);
+
+            if (!$User) {
+                throw new Exception("error");
+            }
+
+            $User->is_email_validated = 1;
+            if ($User->save()) {
+                $view = [
+                    'user' => $User,
+                ];
+                return view('en.email-confirmation', $view);
+            } else {
+                throw new Exception('error');
+            }
+
+        } catch (Exception $e) {
+
+            return redirect('/');
         }
     }
 }

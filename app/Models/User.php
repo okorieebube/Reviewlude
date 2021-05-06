@@ -21,7 +21,8 @@ class User extends Authenticatable
         'unique_id',
         'user_type',
         'email',
-        'full_name',
+        'first_name',
+        'last_name',
         'password',
         'website',
         'company_name',
@@ -52,4 +53,14 @@ class User extends Authenticatable
         'is_email_validated' => 'boolean',
         'is_blocked' => 'boolean',
     ];
+
+
+
+    public function getSingle($condition){
+
+        $users = User::where($condition)->first();
+
+        return $users;
+
+    }
 }

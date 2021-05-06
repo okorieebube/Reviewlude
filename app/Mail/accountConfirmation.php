@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\User;
+use App\Traits\generics;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -10,7 +11,7 @@ use Illuminate\Queue\SerializesModels;
 
 class accountConfirmation extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable, SerializesModels, generics;
 
     /**
      * The order instance.
@@ -35,9 +36,12 @@ class accountConfirmation extends Mailable
      */
     public function build()
     {
-        // return $this->from('example@example.com')
-        //             ->view('emails.orders.shipped');
-
-        return $this->view('emails.account-confirmation');
+        return $this->view('emails.account-confirmation')
+        ->with([
+            'site_root' => $this->site_root,
+            'site_name' => $this->site_name,
+            'address' => $this->address,
+            'preheader' => 'Verify that you have access to this account.',
+        ]);
     }
 }

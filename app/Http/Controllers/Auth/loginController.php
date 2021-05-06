@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class loginController extends Controller
 {
 
-    protected $redirectTo = '/';
+    protected $redirectTo = '/user/overview';
 
 
 
@@ -23,6 +23,11 @@ class loginController extends Controller
     public function user_logged()
     {
         return auth()->user();
+    }
+
+    public function login_page()
+    {
+        return view('en.login');
     }
 
 
@@ -46,7 +51,7 @@ class loginController extends Controller
                 return $token;
             } else {
                 $first_name = ucwords($this->user_logged()['full_name']);
-                // $message = ['error' => 0, 'msg' => 'Welcome ', 'first_name' => $first_name];
+
                 $error = 'User Authorization Successfull!';
                 return response()->json(["message" => $error, 'status' => true]);
             }

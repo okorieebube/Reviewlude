@@ -52,6 +52,16 @@
                                         <div class="input-icon">
                                             <span class="ti-lock color-primary"></span>
                                         </div>
+                                        <input type="text" class="form-control"
+                                            name="full_name"   placeholder="Enter First name then Last name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <!-- Input group -->
+                                    <div class="input-group input-group-merge">
+                                        <div class="input-icon">
+                                            <span class="ti-lock color-primary"></span>
+                                        </div>
                                         <input type="email" class="form-control"
                                             name="email"   placeholder="Work email">
                                     </div>
