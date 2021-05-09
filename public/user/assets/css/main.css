@@ -8,7 +8,8 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
     letter-spacing: 0.0312rem;
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    /* font-family: 'Quicksand', sans-serif; */
 }
 h1, h2, h3, h4, h5, h6 { color: #3b3f5c; }
 :focus { outline: none; }
@@ -85,7 +86,7 @@ select.form-custom::-ms-expand {
 .code-section code { color: #fff; }
 
 /*blockquote*/
-blockquote.blockquote { 
+blockquote.blockquote {
     color: #0e1726;
     padding: 20px 20px 20px 14px;
     font-size: 0.875rem;
@@ -603,7 +604,7 @@ select.form-control.form-custom {
 .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
     color: #fff !important;
     background-color: #1b55e2;
-    border-color: #1b55e2;   
+    border-color: #1b55e2;
 }
 .btn-primary .caret { border-top-color: #fff }
 .btn-group.open .btn-primary.dropdown-toggle { background-color: #c2d5ff }
@@ -851,8 +852,8 @@ select.form-control.form-custom {
     -moz-box-shadow: none !important;
     box-shadow: none !important;
 }
-.btn.box-shadow-none:not(:disabled):not(.disabled).active, 
-.btn.box-shadow-none:not(:disabled):not(.disabled):active, 
+.btn.box-shadow-none:not(:disabled):not(.disabled).active,
+.btn.box-shadow-none:not(:disabled):not(.disabled):active,
 .show>.btn.box-shadow-none.dropdown-toggle {
     border: none;
     -webkit-box-shadow: none;
@@ -1060,7 +1061,7 @@ select.form-control.form-custom {
     color: #fff !important;
     background-color: #e7515a;
     box-shadow: 0 10px 20px -10px #e7515a;
-} 
+}
 .btn-outline-secondary:hover {
     color: #fff !important;
     background-color: #5c1ac3;
@@ -1114,7 +1115,7 @@ select.form-control.form-custom {
 }
 .badge:hover {
     transition: all 0.3s ease-out;
-    -webkit-transition: all 0.3s ease-out;    
+    -webkit-transition: all 0.3s ease-out;
     -webkit-transform: translateY(-3px);
     transform: translateY(-3px);
 }
@@ -1382,7 +1383,7 @@ input[readonly], select[readonly], textarea[readonly] {
 /*  Table   */
 .table-bordered { border: 1px solid #f1f2f3; }
 .table-striped tbody tr:nth-of-type(odd) { background-color: #f1f2f3 !important; }
-.table > tbody > tr > td { 
+.table > tbody > tr > td {
     vertical-align: middle;
     color: #515365;
     font-size: 13px;
@@ -1502,15 +1503,15 @@ table .badge-info, table .badge-secondary, table .badge-dark  {
     color: #fff;
 }
 
-/*  
+/*
     ==========================
-        Background Colors  
+        Background Colors
     ==========================
 */
 
 
-/*  
-    Default  
+/*
+    Default
 */
 .bg-primary {
     background-color: #1b55e2!important;
@@ -1549,8 +1550,8 @@ table .badge-info, table .badge-secondary, table .badge-dark  {
 }
 
 
-/*  
-    Light Background  
+/*
+    Light Background
 */
 .bg-light-primary {
     background-color: #c2d5ff!important;
@@ -1588,7 +1589,7 @@ table .badge-info, table .badge-secondary, table .badge-dark  {
     color: #fff
 }
 
-/*  
+/*
     Progress Bar
 */
 

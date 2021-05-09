@@ -3,13 +3,19 @@
 namespace App\Http\Controllers\Auth;
 
 use Exception;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class loginController extends Controller
 {
+
+    public function __construct(User $user) {
+        $this->user = $user;
+    }
 
     protected $redirectTo = '/user/overview';
 
@@ -30,10 +36,13 @@ class loginController extends Controller
         return view('en.login');
     }
 
+    protected function authenticated(Request $request)
+    {
+        return redirect('/user/overview'); //put your redirect url here
+    }
 
     public function login(Request $request)
     {
-
         try {
 
             $validator = Validator::make($request->all(), [
@@ -47,8 +56,23 @@ class loginController extends Controller
             $email = $request->input('email');
             $password = $request->input('password');
 
+            // if user exists
+            $condition = [
+                ['email', $email],
+            ];
+            $User = $this->user->getSingle($condition);
+
+            if(!$User){
+                throw new Exception("User account does not exist!");
+
+            }else{
+                if($User->is_email_validated == 0){
+                    throw new Exception('Email address has\'nt been confirmed!');
+                }
+            }
+
             if (!$token = Auth::attempt(['email' => $email, 'password' => $password])) {
-                return $token;
+                throw new Exception('Authentication Failed!');
             } else {
                 $first_name = ucwords($this->user_logged()['full_name']);
 

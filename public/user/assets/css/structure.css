@@ -7,7 +7,8 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
     letter-spacing: 0.0312rem;
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    /* font-family: 'Quicksand', sans-serif; */
 }
 h1, h2, h3, h4, h5, h6 { color: #3b3f5c; }
 :focus { outline: none; }
@@ -140,7 +141,7 @@ code { color: #e7515a; }
 }
 
 
-/* 
+/*
 =====================
     Navigation Bar
 =====================
@@ -578,11 +579,11 @@ code { color: #e7515a; }
     margin-right: 9px;
     align-self: center;
 }
-.navbar .navbar-item .nav-item.dropdown.notification-dropdown .dropdown-menu .media.file-upload svg { 
+.navbar .navbar-item .nav-item.dropdown.notification-dropdown .dropdown-menu .media.file-upload svg {
     color: #e7515a;
     fill: rgba(231, 81, 90, 0.23921568627450981);
 }
-.navbar .navbar-item .nav-item.dropdown.notification-dropdown .dropdown-menu .media.server-log svg { 
+.navbar .navbar-item .nav-item.dropdown.notification-dropdown .dropdown-menu .media.server-log svg {
     color: #009688;
     fill: rgba(0, 150, 136, 0.3686274509803922);
 }
@@ -782,7 +783,7 @@ color: #e0e6ed; }
     fill: rgba(86, 71, 142, 0.34);
 }
 
-/* 
+/*
 ===============
     Sidebar
 ===============
@@ -899,7 +900,7 @@ color: #e0e6ed; }
     left: -4px;
     -webkit-filter: blur(5px);
     filter: blur(7px);
-    background: -webkit-linear-gradient(#fafafac4 41%,rgba(255, 255, 255, 0.14) 95%,rgba(255, 255, 255, 0)); 
+    background: -webkit-linear-gradient(#fafafac4 41%,rgba(255, 255, 255, 0.14) 95%,rgba(255, 255, 255, 0));
     background: linear-gradient(#fafafac4 41%,rgba(255, 255, 255, 0.14) 95%,rgba(255, 255, 255, 0));
 }
 #sidebar ul.menu-categories {
@@ -1211,7 +1212,7 @@ color: #e0e6ed; }
     animation-name: e-fadeInUp
 }
 
-/*  
+/*
     ======================
         Footer-wrapper
     ======================
@@ -1249,7 +1250,7 @@ color: #e0e6ed; }
 }
 
 
-/*  
+/*
     ======================
         MEDIA QUERIES
     ======================
@@ -1362,7 +1363,7 @@ color: #e0e6ed; }
     }
 
 }
-@media (max-width: 767px) {   
+@media (max-width: 767px) {
     .navbar .navbar-item.search-ul { margin: 0 0 0 auto; }
     .navbar .navbar-item .nav-item .form-inline.search .search-form-control {
         opacity: 0;

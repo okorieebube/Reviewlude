@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\loginController;
 use App\Http\Controllers\User\userController;
 use App\Http\Controllers\Auth\registerController;
 use App\Http\Controllers\Overview\overviewController;
+use App\Http\Controllers\Settings\settingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,12 @@ Route::get('/email-confirmation/{id}', [registerController::class, 'email_confir
 
 
 Route::get('/user/overview', [overviewController::class, 'overview_page'])->name('overview');
+Route::get('/user/settings', [settingsController::class, 'settings_page'])->name('settings');
 
 
-// JKCFR1619794482JHJOL
+
+Route::post('/update_about_company', [settingsController::class, 'update_about_company']);
+Route::post('/update_company_info', [settingsController::class, 'update_other_info']);
+Route::post('/update_password', [userController::class, 'update_password']);
+
+

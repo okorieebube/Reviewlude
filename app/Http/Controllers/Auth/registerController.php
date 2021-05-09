@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Traits\appFunction;
 use Illuminate\Http\Request;
 use App\Mail\accountConfirmation;
+use App\Models\business_settings;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -60,9 +61,10 @@ class registerController extends Controller
             $full_name = explode(' ', $request->input('full_name'));
             $first_name = $full_name[0];
             $last_name = $full_name[1];
+            $unique_id = $this->rand_id();
 
             $user = User::create([
-                'unique_id' => $this->rand_id(),
+                'unique_id' => $unique_id,
                 'user_type' => 'business',
                 'email' => $request->input('email'),
                 'first_name' => $first_name,
@@ -74,6 +76,10 @@ class registerController extends Controller
             if (!$user->unique_id) {
                 throw new Exception($this->errorMsgs(14)['msg']);
             } else {
+                // create settings row for business
+                $settings = business_settings::create([
+                    'unique_id' => $unique_id,
+                ]);
                 Mail::to($user->email)->send(new accountConfirmation($user));
 
                 $error = 'Proceed to your Email, for confirmation!';
@@ -112,7 +118,6 @@ class registerController extends Controller
             } else {
                 throw new Exception('error');
             }
-
         } catch (Exception $e) {
 
             return redirect('/');
