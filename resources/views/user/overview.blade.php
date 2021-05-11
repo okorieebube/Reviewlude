@@ -1,5 +1,6 @@
 @php
     $title = 'Overview';
+    $user = Auth::user();
 @endphp
 @include('user_includes.head')
 <body>

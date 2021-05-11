@@ -1,6 +1,7 @@
 @php
     $title = 'Settings';
-    // $user = Auth::user();
+    $settings=  'active';
+    $user = Auth::user();
 @endphp
 @include('user_includes.head')
 <body>
@@ -56,7 +57,7 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label for="fullName">Company Name</label>
-                                                                            <input type="text" class="form-control mb-4" name="company_name" placeholder="Type in Company name" value="{{ $user->company_name }}">
+                                                                            <input type="text" class="form-control mb-4" name="company_name" placeholder="Type in Company name" value="{{ @$user->company_name }}">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
@@ -66,7 +67,7 @@
                                                                                 Company Website</strong>
                                                                                 <span class="text-danger">*</span>
                                                                             </label>
-                                                                            <input type="text" class="form-control mb-4" name="website" placeholder="Type in company website address" value="{{ $user->website }}">
+                                                                            <input type="text" class="form-control mb-4" name="website" placeholder="Type in company website address" value="{{ @$user->website }}">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
@@ -76,7 +77,7 @@
                                                                                 Company Email</strong>
                                                                                 <span class="text-danger">*</span>
                                                                             </label>
-                                                                            <input type="text" class="form-control mb-4" name="email" placeholder="Type in company website address" disabled value="{{ $user->email }}">
+                                                                            <input type="text" class="form-control mb-4" name="email" placeholder="Type in company website address" disabled value="{{ @$user->email }}">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
@@ -86,7 +87,7 @@
                                                                                 Phone</strong>
                                                                                 <span class="text-danger">*</span>
                                                                             </label>
-                                                                            <input type="text" class="form-control mb-4" name="phone" placeholder="Type in company website address" value="{{ $user->phone }}">
+                                                                            <input type="text" class="form-control mb-4" name="phone" placeholder="Type in company website address" value="{{ @$user->phone }}">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -123,7 +124,7 @@
                                                                 <label for="profession">
                                                                     <strong>Description</strong><span class="text-danger">*</span>
                                                                 </label>
-                                                                <textarea name="descirption" class="form-control" cols="30" rows="5">{{ $user->description }}</textarea>
+                                                                <textarea name="descirption" class="form-control" cols="30" rows="5">{{ @$user->description }}</textarea>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
@@ -384,25 +385,25 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="location">Country Selected </label>
-                                                                <input disabled type="text" class="form-control mb-4" name="country" value="{{ $info->country }}" placeholder="country">
+                                                                <input disabled type="text" class="form-control mb-4" name="country" value="{{ @$info->country }}" placeholder="country">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="address">Address<span class="text-danger">*</span> </label>
-                                                                <input type="text" class="form-control mb-4" name="street_address" placeholder="Location Address" value="{{ $info->street_address }}" >
+                                                                <input type="text" class="form-control mb-4" name="street_address" placeholder="Location Address" value="{{ @$info->street_address }}" >
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="location">Zip Code<span class="text-danger">*</span> </label>
-                                                                <input type="text" class="form-control mb-4" name="zip_code" placeholder="Zip Code" value="{{ $info->zip_code }}">
+                                                                <input type="text" class="form-control mb-4" name="zip_code" placeholder="Zip Code" value="{{ @$info->zip_code }}">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label for="phone">City<span class="text-danger">*</span> </label>
-                                                                <input type="text" class="form-control mb-4" name="city" placeholder="City" value="{{ $info->city }}">
+                                                                <input type="text" class="form-control mb-4" name="city" placeholder="City" value="{{ @$info->city }}">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
@@ -486,54 +487,61 @@
 
             @include('user_includes.scripts')
             <script>
+            // require(['custom/main'], function() {
+                // Configuration loaded now, safe to do other require calls
+                // that depend on that config.
+                // require(['jquery','Basic_function'], function($,Basic_function) {
 
-                $(document).ready(function() {
 
-                    $('.about_company_btn').click(async function(e) {
-                        e.preventDefault();
-                        let data = [];
-                        // basic info
-                        let login = $('.about_company_form').serializeArray();
-                        // console.log(login);
-                        // return;
+                    $(document).ready(function() {
 
-                        // append to form data object
-                        let form_data = set_form_data(login);
-                        let returned = await ajaxRequest('/update_about_company', form_data);
-                        // console.log(returned);return;
-                        validator(returned, '/user/settings');
+                        $('.about_company_btn').click(async function(e) {
+                            e.preventDefault();
+                            let data = [];
+                            // basic info
+                            let login = $('.about_company_form').serializeArray();
+                            // console.log(login);
+                            // return;
+
+                            // append to form data object
+                            let form_data = set_form_data(login);
+                            let returned = await ajaxRequest('/update_about_company', form_data);
+                            // console.log(returned);return;
+                            validator(returned, '/user/settings');
+                        });
+                        // other_info
+
+                        $('.other_info_btn').click(async function(e) {
+                            e.preventDefault();
+                            let data = [];
+                            // basic info
+                            let login = $('.other_info_form').serializeArray();
+                            // console.log(login);
+                            // return;
+
+                            // append to form data object
+                            let form_data = set_form_data(login);
+                            let returned = await ajaxRequest('/update_company_info', form_data);
+                            // console.log(returned);return;
+                            validator(returned, '/user/settings');
+                        });
+                        $('.password_update_btn').click(async function(e) {
+                            e.preventDefault();
+                            let data = [];
+                            // basic info
+                            let login = $('.password_update_form').serializeArray();
+                            // console.log(login);
+                            // return;
+
+                            // append to form data object
+                            let form_data = set_form_data(login);
+                            let returned = await ajaxRequest('/update_password', form_data);
+                            // console.log(returned);return;
+                            validator(returned, '/user/settings');
+                        });
+
+
                     });
-                    // other_info
-
-                    $('.other_info_btn').click(async function(e) {
-                        e.preventDefault();
-                        let data = [];
-                        // basic info
-                        let login = $('.other_info_form').serializeArray();
-                        // console.log(login);
-                        // return;
-
-                        // append to form data object
-                        let form_data = set_form_data(login);
-                        let returned = await ajaxRequest('/update_company_info', form_data);
-                        // console.log(returned);return;
-                        validator(returned, '/user/settings');
-                    });
-                    $('.password_update_btn').click(async function(e) {
-                        e.preventDefault();
-                        let data = [];
-                        // basic info
-                        let login = $('.password_update_form').serializeArray();
-                        // console.log(login);
-                        // return;
-
-                        // append to form data object
-                        let form_data = set_form_data(login);
-                        let returned = await ajaxRequest('/update_password', form_data);
-                        // console.log(returned);return;
-                        validator(returned, '/user/settings');
-                    });
-
-
-                });
+            //     });
+            // });
                 </script>

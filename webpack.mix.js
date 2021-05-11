@@ -11,7 +11,11 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+mix.js([
+        'public/user/assets/js/libs/jquery-3.1.1.min.js',
+        'public/user/bootstrap/js/popper.min.js',
+        'public/user/bootstrap/js/bootstrap.min.js'
+        ], 'public/user/webpack')
+    // .postCss('resources/css/app.css', 'public/css', [
+    //     //
+    // ]);

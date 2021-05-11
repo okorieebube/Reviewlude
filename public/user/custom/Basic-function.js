@@ -1,3 +1,6 @@
+// define(['jquery'], function($) {
+
+
 // num_suffix   // setLoader   // remv_loader   // postRequest  // throwSweetalert    // getKeyByValue    // return_element_key_in_array  // ajaxRequest    // throw_snackbar   // append_id   // display_img_thumbnail
 
 // let snack_options = {
@@ -232,3 +235,7 @@ function append_id(name, append_to, modal, this_) {
     console.log(input_id);
     // $(modal).modal('toggle');
 }
+
+
+
+// });

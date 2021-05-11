@@ -94,7 +94,6 @@ class settingsController extends Controller
                 return response()->json(['errors' => $validator->errors(), 'status' => false]);
             }
             $request->request->add(['id' => $user['unique_id']]);
-            // return $request;
             $business_settings = $this->business_settings->updateBusinessSettings($request);
 
             if(!$business_settings){

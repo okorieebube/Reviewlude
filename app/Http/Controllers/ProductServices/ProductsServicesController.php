@@ -2,85 +2,27 @@
 
 namespace App\Http\Controllers\ProductServices;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\products_services;
+use App\Traits\appFunction;
 use Illuminate\Routing\Controller;
+use App\Http\Controllers\Auth\loginController;
 
 class ProductsServicesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    use appFunction;
+    //
+    public function __construct(User $user_model, loginController $Login)
     {
-        //
+        $this->middleware('auth',  ['except' => []]);
+        $this->Login = $Login;
+        $this->user_model = $user_model;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function create_page()
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\products_services  $products_services
-     * @return \Illuminate\Http\Response
-     */
-    public function show(products_services $products_services)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\products_services  $products_services
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(products_services $products_services)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\products_services  $products_services
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, products_services $products_services)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\products_services  $products_services
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(products_services $products_services)
-    {
-        //
+        return view('user.products');
     }
 }

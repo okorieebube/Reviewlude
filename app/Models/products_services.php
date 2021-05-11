@@ -25,6 +25,8 @@ class products_services extends Model
         'unique_id',
         'user_id',
         'name',
+        'category',
+        'cover_photo',
         'total_reviews',
         'score',
         'tags',
@@ -43,6 +45,9 @@ class products_services extends Model
     function updateProductServices($requestObject){
 
         $products_services = business_settings::find($requestObject->id);
+        $products_services->name = $requestObject->name ?? $products_services->name;
+        $products_services->category = $requestObject->category ?? $products_services->category;
+        $products_services->cover_photo = $requestObject->cover_photo ?? $products_services->cover_photo;
         $products_services->total_reviews = $requestObject->total_reviews ?? $products_services->total_reviews;
         $products_services->score = $requestObject->score ?? $products_services->score;
         $products_services->tags = $requestObject->tags ?? $products_services->tags;
