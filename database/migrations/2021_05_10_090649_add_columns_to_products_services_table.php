@@ -14,8 +14,9 @@ class AddColumnsToProductsServicesTable extends Migration
     public function up()
     {
         Schema::table('products_services', function (Blueprint $table) {
-            $table->string('category')->after('name');
-            $table->string('cover_photo')->after('name');
+            $table->text('description')->after('name');
+            $table->string('category')->after('description');
+            $table->string('cover_photo')->after('category');
         });
     }
 
@@ -28,7 +29,7 @@ class AddColumnsToProductsServicesTable extends Migration
     {
         Schema::table('products_services', function (Blueprint $table) {
             //
-            $table->dropColumn(['category', 'cover_photo']);
+            $table->dropColumn(['category', 'cover_photo', 'description']);
         });
     }
 }

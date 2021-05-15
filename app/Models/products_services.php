@@ -25,6 +25,7 @@ class products_services extends Model
         'unique_id',
         'user_id',
         'name',
+        'description',
         'category',
         'cover_photo',
         'total_reviews',
@@ -33,12 +34,23 @@ class products_services extends Model
         'performance',
     ];
 
+    public function company(){
+        return $this->belongsTo('App\Models\User', 'user_id');
+    }
+    public function categories(){
+        return $this->belongsTo('App\Models\category', 'category');
+    }
 
     public function getSingle($condition){
 
         $products_services = products_services::where($condition)->first();
 
         return $products_services;
+
+    }
+    public function getAll($condition, $id = 'id', $desc = 'desc'){
+
+        return products_services::where($condition)->orderBy($id, $desc)->get();
 
     }
 

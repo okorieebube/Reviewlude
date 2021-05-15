@@ -36,7 +36,7 @@ class categories_to_product_services_tb extends Model
 
     }
 
-    function updateCategoriesToProductServicesTb($requestObject){
+    function updateSingle($requestObject){
 
         $categories_to_product_services_tb = categories_to_product_services_tb::find($requestObject->id);
         $categories_to_product_services_tb->category_id = $requestObject->category_id ?? $categories_to_product_services_tb->category_id;

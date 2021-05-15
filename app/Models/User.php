@@ -60,6 +60,9 @@ class User extends Authenticatable
         'is_blocked' => 'boolean',
     ];
 
+    public function products_services(){
+        return $this->hasMany('App\Models\products_services', 'user_id');
+    }
 
 
     public function getSingle($condition){

@@ -60,3 +60,5 @@ Route::post('/create_category', [CategoryController::class, 'create']);
 // PRODUCTS & SERVICES
 Route::get('/user/products', [ProductsServicesController::class, 'create_page'])->name('products');
 
+Route::post('/create_product', [ProductsServicesController::class, 'create']);
+

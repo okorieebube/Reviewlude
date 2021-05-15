@@ -188,10 +188,10 @@
                     <div class="dropdown-menu position-absolute animated fadeInUp" aria-labelledby="userProfileDropdown">
                         <div class="user-profile-section">
                             <div class="media mx-auto">
-                                <img src="assets/img/profile-17.jpg" class="img-fluid mr-2" alt="avatar">
+                                {{-- <img src="assets/img/profile-17.jpg" class="img-fluid mr-2" alt="avatar"> --}}
                                 <div class="media-body">
-                                    <h5>Sonia Shaw</h5>
-                                    <p>Project Leader</p>
+                                    <h5 class="text-capitalize">{{ $user->company_name }}</h5>
+                                    <p class="text-capitalize">{{ $user->user_type }}</p>
                                 </div>
                             </div>
                         </div>

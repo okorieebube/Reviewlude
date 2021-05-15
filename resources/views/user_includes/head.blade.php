@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/user/plugins/bootstrap-4-Tag-Input/tagsinput.css') }}">
     <link href="{{ asset('/user/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/user/assets/css/plugins.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/user/plugins/animate/animate.css') }}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
@@ -29,12 +30,15 @@
     <link href="{{ asset('/user/assets/css/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/user/assets/css/components/custom-modal.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('/user/plugins/jquery-step/jquery.steps.css') }}">
-    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('/user/assets/css/tagify.css') }}"> --}}
+    <link href="{{ asset('/user/assets/css/components/custom-modal.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('/user/plugins/table/datatable/datatables.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/user/plugins/table/datatable/dt-global_style.css') }}">
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
     <!-- CUSTOM CSS -->
     <link rel="stylesheet" type="text/css" href="{{asset('user/custom/js-snackbar/dist/js-snackbar.css')}}">
     <link rel="stylesheet" href="{{asset('user/custom/custom-app.css')}}">
 
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
 </head>

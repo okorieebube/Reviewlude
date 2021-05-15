@@ -113,7 +113,7 @@ $(document).ready(function() {
         let form_data = set_form_data(login);
         let returned = await ajaxRequest('/login_acct', form_data);
         // console.log(returned);return;
-        validator(returned, '/user/');
+        validator(returned, '/user/overview');
     });
 
 });

@@ -1,14 +1,19 @@
 @php
-    $title = 'Create Product';
-    $product=  'active';
-    $user = Auth::user();
+$title = 'Create Product';
+$product= 'active';
+$user = Auth::user();
 @endphp
 @include('user_includes.head')
+
 <body>
     <!-- BEGIN LOADER -->
-    <div id="load_screen"> <div class="loader"> <div class="loader-content">
-        <div class="spinner-grow align-self-center"></div>
-    </div></div></div>
+    <div id="load_screen">
+        <div class="loader">
+            <div class="loader-content">
+                <div class="spinner-grow align-self-center"></div>
+            </div>
+        </div>
+    </div>
     <!--  END LOADER -->
 
     <!--  BEGIN NAVBAR  -->
@@ -37,79 +42,175 @@
                     <div class="account-content">
                         <div class="scrollspy-example" data-spy="scroll" data-target="#account-settings-scroll" data-offset="-100">
 
-                    <div class="row layout-top-spacing" id="cancel-row">
-                        <div class="col-lg-12 layout-spacing">
-                            <div class="statbox widget box box-shadow">
-                                <div class="widget-header">
-                                    <div class="row">
-                                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                            <h4>Register Product</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="widget-content widget-content-area">
-                                    <div id="circle-basic" class="">
-                                        <h3>Basic Info</h3>
-                                        <section>
-                                            <form id="contact" class="section contact other_info_form">
-                                                @csrf
-                                                <div class="info">
-                                                    <div class="row">
-                                                        <div class="col-md-11 mx-auto">
+                            <div class="row layout-top-spacing" id="cancel-row">
+                                <div class="col-lg-12 layout-spacing">
+                                    <div class="statbox widget box box-shadow">
+                                        <div class="widget-content widget-content-area">
+                                            <div class="widget-header">
+                                                <div class="row">
+                                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                                        <h5>Create Product</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="circle-basic" class="">
+                                                <h3>Basic Info</h3>
+                                                <section>
+                                                    <form id="contact" class="section contact create_product_form">
+                                                        @csrf
+                                                        <div class="info">
                                                             <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="location">Name<span class="text-danger">*</span> </label>
-                                                                        <input type="text" class="form-control mb-4" name="name" placeholder="Enter name of product*" value="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="country">Category<span class="text-danger">*</span> </label>
-                                                                        <select name="country" class="form-control" required>
-                                                                            <option value="">Select a category for product</option>
-                                                                            <option value="Afganistan">Afghanistan</option>
-                                                                            <option value="Albania">Albania</option>
-                                                                            <option value="Algeria">Algeria</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="location">Tags </label>
-                                                                        <input type="text" class="form-control mb-4" name="product_tags" data-role="tagsinput" value="" placeholder="Add tags associated with your product">
+                                                                <div class="col-md-11 mx-auto">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="location">Name<span class="text-danger">*</span> </label>
+                                                                                <input type="text" class="form-control mb-4" name="name" placeholder="Enter name of product*" value="">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="country">Category<span class="text-danger">*</span> </label>
+                                                                                <select name="category" class="form-control" required>
+                                                                                    <option value="">Select a category for product</option>
+                                                                                    @foreach ($categories as $e)
+                                                                                    <option value="{{ $e->unique_id }}">{{ $e->name }}</option>
+                                                                                    @endforeach
+
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="location">Tags<span class="text-danger">*</span> </label>
+                                                                                <input type="text" class="form-control form_tags mb-4" data-role="tagsinput" value="" placeholder="Add tags associated with your product">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <label for="location">Description<span class="text-danger">*</span> </label>
+                                                                                {{-- <input type="text" class="form-control form_tags mb-4" data-role="tagsinput" value="" placeholder="Add tags associated with your product"> --}}
+                                                                                <textarea id="desc" cols="30" rows="10" class="form-control desc mb-4"></textarea>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </form>
+                                                </section>
+                                                <h3>Cover Photo</h3>
+                                                <section>
+                                                    <div class="row">
+
+                                                        <div class="col-xl-10 col-lg-12 col-md-12 m-auto">
+                                                            <div class="upload mt-4 pr-md-4">
+                                                                <input type="file" id="input-file-max-fs" class="dropify" data-default-file="{{ asset('/user/assets/img/arrow-down.png') }}" data-max-file-size="10M" />
+                                                                <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i> Select a cover Photo</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </form>
-                                        </section>
-                                        <h3>Cover Photo</h3>
-                                        <section>
-                                            <p>Wonderful transition effects.</p>
-                                        </section>
-                                    </div>
-
-                                    <div class="code-section-container">
-
-                                        <button class="btn toggle-code-snippet"><span>Code</span></button>
-
-                                        <div class="code-section text-left">
-                                            <pre>
-                                            $("selector").steps({
-                                                cssClass: 'circle wizard'
-                                            });
-                                            </pre>
+                                                </section>
+                                            </div>
                                         </div>
                                     </div>
-
                                 </div>
-                            </div>
-                        </div>
 
-                    </div>
+                            </div>
+
+                            <div class="row layout-top-spacing" id="cancel-row">
+                                {{-- <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+
+                                </div> --}}
+
+                                <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                                    <div class="widget-content widget-content-area br-6">
+                                        <div class="widget-header">
+                                            <div class="row">
+                                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                                    <h5>Registered Products</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive mb-4 mt-4">
+                                            <table id="zero-config" class="table table-hover" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S/n</th>
+                                                        <th>Name</th>
+                                                        <th>Company</th>
+                                                        <th>Status</th>
+                                                        <th>Category</th>
+                                                        <th>Total Reviews</th>
+                                                        <th>Scores</th>
+                                                        <th class="no-content"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    @foreach ($products as $e)
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>{{ $e->name }}</td>
+                                                        <td>{{ $e->company->company_name }}</td>
+                                                        <td>pending</td>
+                                                        <td>{{ $e->categories->name }}</td>
+                                                        <td>{{ $e->total_reviews }}</td>
+                                                        <td>{{ $e->score }}</td>
+                                                        <td class="text-center">
+                                                            <div class="dropdown custom-dropdown">
+                                                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                                                </a>
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
+                                                                    <a class="dropdown-item" href="javascript:void(0);">Confirm</a>
+                                                                    <a class="dropdown-item" href="javascript:void(0);">Edit</a>
+                                                                    <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+
+                                                    {{-- <tr>
+                                                        <td>2</td>
+                                                        <td>Garrett Winters</td>
+                                                        <td>Accountant</td>
+                                                        <td>Tokyo</td>
+                                                        <td>63</td>
+                                                        <td>2011/07/25</td>
+                                                        <td>$170,750</td>
+                                                        <td><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle table-cancel"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>Ashton Cox</td>
+                                                        <td>Junior Technical Author</td>
+                                                        <td>San Francisco</td>
+                                                        <td>66</td>
+                                                        <td>2009/01/12</td>
+                                                        <td>$86,000</td>
+                                                        <td><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle table-cancel"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></td>
+                                                    </tr> --}}
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr class="text-uppercase">
+                                                        <th>S/N</th>
+                                                        <th>Name</th>
+                                                        <th>Company</th>
+                                                        <th>Status</th>
+                                                        <th>Category</th>
+                                                        <th>Total Reviews</th>
+                                                        <th>Score</th>
+                                                        <th class="no-content"></th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
 
@@ -121,22 +222,27 @@
             </div>
             <!-- END MAIN CONTAINER -->
 
-            <div id="zoomupModal" class="modal animated zoomInUp custo-zoomInUp" role="dialog">
+            <div id="confirmation_modal" class="modal animated zoomInUp custo-zoomInUp" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Modal Header</h5>
+                            <h5 class="modal-title">Confirm*</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
                             </button>
                         </div>
                         <div class="modal-body">
-                              <p class="modal-text">Nulla imperdiet sed ipsum non lacinia. Duis accumsan egestas nulla, vel commodo orci tempus quis. </p>
+                            <p class="modal-text">
+                                If the details for this product is validated, click the `create` button below to continue.
+                            </p>
                         </div>
                         <div class="modal-footer md-button">
-                            <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
-                            <button type="button" class="btn btn-primary">Save</button>
+                            <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Cancel</button>
+                            <button type="button" class="btn btn-primary create_product_btn">Create</button>
                         </div>
                     </div>
                 </div>
@@ -144,54 +250,56 @@
 
             @include('user_includes.scripts')
             <script>
-
+                tinymce.init({
+                    selector: '#desc',
+                });
                 $(document).ready(function() {
 
-                    $('.about_company_btn').click(async function(e) {
-                        e.preventDefault();
-                        let data = [];
-                        // basic info
-                        let login = $('.about_company_form').serializeArray();
-                        // console.log(login);
-                        // return;
-
-                        // append to form data object
-                        let form_data = set_form_data(login);
-                        let returned = await ajaxRequest('/update_about_company', form_data);
-                        // console.log(returned);return;
-                        validator(returned, '/user/settings');
+                    $("li:contains(Finish)").click(function(e) {
+                    e.preventDefault();
+                    // console.log(e);
+                    $('#confirmation_modal').modal('toggle');
                     });
-                    // other_info
 
-                    $('.other_info_btn').click(async function(e) {
+                    // process form for creating course
+                    $('.create_product_btn').click(async function(e) {
                         e.preventDefault();
                         let data = [];
+
                         // basic info
-                        let login = $('.other_info_form').serializeArray();
-                        // console.log(login);
-                        // return;
+                        let basic_info = $('.create_product_form').serializeArray();
+                        basic_info.forEach(e => {
+                        data.push(e);
+                        });
+
+                        let tags = $(".form_tags").val();
+                        data.push({
+                        name: "tags",
+                        value: tags
+                        });
+                        // tiny mce description
+                        let desc = tinymce.get("desc").getContent();
+                        data.push({
+                            name: "desc",
+                            value: desc
+                        });
+
+                        // file upload
+                        let cover_img = $('#input-file-max-fs').prop('files')[0];
+                        data.push({
+                            name: "cover_img",
+                            value: cover_img
+                        });
+                        // console.log(data); return;
 
                         // append to form data object
-                        let form_data = set_form_data(login);
-                        let returned = await ajaxRequest('/update_company_info', form_data);
-                        // console.log(returned);return;
-                        validator(returned, '/user/settings');
-                    });
-                    $('.password_update_btn').click(async function(e) {
-                        e.preventDefault();
-                        let data = [];
-                        // basic info
-                        let login = $('.password_update_form').serializeArray();
-                        // console.log(login);
+                        let form_data = set_form_data(data);
+                        let returned = await ajaxRequest('/create_product', form_data);
+                        // console.log(returned);
                         // return;
-
-                        // append to form data object
-                        let form_data = set_form_data(login);
-                        let returned = await ajaxRequest('/update_password', form_data);
-                        // console.log(returned);return;
-                        validator(returned, '/user/settings');
+                        validator(returned, '/user/products');
                     });
 
 
                 });
-                </script>
+            </script>

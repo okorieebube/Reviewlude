@@ -27,6 +27,9 @@ class category extends Model
         'description',
     ];
 
+    // public function products_services(){
+    //     return $this->hasMany('App\Models\products_services', 'category');
+    // }
 
     public function getSingle($condition){
 
@@ -35,8 +38,15 @@ class category extends Model
         return $users;
 
     }
+    function getAll( $id = 'id'){
 
-    function updateCategory($requestObject){
+        $categories = category::orderBy($id)->get();
+
+        return $categories;
+
+    }
+
+    function updateSingle($requestObject){
 
         $category = category::find($requestObject->id);
         $category->name = $requestObject->name ?? $category->name;
