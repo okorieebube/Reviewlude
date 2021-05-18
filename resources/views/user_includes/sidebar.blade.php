@@ -4,7 +4,7 @@
         <div class="profile-info">
             <figure class="user-cover-image"></figure>
             <div class="user-info">
-                <img src="assets/img/profile-17.jpg" alt="avatar">
+                <img src="{{ asset('user/assets/img/profile-17.jpg') }}" alt="avatar">
                 <h6 class="text-capitalize">{{ $user->company_name }}</h6>
                 <p class="">{{ $user->email }}</p>
             </div>
@@ -27,7 +27,7 @@
                         <a href="{{ route('products') }}"> Products </a>
                     </li>
                     <li class="{{@$service }}"> <!-- active -->
-                        <a href="index2.html"> Services </a>
+                        <a href="{{ route('services') }}"> Services </a>
                     </li>
                 </ul>
             </li>

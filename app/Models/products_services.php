@@ -28,6 +28,8 @@ class products_services extends Model
         'description',
         'category',
         'cover_photo',
+        'status',
+        'type',
         'total_reviews',
         'score',
         'tags',
@@ -56,10 +58,11 @@ class products_services extends Model
 
     function updateProductServices($requestObject){
 
-        $products_services = business_settings::find($requestObject->id);
+        $products_services = products_services::find($requestObject->id);
         $products_services->name = $requestObject->name ?? $products_services->name;
         $products_services->category = $requestObject->category ?? $products_services->category;
         $products_services->cover_photo = $requestObject->cover_photo ?? $products_services->cover_photo;
+        $products_services->status = $requestObject->cover_photo ?? $products_services->status;
         $products_services->total_reviews = $requestObject->total_reviews ?? $products_services->total_reviews;
         $products_services->score = $requestObject->score ?? $products_services->score;
         $products_services->tags = $requestObject->tags ?? $products_services->tags;

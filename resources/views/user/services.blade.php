@@ -1,6 +1,6 @@
 @php
-$title = 'Create Product';
-$product= 'active';
+$title = 'Create Service';
+$service= 'active';
 $user = Auth::user();
 @endphp
 @include('user_includes.head')
@@ -49,7 +49,7 @@ $user = Auth::user();
                                             <div class="widget-header">
                                                 <div class="row">
                                                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                                        <h5>Create Product</h5>
+                                                        <h5>Create Service</h5>
                                                     </div>
                                                 </div>
                                             </div>
@@ -65,14 +65,14 @@ $user = Auth::user();
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label for="location">Name<span class="text-danger">*</span> </label>
-                                                                                <input type="text" class="form-control mb-4" name="name" placeholder="Enter name of product*" value="">
+                                                                                <input type="text" class="form-control mb-4" name="name" placeholder="Enter name of service*" value="">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label for="country">Category<span class="text-danger">*</span> </label>
                                                                                 <select name="category" class="form-control" required>
-                                                                                    <option value="">Select a category for product</option>
+                                                                                    <option value="">Select a category for service</option>
                                                                                     @foreach ($categories as $e)
                                                                                     <option value="{{ $e->unique_id }}">{{ $e->name }}</option>
                                                                                     @endforeach
@@ -83,7 +83,7 @@ $user = Auth::user();
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label for="location">Tags<span class="text-danger">*</span> </label>
-                                                                                <input type="text" class="form-control form_tags mb-4" data-role="tagsinput" value="" placeholder="Add tags associated with your product">
+                                                                                <input type="text" class="form-control form_tags mb-4" data-role="tagsinput" value="" placeholder="Add tags associated with your service">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-12">
@@ -128,7 +128,7 @@ $user = Auth::user();
                                         <div class="widget-header">
                                             <div class="row">
                                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                                    <h5>Registered Products</h5>
+                                                    <h5>Registered Services</h5>
                                                 </div>
                                             </div>
                                         </div>
@@ -148,7 +148,7 @@ $user = Auth::user();
                                                 </thead>
                                                 <tbody>
                                                     {{-- padding-bottom: 20px; --}}
-                                                    @foreach ($products as $e)
+                                                    @foreach ($services as $e)
                                                     <tr>
                                                         <td>1</td>
                                                         <td>{{ $e->name }}</td>
@@ -173,7 +173,7 @@ $user = Auth::user();
                                                                 </a>
                                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
                                                                     <a id="{{ $e->unique_id }}" class="dropdown-item pointer confirm_modal">Confirm</a>
-                                                                    <a class="dropdown-item" href="{{ route('edit_product',$e->unique_id ) }}">Edit</a>
+                                                                    <a class="dropdown-item" href="{{ route('edit_service',$e->unique_id ) }}">Edit</a>
                                                                     <a id="{{ $e->unique_id }}" class="dropdown-item pointer delete_modal">Delete</a>
                                                                 </div>
                                                             </div>
@@ -247,7 +247,7 @@ $user = Auth::user();
                             @csrf
                             <div class="modal-body">
                                 <p class="modal-text">
-                                    If you click continue, this product will be made visible to reviewers.
+                                    If you click continue, this service will be made visible to reviewers.
                                 </p>
                             </div>
                         </form>
@@ -280,7 +280,7 @@ $user = Auth::user();
                             @csrf
                             <div class="modal-body">
                                 <p class="modal-text">
-                                    If you click continue, this product will be delete permanently. Reviewers won't be able to review this product.
+                                    If you click continue, this service will be delete permanently. Reviewers won't be able to review this service.
                                 </p>
                             </div>
                         </form>
@@ -312,7 +312,7 @@ $user = Auth::user();
                         </div>
                         <div class="modal-body">
                             <p class="modal-text">
-                                If the details for this product is validated, click the `create` button below to continue.
+                                If the details for this service is validated, click the `create` button below to continue.
                             </p>
                         </div>
                         <div class="modal-footer md-button">
@@ -348,7 +348,7 @@ $user = Auth::user();
                         // return;
                         let form_data = set_form_data(confirm_modal_form);
                         let returned = await ajaxRequest('/confirm_product/'+confirm_modal_form[1].value, form_data);
-                        validator(returned, '/user/products');
+                        validator(returned, '/user/services');
                     });
                     $('.delete_modal_btn').click(async function(e) {
                         e.preventDefault();
@@ -357,7 +357,7 @@ $user = Auth::user();
                         // return;
                         let form_data = set_form_data(delete_modal_form);
                         let returned = await ajaxRequest('/delete_product/'+delete_modal_form[1].value, form_data);
-                        validator(returned, '/user/products');
+                        validator(returned, '/user/services');
                     });
 
                     $("li:contains(Finish)").click(function(e) {
@@ -399,10 +399,10 @@ $user = Auth::user();
 
                         // append to form data object
                         let form_data = set_form_data(data);
-                        let returned = await ajaxRequest('/create_product', form_data);
+                        let returned = await ajaxRequest('/create_service', form_data);
                         // console.log(returned);
                         // return;
-                        validator(returned, '/user/products');
+                        validator(returned, '/user/services');
                     });
 
 

@@ -24,6 +24,10 @@
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="#about">About</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="{{ route('view_categories') }}">Categories</a>
+                    </li>
+                    {{-- view_categories --}}
                     <li class="nav-item dropdown">
                         <a class="nav-link page-scroll dropdown-toggle" href="#" id="navbarDropdownHome" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,12 +49,6 @@
                             <a class="dropdown-item" href="blog-left-sidebar.html">Blog Left Sidebar</a>
                             <a class="dropdown-item" href="blog-single-right-sidebar.html">Details Right Sidebar</a>
                         </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#team">Team</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#contact">Contact</a>
                     </li>
 
                 </ul>

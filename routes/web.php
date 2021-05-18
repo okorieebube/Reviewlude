@@ -41,9 +41,12 @@ Route::post('/login_acct', [loginController::class, 'login']);
 Route::get('/email-confirmation/{id}', [registerController::class, 'email_confirmation'])->name('email_confirmation');
 
 
+//
 
 
 
+
+// DASHBOARD HOME PAGE
 Route::get('/user/overview', [overviewController::class, 'overview_page'])->name('overview');
 
 
@@ -55,10 +58,19 @@ Route::post('/update_password', [userController::class, 'update_password']);
 
 
 // CATEGORY
+Route::get('/categories', [CategoryController::class, 'category_page'])->name('view_categories');
 Route::post('/create_category', [CategoryController::class, 'create']);
 
 // PRODUCTS & SERVICES
-Route::get('/user/products', [ProductsServicesController::class, 'create_page'])->name('products');
+Route::get('/user/products', [ProductsServicesController::class, 'create_product_page'])->name('products');
+Route::get('/user/product/{id}', [ProductsServicesController::class, 'edit_product_page'])->name('edit_product');
+
+Route::get('/user/services', [ProductsServicesController::class, 'create_service_page'])->name('services');
+Route::get('/user/service/{id}', [ProductsServicesController::class, 'edit_service_page'])->name('edit_service');
 
 Route::post('/create_product', [ProductsServicesController::class, 'create']);
+Route::post('/create_service', [ProductsServicesController::class, 'create_service']);
+Route::post('/confirm_product/{id}', [ProductsServicesController::class, 'confirm']);
+Route::post('/delete_product/{id}', [ProductsServicesController::class, 'soft_delete']);
+Route::post('/update_product_service', [ProductsServicesController::class, 'update']);
 

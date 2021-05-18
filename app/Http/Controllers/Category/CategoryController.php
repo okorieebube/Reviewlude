@@ -19,6 +19,11 @@ class CategoryController extends Controller
         $this->category = $category;
     }
 
+    public function category_page()
+    {
+        return view('en.view_categories');
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
