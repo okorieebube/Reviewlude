@@ -63,6 +63,9 @@ class User extends Authenticatable
     public function products_services(){
         return $this->hasMany('App\Models\products_services', 'user_id');
     }
+    public function settings(){
+        return $this->hasMany('App\Models\business_settings', 'unique_id', 'unique_id');
+    }
 
 
     public function getSingle($condition){

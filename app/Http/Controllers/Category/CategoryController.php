@@ -6,22 +6,30 @@ use Exception;
 use App\Models\category;
 use App\Traits\appFunction;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
     use appFunction;
     //
-    public function __construct(category $category)
+    public function __construct(category $category, Controller $Controller)
     {
-        $this->middleware('auth',  ['except' => []]);
+        $this->middleware('auth',  ['except' => ['category_page']]);
         $this->category = $category;
+        $this->Controller = $Controller;
     }
 
     public function category_page()
     {
-        return view('en.view_categories');
+        $categories = $this->category->getAll();
+        foreach ($categories as $e ) {
+            $e->no_of_products = $this->Controller->calc_products_under_category($e->unique_id);
+        }
+        $view = [
+            'categories' => $categories,
+        ];
+        return view('en.view_categories', $view);
     }
 
     /**
@@ -45,10 +53,21 @@ class CategoryController extends Controller
                 return response()->json(['errors' => $validator->errors(), 'status' => false]);
             }
             $unique_id = $this->rand_id();
+            $slug = $this->slugify($request->input('name'));
+
+            // check if slug exists already
+            $condition = [
+                ['slug',$slug],
+            ];
+            $slug_exists = $this->category->getSingle($condition);
+            if($slug_exists){
+                throw new Exception($this->errorMsgs(16)['msg']);
+            }
 
             $category = category::create([
                 'unique_id' => $unique_id,
                 'name' => $request->input('name'),
+                'slug' => $slug,
                 'description' => $request->input('description'),
             ]);
 

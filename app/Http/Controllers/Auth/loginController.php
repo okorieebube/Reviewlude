@@ -77,7 +77,7 @@ class loginController extends Controller
                 $first_name = ucwords($this->user_logged()['full_name']);
 
                 $error = 'User Authorization Successfull!';
-                return response()->json(["message" => $error, 'status' => true]);
+                return response()->json(["message" => $error, 'status' => true, 'user_type' => $User->user_type]);
             }
         } catch (Exception $e) {
 

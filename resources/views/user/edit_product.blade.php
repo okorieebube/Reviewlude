@@ -108,8 +108,9 @@ $user = Auth::user();
 
                                                         <div class="col-xl-10 col-lg-12 col-md-12 m-auto">
                                                             <div class="upload mt-4 pr-md-4">
-                                                                <input type="file" id="input-file-max-fs" class="dropify" data-default-file="{{ asset('/user/assets/img/arrow-down.png') }}" data-max-file-size="10M" />
+                                                                <input type="file" id="input-file-max-fs" class="dropify" data-default-file="{{asset('/storage/uploads/products/'.$the_product->cover_photo)}}" data-max-file-size="10M" />
                                                                 <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i> Select a cover Photo</p>
+                                                                <p>Preferrable file size: 730px by 304px</p>
                                                             </div>
                                                         </div>
                                                     </div>

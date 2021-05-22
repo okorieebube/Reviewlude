@@ -1,6 +1,7 @@
 @php
     $title = 'Settings';
     $settings=  'active';
+    $aria_setting = 'true';
     $user = Auth::user();
 @endphp
 @include('user_includes.head')

@@ -113,7 +113,15 @@ $(document).ready(function() {
         let form_data = set_form_data(login);
         let returned = await ajaxRequest('/login_acct', form_data);
         // console.log(returned);return;
-        validator(returned, '/user/overview');
+        if (returned.status == false) {
+            validator(returned, '/user/overview');
+        }else if(returned.status == true){
+            if(returned.user_type == 'business'){
+                validator(returned, '/user/overview');
+            }else if(returned.user_type == 'reviewer'){
+                validator(returned, '/categories');
+            }
+        }
     });
 
 });

@@ -2,7 +2,7 @@
     <!--start navbar-->
     <nav class="navbar navbar-expand-lg fixed-top bg-transparent">
         <div class="container">
-            <a class="navbar-brand" href="index-5.html"><img src="{{ asset('en/img/logo-white-1x.png')}}" width="120" alt="logo"
+            <a class="navbar-brand" href="/"><img src="{{ asset('en/img/logo-white-1x.png')}}" width="120" alt="logo"
                                                            class="img-fluid"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,7 +19,7 @@
                 </form>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link page-scroll" href="#about">Home</a>
+                        <a class="nav-link page-scroll" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="#about">About</a>
@@ -38,7 +38,13 @@
                             <a class="dropdown-item" href="{{ route('register_reviewer') }}">Reviewer</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="{{ route('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="{{ route('overview') }}">Dashboard</a>
+                    </li>
+                    {{-- <li class="nav-item dropdown">
                         <a class="nav-link page-scroll dropdown-toggle" href="#" id="navbarBlogPage" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Blog <span class="custom-nav-badge badge badge-danger badge-pill">New</span>
@@ -49,7 +55,7 @@
                             <a class="dropdown-item" href="blog-left-sidebar.html">Blog Left Sidebar</a>
                             <a class="dropdown-item" href="blog-single-right-sidebar.html">Details Right Sidebar</a>
                         </div>
-                    </li>
+                    </li> --}}
 
                 </ul>
             </div>

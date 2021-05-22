@@ -35,6 +35,13 @@ class categories_to_product_services_tb extends Model
         return $users;
 
     }
+    function getAll($condition = [], $id = 'id'){
+
+        $categories = categories_to_product_services_tb::orderBy($id)->where($condition)->get();
+
+        return $categories;
+
+    }
 
     function updateSingle($requestObject){
 

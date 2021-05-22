@@ -48,6 +48,21 @@ class registerController extends Controller
             'password' => ['required', 'string', 'confirmed'], //'min:8'
         ]);
     }
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validate_reviewer(array $data)
+    {
+        return Validator::make($data, [
+            'first_name' => ['required', 'string', 'max:100'],
+            'last_name' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'confirmed'], //'min:8'
+        ]);
+    }
 
     public function create_business(Request $request)
     {
@@ -71,6 +86,52 @@ class registerController extends Controller
                 'last_name' => $last_name,
                 'password' => Hash::make($request->input('password')),
                 'company_name' => $request->input('company_name'),
+            ]);
+
+            if (!$user->unique_id) {
+                throw new Exception($this->errorMsgs(14)['msg']);
+            } else {
+                // create settings row for business
+                $settings = business_settings::create([
+                    'unique_id' => $unique_id,
+                ]);
+                Mail::to($user->email)->send(new accountConfirmation($user));
+
+                $error = 'Proceed to your Email, for confirmation!';
+                return response()->json(["message" => $error, 'status' => true]);
+            }
+        } catch (Exception $e) {
+
+            $error = $e->getMessage();
+            $error = [
+                'errors' => [$error],
+            ];
+            return response()->json(["errors" => $error, 'status' => false]);
+        }
+    }
+
+
+    public function create_reviewer(Request $request)
+    {
+        try {
+            $validator = $this->validate_reviewer($request->all());
+
+            if ($validator->fails()) {
+                return response()->json(['errors' => $validator->errors(), 'status' => false]);
+            }
+            if ($request->input('terms') !== 'on') {
+                throw new Exception($this->errorMsgs(31)['msg']);
+            }
+
+            $unique_id = $this->rand_id();
+
+            $user = User::create([
+                'unique_id' => $unique_id,
+                'user_type' => 'reviewer',
+                'email' => $request->input('email'),
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'password' => Hash::make($request->input('password')),
             ]);
 
             if (!$user->unique_id) {

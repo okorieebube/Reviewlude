@@ -24,6 +24,7 @@ class category extends Model
     protected $fillable = [
         'unique_id',
         'name',
+        'slug',
         'description',
     ];
 
@@ -38,18 +39,26 @@ class category extends Model
         return $users;
 
     }
-    function getAll( $id = 'id'){
+    function getAll( $id = 'id',$condition = []){
 
-        $categories = category::orderBy($id)->get();
+        $categories = category::orderBy($id)->where($condition)->get();
 
         return $categories;
 
     }
+    // public function getAllUsers($condition, $id = 'id', $desc = 'desc'){
+
+    //     $users = User::orderBy($id, $desc)->where($condition)->get();
+
+    //     return $users;
+
+    // }
 
     function updateSingle($requestObject){
 
         $category = category::find($requestObject->id);
         $category->name = $requestObject->name ?? $category->name;
+        $category->slug = $requestObject->slug ?? $category->slug;
         $category->description = $requestObject->description ?? $category->description;
         if($category->save()){
             return $category;

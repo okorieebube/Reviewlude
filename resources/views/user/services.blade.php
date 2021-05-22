@@ -1,6 +1,7 @@
 @php
 $title = 'Create Service';
 $service= 'active';
+    $aria_service = 'true';
 $user = Auth::user();
 @endphp
 @include('user_includes.head')
@@ -107,6 +108,7 @@ $user = Auth::user();
                                                             <div class="upload mt-4 pr-md-4">
                                                                 <input type="file" id="input-file-max-fs" class="dropify" data-default-file="{{ asset('/user/assets/img/arrow-down.png') }}" data-max-file-size="10M" />
                                                                 <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i> Select a cover Photo</p>
+                                                                <p>Preferrable file dimension: 730px by 304px</p>
                                                             </div>
                                                         </div>
                                                     </div>

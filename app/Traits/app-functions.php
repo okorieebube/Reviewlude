@@ -108,6 +108,9 @@ trait appFunction
             case $info == 30:
                 return ['error' => 1, 'msg' => 'Error! No previous address has been generated for this xpub'];
                 break;
+            case $info == 31:
+                return ['error' => 1, 'msg' => 'Error! To proceed, agree to our terms & conditions'];
+                break;
         }
     }
 

@@ -26,6 +26,9 @@ Route::get('/clear-cache', [userController::class,'clear_cache']);
 Route::get('/', function () {
     return view('en.index');
 });
+Route::get('/user/test', function () {
+    return view('user.test');
+});
 
 // AUTH REQUESTS
 Route::get('/login', [loginController::class, 'login_page'])->name('login');
@@ -34,6 +37,7 @@ Route::get('/register/reviewer', [registerController::class, 'reviewer_register_
 
 Route::post('/register_business', [registerController::class, 'create_business'])->name('create_business');
 Route::post('/register/business', [registerController::class, 'create_business'])->name('register_business');
+Route::post('/register_reviewer', [registerController::class, 'create_reviewer'])->name('create_reviewer');
 Route::post('/login_acct', [loginController::class, 'login']);
 
 
@@ -64,6 +68,8 @@ Route::post('/create_category', [CategoryController::class, 'create']);
 // PRODUCTS & SERVICES
 Route::get('/user/products', [ProductsServicesController::class, 'create_product_page'])->name('products');
 Route::get('/user/product/{id}', [ProductsServicesController::class, 'edit_product_page'])->name('edit_product');
+Route::get('/product/{id}', [ProductsServicesController::class, 'view_product_page'])->name('view_product');
+Route::get('/products/{id}', [ProductsServicesController::class, 'view_all_page'])->name('view_products');
 
 Route::get('/user/services', [ProductsServicesController::class, 'create_service_page'])->name('services');
 Route::get('/user/service/{id}', [ProductsServicesController::class, 'edit_service_page'])->name('edit_service');

@@ -8,7 +8,7 @@ use App\Models\category;
 use App\Traits\appFunction;
 use Illuminate\Http\Request;
 use App\Models\products_services;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Auth\loginController;
@@ -18,14 +18,15 @@ class ProductsServicesController extends Controller
 {
     use appFunction;
     //
-    public function __construct(User $user_model, loginController $Login, category $categories, products_services $products_services, categories_to_product_services_tb $category_to_product_services)
+    public function __construct(User $user_model, loginController $Login, category $categories, products_services $products_services, categories_to_product_services_tb $category_to_product_services, Controller $Controller)
     {
-        $this->middleware('auth',  ['except' => []]);
+        $this->middleware('auth',  ['except' => ['view_product_page', 'view_all_page']]);
         $this->Login = $Login;
         $this->user_model = $user_model;
         $this->categories = $categories;
         $this->products_services = $products_services;
         $this->category_to_product_services = $category_to_product_services;
+        $this->Controller = $Controller;
         // categories_to_product_services_tb
     }
 
@@ -111,6 +112,44 @@ class ProductsServicesController extends Controller
         ];
         return view('user.edit_service', $view);
     }
+    public function view_product_page($id)
+    {
+        $condition = [
+            ['slug', $id]
+        ];
+        $product = $this->products_services->getSingle($condition);
+        $categories = $this->categories->getAll();
+        foreach ($categories as $e ) {
+            $e->no_of_products = $this->Controller->calc_products_under_category($e->unique_id);
+        }
+        $view = [
+            'categories' => $categories,
+            'product' => $product
+        ];
+        return view('en.view_product_service', $view);
+    }
+    public function view_all_page($id)
+    {
+        $condition = [
+            ['slug', $id]
+        ];
+        $category = $this->categories->getSingle($condition);
+        $condition = [
+            ['category', $category->unique_id],
+            ['status', 'confirmed']
+        ];
+        $products = $this->products_services->getAll($condition);
+        $categories = $this->categories->getAll();
+        foreach ($categories as $e ) {
+            $e->no_of_products = $this->Controller->calc_products_under_category($e->unique_id);
+        }
+        $view = [
+            'category' => $category,
+            'categories' => $categories,
+            'products' => $products,
+        ];
+        return view('en.view_products', $view);
+    }
 
 
     /**
@@ -126,7 +165,7 @@ class ProductsServicesController extends Controller
             'desc' => ['required', 'string'], //,'min:100'
             'category' => ['required', 'string'],
             'tags' => ['required', 'string', 'max:255'],
-            'cover_img' => ['required', 'file', 'image', 'mimes:jpeg,png,gif', 'max:4048'],
+            'cover_img' => ['required', 'file', 'image', 'mimes:jpeg,png,gif', 'max:5048'],
         ]);
     }
     protected function validator2(array $data)
@@ -159,11 +198,22 @@ class ProductsServicesController extends Controller
                 'public/uploads/products',
                 $img_name
             );
+            $slug = $this->slugify($request->input('name') . ' ' . $user->company_name);
+
+            // check if slug exists already
+            $condition = [
+                ['slug', $slug],
+            ];
+            $slug_exists = $this->products_services->getSingle($condition);
+            if ($slug_exists) {
+                throw new Exception($this->errorMsgs(16)['msg']);
+            }
 
             $create = products_services::create([
                 'unique_id' => $product_id,
                 'user_id' => $user->unique_id,
                 'name' => $name,
+                'slug' => $slug,
                 'description' => $request->input('desc'),
                 'category' => $category_id,
                 'cover_photo' => $img_name,
@@ -176,17 +226,7 @@ class ProductsServicesController extends Controller
             ]);
             if (!$create) {
                 throw new Exception($this->errorMsgs(14)['msg']);
-            }
-            $create_category = categories_to_product_services_tb::create([
-                'unique_id' => $product_services_id,
-                'category_id' => $category_id,
-                'product_services_id' => $product_id,
-            ]);
-
-
-            if (!$create_category) {
-                throw new Exception($this->errorMsgs(14)['msg']);
-            } else {
+            }else {
 
                 $error = 'Product Created Successfully!';
                 return response()->json(["message" => $error, 'status' => true]);
@@ -216,14 +256,25 @@ class ProductsServicesController extends Controller
             $cover_img = $request->file('cover_img');
             $img_name = $this->gen_file_name($user, $name, $cover_img);
             $upload = $cover_img->storeAs(
-                'public/uploads/services',
+                'public/uploads/products',
                 $img_name
             );
+            $slug = $this->slugify($request->input('name') . ' ' . $user->company_name);
+
+            // check if slug exists already
+            $condition = [
+                ['slug', $slug],
+            ];
+            $slug_exists = $this->products_services->getSingle($condition);
+            if ($slug_exists) {
+                throw new Exception($this->errorMsgs(16)['msg']);
+            }
 
             $create = products_services::create([
                 'unique_id' => $product_id,
                 'user_id' => $user->unique_id,
                 'name' => $name,
+                'slug' => $slug,
                 'description' => $request->input('desc'),
                 'category' => $category_id,
                 'cover_photo' => $img_name,
@@ -236,17 +287,7 @@ class ProductsServicesController extends Controller
             ]);
             if (!$create) {
                 throw new Exception($this->errorMsgs(14)['msg']);
-            }
-            $create_category = categories_to_product_services_tb::create([
-                'unique_id' => $product_services_id,
-                'category_id' => $category_id,
-                'product_services_id' => $product_id,
-            ]);
-
-
-            if (!$create_category) {
-                throw new Exception($this->errorMsgs(14)['msg']);
-            } else {
+            }else {
 
                 $error = 'Service Created Successfully!';
                 return response()->json(["message" => $error, 'status' => true]);
@@ -275,7 +316,18 @@ class ProductsServicesController extends Controller
 
             if (!$product->save()) {
                 throw new Exception($this->errorMsgs(14)['msg']);
-            } else {
+            }
+            $product_services_id = $this->rand_id();
+            $create_category = categories_to_product_services_tb::create([
+                'unique_id' => $product_services_id,
+                'category_id' => $product->category,
+                'product_services_id' => $product->unique_id,
+            ]);
+
+
+            if (!$create_category) {
+                throw new Exception($this->errorMsgs(14)['msg']);
+            }  else {
                 $error = 'Confirmation Successfull!';
                 return response()->json(["message" => $error, 'status' => true]);
             }
@@ -310,21 +362,33 @@ class ProductsServicesController extends Controller
                 }
                 $cover_img = $request->file('cover_img');
                 $img_name = $this->gen_file_name($user, $request->name, $cover_img);
-                if($product->type == 'product'){
-                    Storage::delete('public/uploads/products/'.$product->cover_photo);
-                    $upload = $cover_img->storeAs(
-                        'public/uploads/products',
-                        $img_name
-                    );
 
-                }elseif ($product->type == 'service') {
-                    Storage::delete('public/uploads/services/'.$product->cover_photo);
-                    $upload = $cover_img->storeAs(
-                        'public/uploads/services',
-                        $img_name
-                    );
+                Storage::delete('public/uploads/products/' . $product->cover_photo);
+                $upload = $cover_img->storeAs(
+                    'public/uploads/products',
+                    $img_name
+                );
+
+                // $request->merge([
+                //     'cover_img' => $img_name,
+                // ]);
+                $request->request->add(['cover_photo' => $img_name]);
+                // return response()->json(["message" => $request->input('cover_img'), 'status' => false]);
+                // $request->cover_image = $img_name;
+            }
+            if ($product->name !== $request->input('name')) {
+
+                $slug = $this->slugify($request->input('name') . ' ' . $user->company_name);
+
+                // check if slug exists already
+                $condition = [
+                    ['slug', $slug],
+                ];
+                $slug_exists = $this->products_services->getSingle($condition);
+                if ($slug_exists) {
+                    throw new Exception($this->errorMsgs(16)['msg']);
                 }
-                $request->cover_image = $img_name;
+                $request->request->add(['slug' => $slug]);
             }
 
             // update category if it was changed

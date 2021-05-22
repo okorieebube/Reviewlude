@@ -50,5 +50,6 @@
     <link rel="stylesheet" href="{{ asset('en/css/custom-app.css')}}">
     {{-- <link rel="stylesheet" type="text/css" href="{{asset('en/custom/custom-app.css')}}"> --}}
     <link rel="stylesheet" type="text/css" href="{{asset('en/custom/js-snackbar/dist/js-snackbar.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('en/custom/star-rating-svg/src/css/star-rating-svg.css')}}">
 
 </head>

@@ -2,7 +2,6 @@
     <script src="{{ asset('/user/bootstrap/js/popper.min.js') }}"></script>
     <script src="{{ asset('/user/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/user/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-    <script src="{{ asset('/user/assets/js/app.js') }}"></script>
     <script src="{{ asset('/user/assets/js/custom.js') }}"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
@@ -28,6 +27,13 @@
     <script src="{{ asset('user/custom/js-snackbar/dist/site.js') }}"></script>
     <!-- Snackbar toaster -->
     <script src="{{asset('user/custom/Basic-function.js')}}"></script>
+    <script src="{{ asset('/user/assets/js/app.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            App.init();
+        });
+    </script>
 
     <script>
         $('#zero-config').DataTable({

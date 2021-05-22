@@ -25,6 +25,7 @@ class products_services extends Model
         'unique_id',
         'user_id',
         'name',
+        'slug',
         'description',
         'category',
         'cover_photo',
@@ -60,9 +61,10 @@ class products_services extends Model
 
         $products_services = products_services::find($requestObject->id);
         $products_services->name = $requestObject->name ?? $products_services->name;
+        $products_services->slug = $requestObject->slug ?? $products_services->slug;
         $products_services->category = $requestObject->category ?? $products_services->category;
         $products_services->cover_photo = $requestObject->cover_photo ?? $products_services->cover_photo;
-        $products_services->status = $requestObject->cover_photo ?? $products_services->status;
+        $products_services->status = $requestObject->status ?? $products_services->status;
         $products_services->total_reviews = $requestObject->total_reviews ?? $products_services->total_reviews;
         $products_services->score = $requestObject->score ?? $products_services->score;
         $products_services->tags = $requestObject->tags ?? $products_services->tags;
