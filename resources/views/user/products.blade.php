@@ -320,6 +320,9 @@ $user = Auth::user();
                 tinymce.init({
                     selector: '#desc',
                 });
+                // var ss = $(".category").select2({
+                //     tags: true,
+                // });
                 $(document).ready(function() {
                     $('.confirm_modal').click(function(e) {
                         e.preventDefault();

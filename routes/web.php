@@ -1,14 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\loginController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\User\userController;
+use App\Http\Controllers\Auth\loginController;
 use App\Http\Controllers\Auth\registerController;
 use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Overview\overviewController;
-use App\Http\Controllers\ProductServices\ProductsServicesController;
-use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Settings\settingsController;
+use App\Http\Controllers\ProductServices\ProductsServicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,7 @@ Route::get('/register/reviewer', [registerController::class, 'reviewer_register_
 Route::get('/user/register', [registerController::class, 'admin_register_page'])->name('register_admin');
 
 Route::post('/register_business', [registerController::class, 'create_business']);
-Route::post('/register/business', [registerController::class, 'create_business'])->name('register_business');
+Route::post('/register/business', [registerController::class, 'create_business']);
 Route::post('/register_reviewer', [registerController::class, 'create_reviewer'])->name('create_reviewer');
 Route::post('/register_admin', [registerController::class, 'create_admin'])->name('create_admin');
 Route::post('/login_acct', [loginController::class, 'login']);
@@ -89,3 +90,13 @@ Route::post('/update_product_service', [ProductsServicesController::class, 'upda
 // REVIEW
 Route::get('/review/{id}', [ReviewController::class, 'submit_review_page'])->name('review_page');
 Route::post('/submit_review/{id}', [ReviewController::class, 'create']);
+
+
+
+// Ticket
+Route::get('/user/ticket', [TicketController::class, 'create_ticket'])->name('create_ticket');
+Route::get('/user/ticket/reply/{id}', [TicketController::class, 'reply_ticket'])->name('reply_ticket');
+Route::get('/user/ticket/all', [TicketController::class, 'view_all'])->name('view_tickets');
+
+Route::post('/ticket/create', [TicketController::class, 'create']);
+Route::post('/ticket/reply/{id}', [TicketController::class, 'reply']);

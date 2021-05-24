@@ -24,3 +24,11 @@ input{
 .custom-dropdown:hover{
 z-index: 10000;
 }
+.blue-text{
+    color: #1b55e2 !important;
+}
+.msg-card{
+    background-color: rgba(0,0,0,.03);
+    border: 1px solid rgba(0,0,0,.125);
+    border: none;
+}
