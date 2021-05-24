@@ -77,4 +77,58 @@ class userController extends Controller
             return response()->json(["errors" => $error, 'status' => false]);
         }
     }
+    public function block(Request $request, $id)
+    {
+        try {
+            if (!$id) {
+                throw new Exception($this->errorMsgs(15)['msg']);
+            }
+            $condition = [
+                ['unique_id', $id]
+            ];
+            $user = $this->user_model->getSingle($condition);
+            $user->is_blocked = '1';
+
+            if (!$user->save()) {
+                throw new Exception($this->errorMsgs(14)['msg']);
+            }else {
+                $error = 'Admin account is blocked!';
+                return response()->json(["message" => $error, 'status' => true]);
+            }
+        } catch (Exception $e) {
+
+            $error = $e->getMessage();
+            $error = [
+                'errors' => [$error],
+            ];
+            return response()->json(["errors" => $error, 'status' => false]);
+        }
+    }
+    public function unblock(Request $request, $id)
+    {
+        try {
+            if (!$id) {
+                throw new Exception($this->errorMsgs(15)['msg']);
+            }
+            $condition = [
+                ['unique_id', $id]
+            ];
+            $user = $this->user_model->getSingle($condition);
+            $user->is_blocked = '0';
+
+            if (!$user->save()) {
+                throw new Exception($this->errorMsgs(14)['msg']);
+            }else {
+                $error = 'Admin account is unblocked!';
+                return response()->json(["message" => $error, 'status' => true]);
+            }
+        } catch (Exception $e) {
+
+            $error = $e->getMessage();
+            $error = [
+                'errors' => [$error],
+            ];
+            return response()->json(["errors" => $error, 'status' => false]);
+        }
+    }
 }

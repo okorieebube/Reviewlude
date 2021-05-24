@@ -42,89 +42,87 @@ $user = Auth::user();
 
                     <div class="account-content">
                         <div class="scrollspy-example" data-spy="scroll" data-target="#account-settings-scroll" data-offset="-100">
+                        @if ($user->user_type == 'business')
 
-                            <div class="row layout-top-spacing" id="cancel-row">
-                                <div class="col-lg-12 layout-spacing">
-                                    <div class="statbox widget box box-shadow">
-                                        <div class="widget-content widget-content-area">
-                                            <div class="widget-header">
-                                                <div class="row">
-                                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                                        <h5>Create Product</h5>
-                                                    </div>
+                        <div class="row layout-top-spacing" id="cancel-row">
+                            <div class="col-lg-12 layout-spacing">
+                                <div class="statbox widget box box-shadow">
+                                    <div class="widget-content widget-content-area">
+                                        <div class="widget-header">
+                                            <div class="row">
+                                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                                    <h5>Create Product</h5>
                                                 </div>
                                             </div>
-                                            <div id="circle-basic" class="">
-                                                <h3>Basic Info</h3>
-                                                <section>
-                                                    <form id="contact" class="section contact create_product_form">
-                                                        @csrf
-                                                        <div class="info">
-                                                            <div class="row">
-                                                                <div class="col-md-11 mx-auto">
-                                                                    <div class="row">
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <label for="location">Name<span class="text-danger">*</span> </label>
-                                                                                <input type="text" class="form-control mb-4" name="name" placeholder="Enter name of product*" value="">
-                                                                            </div>
+                                        </div>
+                                        <div id="circle-basic" class="">
+                                            <h3>Basic Info</h3>
+                                            <section>
+                                                <form id="contact" class="section contact create_product_form">
+                                                    @csrf
+                                                    <div class="info">
+                                                        <div class="row">
+                                                            <div class="col-md-11 mx-auto">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="location">Name<span class="text-danger">*</span> </label>
+                                                                            <input type="text" class="form-control mb-4" name="name" placeholder="Enter name of product*" value="">
                                                                         </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <label for="country">Category<span class="text-danger">*</span> </label>
-                                                                                <select name="category" class="form-control" required>
-                                                                                    <option value="">Select a category for product</option>
-                                                                                    @foreach ($categories as $e)
-                                                                                    <option value="{{ $e->unique_id }}">{{ $e->name }}</option>
-                                                                                    @endforeach
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="country">Category<span class="text-danger">*</span> </label>
+                                                                            <select name="category" class="form-control" required>
+                                                                                <option value="">Select a category for product</option>
+                                                                                @foreach ($categories as $e)
+                                                                                <option value="{{ $e->unique_id }}">{{ $e->name }}</option>
+                                                                                @endforeach
 
-                                                                                </select>
-                                                                            </div>
+                                                                            </select>
                                                                         </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <label for="location">Tags<span class="text-danger">*</span> </label>
-                                                                                <input type="text" class="form-control form_tags mb-4" data-role="tagsinput" value="" placeholder="Add tags associated with your product">
-                                                                            </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="location">Tags<span class="text-danger">*</span> </label>
+                                                                            <input type="text" class="form-control form_tags mb-4" data-role="tagsinput" value="" placeholder="Add tags associated with your product">
                                                                         </div>
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label for="location">Description<span class="text-danger">*</span> </label>
-                                                                                {{-- <input type="text" class="form-control form_tags mb-4" data-role="tagsinput" value="" placeholder="Add tags associated with your product"> --}}
-                                                                                <textarea id="desc" cols="30" rows="10" class="form-control desc mb-4"></textarea>
-                                                                            </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label for="location">Description<span class="text-danger">*</span> </label>
+                                                                            {{-- <input type="text" class="form-control form_tags mb-4" data-role="tagsinput" value="" placeholder="Add tags associated with your product"> --}}
+                                                                            <textarea id="desc" cols="30" rows="10" class="form-control desc mb-4"></textarea>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </form>
-                                                </section>
-                                                <h3>Cover Photo</h3>
-                                                <section>
-                                                    <div class="row">
+                                                    </div>
+                                                </form>
+                                            </section>
+                                            <h3>Cover Photo</h3>
+                                            <section>
+                                                <div class="row">
 
-                                                        <div class="col-xl-10 col-lg-12 col-md-12 m-auto">
-                                                            <div class="upload mt-4 pr-md-4">
-                                                                <input type="file" id="input-file-max-fs" class="dropify" data-default-file="{{ asset('/user/assets/img/arrow-down.png') }}" data-max-file-size="10M" />
-                                                                <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i> Select a cover Photo</p>
-                                                                <p>Preferrable file size: 730px by 304px</p>
-                                                            </div>
+                                                    <div class="col-xl-10 col-lg-12 col-md-12 m-auto">
+                                                        <div class="upload mt-4 pr-md-4">
+                                                            <input type="file" id="input-file-max-fs" class="dropify" data-default-file="{{ asset('/user/assets/img/arrow-down.png') }}" data-max-file-size="10M" />
+                                                            <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i> Select a cover Photo</p>
+                                                            <p>Preferrable file size: 730px by 304px</p>
                                                         </div>
                                                     </div>
-                                                </section>
-                                            </div>
+                                                </div>
+                                            </section>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
 
+                        </div>
+                        @endif
+
                             <div class="row layout-top-spacing" id="cancel-row">
-                                {{-- <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
-
-                                </div> --}}
-
                                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                                     <div class="widget-content widget-content-area br-6">
                                         <div class="widget-header">
@@ -140,7 +138,9 @@ $user = Auth::user();
                                                     <tr>
                                                         <th>S/n</th>
                                                         <th>Name</th>
+                                                        @if ($user->user_type == 'admin')
                                                         <th>Company</th>
+                                                        @endif
                                                         <th>Status</th>
                                                         <th>Category</th>
                                                         <th>Total Reviews</th>
@@ -150,11 +150,13 @@ $user = Auth::user();
                                                 </thead>
                                                 <tbody>
                                                     {{-- padding-bottom: 20px; --}}
-                                                    @foreach ($products as $e)
+                                                    @foreach ($products as $k => $e)
                                                     <tr>
-                                                        <td>1</td>
+                                                        <td>{{ $k+1 }}</td>
                                                         <td>{{ $e->name }}</td>
+                                                        @if ($user->user_type == 'admin')
                                                         <td>{{ $e->company->company_name }}</td>
+                                                        @endif
                                                         @if ($e->status == 'pending')
                                                         <td class="text-warning">
                                                             <strong>{{ $e->status }}</strong>
@@ -174,9 +176,14 @@ $user = Auth::user();
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
                                                                 </a>
                                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                                                                    <a id="{{ $e->unique_id }}" class="dropdown-item pointer confirm_modal">Confirm</a>
+
+                                                                    @if ($user->user_type == 'business')
                                                                     <a class="dropdown-item" href="{{ route('edit_product',$e->unique_id ) }}">Edit</a>
+                                                                    @endif
+                                                                    @if ($user->user_type == 'admin')
+                                                                    <a id="{{ $e->unique_id }}" class="dropdown-item pointer confirm_modal">Confirm</a>
                                                                     <a id="{{ $e->unique_id }}" class="dropdown-item pointer delete_modal">Delete</a>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -204,18 +211,6 @@ $user = Auth::user();
                                                         <td><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle table-cancel"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></td>
                                                     </tr> --}}
                                                 </tbody>
-                                                <tfoot>
-                                                    <tr class="text-uppercase">
-                                                        <th>S/N</th>
-                                                        <th>Name</th>
-                                                        <th>Company</th>
-                                                        <th>Status</th>
-                                                        <th>Category</th>
-                                                        <th>Total Reviews</th>
-                                                        <th>Score</th>
-                                                        <th class="no-content"></th>
-                                                    </tr>
-                                                </tfoot>
                                             </table>
                                         </div>
                                     </div>
@@ -253,11 +248,6 @@ $user = Auth::user();
                                 </p>
                             </div>
                         </form>
-                        {{-- <div class="modal-body">
-                            <p class="modal-text">
-                                If you click continue, this product will be made visible to reviewers.
-                            </p>
-                        </div> --}}
                         <div class="modal-footer md-button">
                             <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Cancel</button>
                             <button type="button" class="btn btn-primary confirm_modal_btn">Confirm</button>

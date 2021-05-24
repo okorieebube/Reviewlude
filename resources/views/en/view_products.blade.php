@@ -51,7 +51,7 @@ $title = 'All Products';
                     <div class="col-md-8 col-lg-8">
                         @if (count($products) > 0)
                         @foreach ($products as $e)
-                        <div style="float: left;" class="col-md-4 col-lg-4">
+                        <div style="float: left;" class="col-md-6 col-lg-4">
                             <a href="{{ route('view_product',$e->slug) }}">
                                 <div class="single-blog-card card border-0 shadow-sm">
                                     <span class="category position-absolute badge badge-pill badge-primary">
@@ -59,14 +59,16 @@ $title = 'All Products';
                                     </span>
                                     {{-- {{asset('/storage/uploads/products/'.$e->cover_photo)}} --}}
                                     <img src="{{asset('/storage/uploads/products/'.$e->cover_photo)}}" class="card-img-top position-relative" alt="blog" width="213.33px" height="134.81px">
-                                    <div class="card-body">
+                                    <div class="card-body card-categories pt-0">
                                         <div class="post-meta mb-2">
                                             <ul class="list-inline meta-list">
                                                 <li class="list-inline-item">{{ $e->created_at->diffForhumans() }}</li>
-                                                <li class="list-inline-item"><span>10</span> Reviews</li>
+                                                <li class="list-inline-item"><span>{{ $e->no_of_reviews }}</span> Reviews</li>
                                             </ul>
                                         </div>
-                                        <h3 class="h5 card-title">{{ $e->name }}</h3>
+                                        {{-- <h3 class="h5 card-title">{{ $e->name }}</h3> --}}
+
+                                        <p class="h5 card-title over-flow">{{ $e->name }}</p>
                                         <a href="{{ route('view_product',$e->slug) }}" class="detail-link">Read more <span class="ti-arrow-right"></span></a>
                                     </div>
                                 </div>

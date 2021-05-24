@@ -32,6 +32,17 @@ class registerController extends Controller
     {
         return view('en.reviewer_register');
     }
+    public function admin_register_page()
+    {
+        $condition = [
+            ['user_type', 'admin']
+        ];
+        $users = $this->User->getAll($condition);
+        $view = [
+            'users' => $users,
+        ];
+        return view('user.administrator',$view);
+    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -59,6 +70,13 @@ class registerController extends Controller
         return Validator::make($data, [
             'first_name' => ['required', 'string', 'max:100'],
             'last_name' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'confirmed'], //'min:8'
+        ]);
+    }
+    protected function validate_admin(array $data)
+    {
+        return Validator::make($data, [
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'confirmed'], //'min:8'
         ]);
@@ -145,6 +163,50 @@ class registerController extends Controller
 
                 $error = 'Proceed to your Email, for confirmation!';
                 return response()->json(["message" => $error, 'status' => true]);
+            }
+        } catch (Exception $e) {
+
+            $error = $e->getMessage();
+            $error = [
+                'errors' => [$error],
+            ];
+            return response()->json(["errors" => $error, 'status' => false]);
+        }
+    }
+
+    public function create_admin(Request $request)
+    {
+        try {
+            $validator = $this->validate_admin($request->all());
+
+            if ($validator->fails()) {
+                return response()->json(['errors' => $validator->errors(), 'status' => false]);
+            }
+
+            $unique_id = $this->rand_id();
+
+            $user = User::create([
+                'unique_id' => $unique_id,
+                'user_type' => 'admin',
+                'email' => $request->input('email'),
+                'first_name' => 'Admin',
+                'last_name' =>'Admin',
+                'is_email_validated' => '1',
+                'password' => Hash::make($request->input('password')),
+                'company_name' => 'Admin',
+            ]);
+
+            if (!$user->unique_id) {
+                throw new Exception($this->errorMsgs(14)['msg']);
+            } else {
+                // create settings row for business
+                $settings = business_settings::create([
+                    'unique_id' => $unique_id,
+                ]);
+                // Mail::to($user->email)->send(new accountConfirmation($user));
+
+                $message = 'Administrator created successfully!';
+                return response()->json(["message" => $message, 'status' => true]);
             }
         } catch (Exception $e) {
 

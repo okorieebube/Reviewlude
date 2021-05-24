@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Validator;
 class loginController extends Controller
 {
 
-    public function __construct(User $user) {
+    public function __construct(User $user)
+    {
         $this->user = $user;
     }
 
@@ -62,11 +63,10 @@ class loginController extends Controller
             ];
             $User = $this->user->getSingle($condition);
 
-            if(!$User){
+            if (!$User) {
                 throw new Exception("User account does not exist!");
-
-            }else{
-                if($User->is_email_validated == 0){
+            } else {
+                if ($User->is_email_validated == 0) {
                     throw new Exception('Email address has\'nt been confirmed!');
                 }
             }
@@ -87,5 +87,22 @@ class loginController extends Controller
             ];
             return response()->json(["errors" => $error, 'status' => false]);
         }
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

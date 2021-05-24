@@ -29,11 +29,11 @@
                     <div class="footer-nav-wrap text-white">
                         <h5 class="mb-3 text-white">Others Links</h5>
                         <ul class="list-unstyled">
-                            <li class="mb-2"><a href="#">About Us</a></li>
-                            <li class="mb-2"><a href="#">Contact Us</a></li>
-                            <li class="mb-2"><a href="#">Pricing</a></li>
-                            <li class="mb-2"><a href="#">Privacy Policy</a></li>
-                            <li class="mb-2"><a href="#">Terms and Conditions</a></li>
+                            <li class="mb-2"><a href="#">Categories</a></li>
+                            <li class="mb-2"><a href="#">Be a Reviewer</a></li>
+                            <li class="mb-2"><a href="#">Register Business</a></li>
+                            {{-- <li class="mb-2"><a href="#">Privacy Policy</a></li>
+                            <li class="mb-2"><a href="#">Terms and Conditions</a></li> --}}
                         </ul>
                     </div>
                 </div>
@@ -69,9 +69,9 @@
     <div class="footer-bottom gray-light-bg pt-4 pb-4">
         <div class="container">
             <div class="row text-center justify-content-center">
-                <div class="col-md-6 col-lg-5"><p class="copyright-text pb-0 mb-0">Copyrights © 2020 All
+                <div class="col-md-6 col-lg-5"><p class="copyright-text pb-0 mb-0">Copyrights © <?php print date('Y') ?> All
                     rights reserved by
-                    <a href="#">ReviewLude</a></p>
+                    <a href="/">ReviewLude</a></p>
                 </div>
             </div>
         </div>

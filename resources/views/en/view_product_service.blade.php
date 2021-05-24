@@ -42,7 +42,7 @@
                     <div class="sidebar-left pr-4">
                         <aside class="widget widget-search">
                             <form>
-                                <input class="form-control" type="search" placeholder="Write a review...">
+                                <input class="form-control review_input" type="search" placeholder="Write a review...">
                                 <button class="search-button" type="submit"><span class="ti-search"></span></button>
                             </form>
                         </aside>
@@ -129,34 +129,55 @@
                     <!-- Post end-->
 
                     <h3 class="post-title">Client Reviews </h3>
+
+                @foreach ($reviews as $e)
                     <div class="testimonial-quote-wrap my-lg-3 my-md-3 rounded white-bg shadow-sm p-4">
-                        <div class="client-say">
-                            <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid">  Rapidiously develop user friendly growth strategies after extensive initiatives. Conveniently grow innovative benefits through fully tested deliverables. Rapidiously utilize focused platforms through end-to-end schemas.</p>
-                        </div>
                         <div class="media author-info mb-3">
                             <div class="author-img mr-3">
                                 <img src="{{ asset('en/img/client-2.jpg')}}" alt="client" class="img-fluid rounded-circle">
                             </div>
                             <div class="media-body">
-                                <h5 class="mb-0">Runu Mondol</h5>
-                                <span>BizBite</span>
+                                <?php if($e->user->user_type == 'business'){ ?>
+                                    <h5 class="mb-0 text-capitalize">{{ $e->user->company_name }}</h5>
+                                <?php }elseif($e->user->user_type == 'reviewer'){ ?>
+                                    <h5 class="mb-0 text-capitalize">{{ $e->user->first_name }} {{ $e->user->last_name }}</h5>
+                                <?php }elseif($e->user->user_type == 'admin'){ ?>
+                                    <h5 class="mb-0 text-capitalize">Administrator</h5>
+                                <?php } ?>
+                                <div class="client-rating{{ $e->unique_id }}"></div>
                             </div>
                         </div>
-                    </div>
-                    <div class="testimonial-quote-wrap my-lg-3 my-md-3 rounded white-bg shadow-sm p-4">
                         <div class="client-say">
-                            <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid">  Rapidiously develop user friendly growth strategies after extensive initiatives. Conveniently grow innovative benefits through fully tested deliverables. Rapidiously utilize focused platforms through end-to-end schemas.</p>
-                        </div>
-                        <div class="media author-info mb-3">
-                            <div class="author-img mr-3">
-                                <img src="{{ asset('en/img/client-2.jpg')}}" alt="client" class="img-fluid rounded-circle">
-                            </div>
-                            <div class="media-body">
-                                <h5 class="mb-0">Runu Mondol</h5>
-                                <span>BizBite</span>
-                            </div>
+                            <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid">
+                                {{ $e->review }}
+                            </p>
                         </div>
                     </div>
+                        @if ($e->replies)
+                            @foreach ($e->replies as $k)
+                            <div class="testimonial-quote-wrap my-lg-3 my-md-3 rounded white-bg shadow-sm p-4 reply-review">
+                                <div class="media author-info mb-3">
+                                    <div class="author-img mr-3">
+                                        <img src="{{ asset('en/img/client-2.jpg')}}" alt="client" class="img-fluid rounded-circle">
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="mb-0">{{ $k->user->company_name }}</h5>
+                                        <?php if($e->user->user_type == 'business'){ ?>
+                                            <span><em>Replying to {{ $e->user->company_name }}</em></span>
+                                        <?php }elseif($e->user->user_type == 'reviewer'){ ?>
+                                            <span><em>Replying to {{ $e->user->first_name }} {{ $e->user->last_name }}</em></span>
+                                        <?php }elseif($e->user->user_type == 'admin'){ ?>
+                                            <span><em>Replying to Administrator</em></span>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <div class="client-say">
+                                    <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid"> {{ $k->review }}</p>
+                                </div>
+                            </div>
+                            @endforeach
+                        @endif
+                @endforeach
 
                     <!-- Page Navigation-->
                     {{-- <div class="row">
@@ -208,6 +229,11 @@
 <script src="{{asset('en/custom/star-rating-svg/src/jquery.star-rating-svg.js')}}"></script>
 
 <script>
+    $('.review_input').focus(function (e) {
+        e.preventDefault();
+        window.location.href = '/review/{{ $product->slug }}';
+
+    });
     $(".my-rating").starRating({
         starShape: 'rounded',
         totalStars: 5,
@@ -219,7 +245,7 @@
         useGradient: false,
         minRating: 0,
         callback: function(currentRating, $el){
-            // make a server call here
+        window.location.href = '/review/{{ $product->slug }}';
         }
     });
     $(".main-rating").starRating({
@@ -238,5 +264,26 @@
             // make a server call here
         }
     });
+
+
+         @foreach ($reviews as $e)
+            $(".client-rating{{ $e->unique_id }}").starRating({
+                starShape: 'rounded',
+                totalStars: 5,
+                emptyColor: 'lightgray',
+                hoverColor: 'slategray',
+                activeColor: '#6730e3',//cornflowerblue
+                initialRating: {{ $e->star_rating }},
+                strokeWidth: 0,
+                useGradient: false,
+                minRating: 0,
+                readOnly: true,
+                starSize: 25,
+                callback: function(currentRating, $el){
+                    // make a server call here
+                }
+            });
+        @endforeach
+
 
 </script>

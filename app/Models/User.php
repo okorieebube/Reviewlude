@@ -67,6 +67,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\business_settings', 'unique_id', 'unique_id');
     }
 
+    public function getAll($condition, $id = 'id', $desc = 'desc'){
+
+        return User::where($condition)->orderBy($id, $desc)->get();
+
+    }
 
     public function getSingle($condition){
 

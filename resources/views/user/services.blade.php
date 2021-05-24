@@ -43,6 +43,7 @@ $user = Auth::user();
                     <div class="account-content">
                         <div class="scrollspy-example" data-spy="scroll" data-target="#account-settings-scroll" data-offset="-100">
 
+                            @if ($user->user_type == 'business')
                             <div class="row layout-top-spacing" id="cancel-row">
                                 <div class="col-lg-12 layout-spacing">
                                     <div class="statbox widget box box-shadow">
@@ -119,6 +120,7 @@ $user = Auth::user();
                                 </div>
 
                             </div>
+                            @endif
 
                             <div class="row layout-top-spacing" id="cancel-row">
                                 {{-- <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
@@ -140,7 +142,9 @@ $user = Auth::user();
                                                     <tr>
                                                         <th>S/n</th>
                                                         <th>Name</th>
+                                                        @if ($user->user_type == 'admin')
                                                         <th>Company</th>
+                                                        @endif
                                                         <th>Status</th>
                                                         <th>Category</th>
                                                         <th>Total Reviews</th>
@@ -150,11 +154,13 @@ $user = Auth::user();
                                                 </thead>
                                                 <tbody>
                                                     {{-- padding-bottom: 20px; --}}
-                                                    @foreach ($services as $e)
+                                                    @foreach ($services as $k => $e)
                                                     <tr>
-                                                        <td>1</td>
+                                                        <td>{{ $k+1 }}</td>
                                                         <td>{{ $e->name }}</td>
+                                                        @if ($user->user_type == 'admin')
                                                         <td>{{ $e->company->company_name }}</td>
+                                                        @endif
                                                         @if ($e->status == 'pending')
                                                         <td class="text-warning">
                                                             <strong>{{ $e->status }}</strong>
@@ -174,9 +180,13 @@ $user = Auth::user();
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
                                                                 </a>
                                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                                                                    <a id="{{ $e->unique_id }}" class="dropdown-item pointer confirm_modal">Confirm</a>
+                                                                    @if ($user->user_type == 'business')
                                                                     <a class="dropdown-item" href="{{ route('edit_service',$e->unique_id ) }}">Edit</a>
+                                                                    @endif
+                                                                    @if ($user->user_type == 'admin')
+                                                                    <a id="{{ $e->unique_id }}" class="dropdown-item pointer confirm_modal">Confirm</a>
                                                                     <a id="{{ $e->unique_id }}" class="dropdown-item pointer delete_modal">Delete</a>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -204,18 +214,6 @@ $user = Auth::user();
                                                         <td><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle table-cancel"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></td>
                                                     </tr> --}}
                                                 </tbody>
-                                                <tfoot>
-                                                    <tr class="text-uppercase">
-                                                        <th>S/N</th>
-                                                        <th>Name</th>
-                                                        <th>Company</th>
-                                                        <th>Status</th>
-                                                        <th>Category</th>
-                                                        <th>Total Reviews</th>
-                                                        <th>Score</th>
-                                                        <th class="no-content"></th>
-                                                    </tr>
-                                                </tfoot>
                                             </table>
                                         </div>
                                     </div>

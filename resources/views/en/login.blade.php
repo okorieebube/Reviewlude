@@ -72,7 +72,7 @@
                             </form>
                         </div>
                         <div class="card-footer bg-transparent border-top px-md-5"><small>Not registered?</small>
-                            <a href="sign-up.html" class="small"> Create account</a></div>
+                             Join as a<a href="{{ route('register_business') }}" class="small"> Business</a> or<a href="{{ route('register_business') }}" class="small"> Reviewer</a></div>
                     </div>
                 </div>
             </div>
@@ -116,7 +116,7 @@ $(document).ready(function() {
         if (returned.status == false) {
             validator(returned, '/user/overview');
         }else if(returned.status == true){
-            if(returned.user_type == 'business'){
+            if(returned.user_type == 'business' || returned.user_type == 'admin'){
                 validator(returned, '/user/overview');
             }else if(returned.user_type == 'reviewer'){
                 validator(returned, '/categories');

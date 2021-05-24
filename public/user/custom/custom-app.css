@@ -21,3 +21,6 @@ input{
 #zero-config_wrapper > :nth-child(2){
     padding-bottom: 60px;
 }
+.custom-dropdown:hover{
+z-index: 10000;
+}

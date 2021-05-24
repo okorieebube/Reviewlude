@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\categories_to_product_services_tb;
+use App\Models\Review;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -12,8 +13,9 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function __construct(categories_to_product_services_tb $category_pivot) {
+    public function __construct(categories_to_product_services_tb $category_pivot, Review $review) {
         $this->category_pivot = $category_pivot;
+        $this->review = $review;
     }
 
 
@@ -31,5 +33,22 @@ class Controller extends BaseController
         }
 
         return $no_of_products;
+    }
+
+    public function calc_reviews_under_products($product_id)
+    {
+        $no_of_reviews = 0;
+        if($product_id){
+            $condition = [
+                ['product_id',$product_id],
+                ['deleted_at',null],
+            ];
+            $reviews = $this->review->getAll($condition);
+            $no_of_reviews = count($reviews);
+            return $no_of_reviews;
+
+        }
+
+        return $no_of_reviews;
     }
 }

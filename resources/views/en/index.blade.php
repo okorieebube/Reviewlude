@@ -34,7 +34,7 @@
                     <!--clients logo start-->
                     <div class="row justify-content-between">
                         <div class="col-md-12">
-                            <div class="client-section-wrap d-flex flex-row align-items-center">
+                            <div class="client-section-wrap d-flex flex-row align-items-center m-auto">
                                 <p class="lead mr-5 mb-0 text-white">Trusted by companies like:</p>
                                 <ul class="list-inline justify-content-between">
                                     <li class="list-inline-item"><img src="{{ asset('en/img/client-1-gray.png') }}" width="85" alt="client"
@@ -44,8 +44,6 @@
                                     <li class="list-inline-item"><img src="{{ asset('en/img/client-3-gray.png') }}" width="85" alt="client"
                                                                       class="img-fluid"></li>
                                     <li class="list-inline-item"><img src="{{ asset('en/img/client-4-gray.png') }}" width="85" alt="client"
-                                                                      class="img-fluid"></li>
-                                    <li class="list-inline-item"><img src="{{ asset('en/img/client-5-gray.png') }}" width="85" alt="client"
                                                                       class="img-fluid"></li>
                                 </ul>
                             </div>

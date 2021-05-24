@@ -28,6 +28,13 @@
                         <a class="nav-link page-scroll" href="{{ route('view_categories') }}">Categories</a>
                     </li>
                     {{-- view_categories --}}
+                    @auth
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="{{ route('overview') }}">Dashboard</a>
+                    </li>
+                    @endauth
+
+                    @guest
                     <li class="nav-item dropdown">
                         <a class="nav-link page-scroll dropdown-toggle" href="#" id="navbarDropdownHome" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,9 +48,7 @@
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="{{ route('login') }}">Login</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" href="{{ route('overview') }}">Dashboard</a>
-                    </li>
+                    @endguest
                     {{-- <li class="nav-item dropdown">
                         <a class="nav-link page-scroll dropdown-toggle" href="#" id="navbarBlogPage" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

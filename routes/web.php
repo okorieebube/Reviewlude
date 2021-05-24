@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\registerController;
 use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Overview\overviewController;
 use App\Http\Controllers\ProductServices\ProductsServicesController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Settings\settingsController;
 
 /*
@@ -32,13 +33,18 @@ Route::get('/user/test', function () {
 
 // AUTH REQUESTS
 Route::get('/login', [loginController::class, 'login_page'])->name('login');
+Route::get('/logout', [loginController::class, 'logout'])->name('logout');
 Route::get('/register/business', [registerController::class, 'business_register_page'])->name('register_business');
 Route::get('/register/reviewer', [registerController::class, 'reviewer_register_page'])->name('register_reviewer');
+Route::get('/user/register', [registerController::class, 'admin_register_page'])->name('register_admin');
 
-Route::post('/register_business', [registerController::class, 'create_business'])->name('create_business');
+Route::post('/register_business', [registerController::class, 'create_business']);
 Route::post('/register/business', [registerController::class, 'create_business'])->name('register_business');
 Route::post('/register_reviewer', [registerController::class, 'create_reviewer'])->name('create_reviewer');
+Route::post('/register_admin', [registerController::class, 'create_admin'])->name('create_admin');
 Route::post('/login_acct', [loginController::class, 'login']);
+Route::post('/admin/block/{id}', [userController::class, 'block']);
+Route::post('/admin/unblock/{id}', [userController::class, 'unblock']);
 
 
 //EMAIL CONFIRMATION
@@ -80,3 +86,6 @@ Route::post('/confirm_product/{id}', [ProductsServicesController::class, 'confir
 Route::post('/delete_product/{id}', [ProductsServicesController::class, 'soft_delete']);
 Route::post('/update_product_service', [ProductsServicesController::class, 'update']);
 
+// REVIEW
+Route::get('/review/{id}', [ReviewController::class, 'submit_review_page'])->name('review_page');
+Route::post('/submit_review/{id}', [ReviewController::class, 'create']);

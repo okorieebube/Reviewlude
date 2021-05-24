@@ -13,12 +13,13 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Auth\loginController;
 use App\Models\categories_to_product_services_tb;
+use App\Models\Review;
 
 class ProductsServicesController extends Controller
 {
     use appFunction;
     //
-    public function __construct(User $user_model, loginController $Login, category $categories, products_services $products_services, categories_to_product_services_tb $category_to_product_services, Controller $Controller)
+    public function __construct(User $user_model, loginController $Login, category $categories, products_services $products_services, categories_to_product_services_tb $category_to_product_services, Controller $Controller, Review $review)
     {
         $this->middleware('auth',  ['except' => ['view_product_page', 'view_all_page']]);
         $this->Login = $Login;
@@ -27,6 +28,7 @@ class ProductsServicesController extends Controller
         $this->products_services = $products_services;
         $this->category_to_product_services = $category_to_product_services;
         $this->Controller = $Controller;
+        $this->review = $review;
         // categories_to_product_services_tb
     }
 
@@ -119,13 +121,26 @@ class ProductsServicesController extends Controller
         ];
         $product = $this->products_services->getSingle($condition);
         $categories = $this->categories->getAll();
+        $review_condition = [
+            ['product_id', $product->unique_id]
+        ];
+        $product_review = $this->review->getAll($review_condition);
         foreach ($categories as $e ) {
             $e->no_of_products = $this->Controller->calc_products_under_category($e->unique_id);
         }
+        foreach ($product_review as $e ) {
+            $reply_condition = [
+                ['repy_main_id', $e->unique_id]
+            ];
+            $replies = $this->review->getAll($reply_condition);
+            $e->replies = $replies;
+        }
         $view = [
             'categories' => $categories,
-            'product' => $product
+            'product' => $product,
+            'reviews' => $product_review,
         ];
+        // print_r($product_review);
         return view('en.view_product_service', $view);
     }
     public function view_all_page($id)
@@ -142,6 +157,9 @@ class ProductsServicesController extends Controller
         $categories = $this->categories->getAll();
         foreach ($categories as $e ) {
             $e->no_of_products = $this->Controller->calc_products_under_category($e->unique_id);
+        }
+        foreach ($products as $e ) {
+            $e->no_of_reviews = $this->Controller->calc_reviews_under_products($e->unique_id);
         }
         $view = [
             'category' => $category,
