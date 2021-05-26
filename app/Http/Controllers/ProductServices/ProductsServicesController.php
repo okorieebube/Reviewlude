@@ -143,6 +143,7 @@ class ProductsServicesController extends Controller
         // print_r($product_review);
         return view('en.view_product_service', $view);
     }
+
     public function view_all_page($id)
     {
         $condition = [

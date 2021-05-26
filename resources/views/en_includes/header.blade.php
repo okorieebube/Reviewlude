@@ -10,10 +10,10 @@
             </button>
 
             <div class="collapse navbar-collapse main-menu" id="navbarSupportedContent">
-                <form action="#" method="post" class="subscribe-form">
+                <form action="/search/" method="GET" class="subscribe-form">
                     <div class="d-flex align-items-center">
-                        <input type="text" class="form-control input home-search" id="email" name="email"
-                               placeholder="Search for a business...">
+                        <input type="text" class="form-control input home-search" id="email" name="search"
+                               placeholder="Search for a product...">
                         <input type="submit" class="button btn solid-btn" id="submit" value="Search">
                     </div>
                 </form>

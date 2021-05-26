@@ -10,6 +10,7 @@ use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Overview\overviewController;
 use App\Http\Controllers\Settings\settingsController;
 use App\Http\Controllers\ProductServices\ProductsServicesController;
+use App\Http\Controllers\searchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,3 +101,7 @@ Route::get('/user/ticket/all', [TicketController::class, 'view_all'])->name('vie
 
 Route::post('/ticket/create', [TicketController::class, 'create']);
 Route::post('/ticket/reply/{id}', [TicketController::class, 'reply']);
+
+
+// SEARCH
+Route::post('/search/{id}', [searchController::class, 'search']);
