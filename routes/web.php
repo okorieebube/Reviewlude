@@ -47,6 +47,8 @@ Route::post('/register_admin', [registerController::class, 'create_admin'])->nam
 Route::post('/login_acct', [loginController::class, 'login']);
 Route::post('/admin/block/{id}', [userController::class, 'block']);
 Route::post('/admin/unblock/{id}', [userController::class, 'unblock']);
+Route::post('/user/confirm/{id}', [registerController::class, 'admin_confirm_email']);
+Route::post('/user/delete/{id}', [userController::class, 'delete']);
 
 
 //EMAIL CONFIRMATION
@@ -71,7 +73,17 @@ Route::post('/update_password', [userController::class, 'update_password']);
 
 // CATEGORY
 Route::get('/categories', [CategoryController::class, 'category_page'])->name('view_categories');
+Route::get('/user/category', [CategoryController::class, 'admin_category_page'])->name('create_category');
+Route::get('/user/category/{id}', [CategoryController::class, 'edit_category_page'])->name('edit_category');
 Route::post('/create_category', [CategoryController::class, 'create']);
+Route::post('/update_category', [CategoryController::class, 'update']);
+Route::post('/delete_category/{id}', [CategoryController::class, 'soft_delete']);
+
+
+// INVITE
+Route::get('/user/reviewers/invite', [ProductsServicesController::class, 'create_invite_page'])->name('create_invite');
+
+
 
 // PRODUCTS & SERVICES
 Route::get('/user/products', [ProductsServicesController::class, 'create_product_page'])->name('products');
@@ -105,3 +117,9 @@ Route::post('/ticket/reply/{id}', [TicketController::class, 'reply']);
 
 // SEARCH
 Route::post('/search/{id}', [searchController::class, 'search']);
+
+
+
+
+// USERS
+Route::get('/user/all', [userController::class, 'view_users_page'])->name('all_users');

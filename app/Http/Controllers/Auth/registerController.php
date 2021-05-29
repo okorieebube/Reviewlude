@@ -41,7 +41,7 @@ class registerController extends Controller
         $view = [
             'users' => $users,
         ];
-        return view('user.administrator',$view);
+        return view('user.administrator', $view);
     }
 
     /**
@@ -190,7 +190,7 @@ class registerController extends Controller
                 'user_type' => 'admin',
                 'email' => $request->input('email'),
                 'first_name' => 'Admin',
-                'last_name' =>'Admin',
+                'last_name' => 'Admin',
                 'is_email_validated' => '1',
                 'password' => Hash::make($request->input('password')),
                 'company_name' => 'Admin',
@@ -244,6 +244,38 @@ class registerController extends Controller
         } catch (Exception $e) {
 
             return redirect('/');
+        }
+    }
+
+
+    public function admin_confirm_email($user_id)
+    {
+        try {
+
+            $conditions = [
+                ['unique_id', $user_id]
+            ];
+
+            $User = $this->User->getSingle($conditions);
+
+            if (!$User) {
+                throw new Exception("error");
+            }
+
+            $User->is_email_validated = 1;
+            if ($User->save()) {
+                $message = 'User account confirmed successfully!';
+                return response()->json(["message" => $message, 'status' => true]);
+            } else {
+                throw new Exception($this->errorMsgs(14)['msg']);
+            }
+        } catch (Exception $e) {
+
+            $error = $e->getMessage();
+            $error = [
+                'errors' => [$error],
+            ];
+            return response()->json(["errors" => $error, 'status' => false]);
         }
     }
 }

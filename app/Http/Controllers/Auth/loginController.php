@@ -64,10 +64,13 @@ class loginController extends Controller
             $User = $this->user->getSingle($condition);
 
             if (!$User) {
-                throw new Exception("User account does not exist!");
+                throw new Exception("Error! This account is not registered!");
             } else {
                 if ($User->is_email_validated == 0) {
                     throw new Exception('Email address has\'nt been confirmed!');
+                }
+                if ($User->is_blocked == 1) {
+                    throw new Exception('Error! This Account Is deactivated. Contact Your Administrator.');
                 }
             }
 

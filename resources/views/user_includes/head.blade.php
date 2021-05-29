@@ -33,6 +33,7 @@
     <link href="{{ asset('/user/assets/css/components/custom-modal.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('/user/plugins/table/datatable/datatables.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/user/plugins/table/datatable/dt-global_style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/user/assets/css/forms/custom-clipboard.css') }}">
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
     <!-- CUSTOM CSS -->

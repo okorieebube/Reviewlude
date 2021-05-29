@@ -101,6 +101,23 @@ class ProductsServicesController extends Controller
         ];
         return view('user.services', $view);
     }
+    public function create_invite_page()
+    {
+        $user = auth()->user();
+
+
+            $condition = [
+                ['user_id', $user->unique_id]
+            ];
+            $products = $this->products_services->getAll($condition);
+
+        $categories = $this->categories->getAll();
+        $view = [
+            'categories' => $categories,
+            'products' => $products,
+        ];
+        return view('user.create_invite', $view);
+    }
     public function edit_service_page($id)
     {
         $condition = [
@@ -460,7 +477,18 @@ class ProductsServicesController extends Controller
             if (!$id) {
                 throw new Exception($this->errorMsgs(15)['msg']);
             }
-            $deleted = products_services::find($id)->delete();
+            $product = products_services::find($id);
+            // delete from relationship table
+            $condition = [
+                ['product_services_id', $id],
+                ['category_id', $product->category]
+            ];
+            $products_pivot = $this->products_pivot->getAll($condition);
+            if($products_pivot){
+                $products_pivot->each->delete();
+            }
+
+            $deleted = $product->delete();
 
             if (!$deleted) {
                 throw new Exception($this->errorMsgs(14)['msg']);

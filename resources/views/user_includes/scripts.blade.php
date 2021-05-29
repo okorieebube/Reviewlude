@@ -16,6 +16,11 @@
     <script src="{{ asset('/user/plugins/jquery-step/jquery.steps.min.js') }}"></script>
     <script src="{{ asset('/user/plugins/jquery-step/custom-jquery.steps.js') }}"></script>
     <script src="{{ asset('/user/plugins/table/datatable/datatables.js') }}"></script>
+    <script src="{{ asset('/user/assets/js/clipboard/clipboard.min.js')}}"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+
+    <!--  BEGIN CUSTOM SCRIPTS FILE  -->
+    <script src="{{ asset('/user/assets/js/forms/custom-clipboard.js')}}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 
     <!-- CUSTOM SCRIPTS -->

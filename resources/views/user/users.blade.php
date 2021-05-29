@@ -1,7 +1,7 @@
 @php
-$title = 'Create Product';
-$product= 'active';
-    $aria_product = 'true';
+$title = 'All Users';
+$users= 'active';
+    $aria_users = 'true';
 $user = Auth::user();
 @endphp
 @include('user_includes.head')
@@ -42,85 +42,6 @@ $user = Auth::user();
 
                     <div class="account-content">
                         <div class="scrollspy-example" data-spy="scroll" data-target="#account-settings-scroll" data-offset="-100">
-                        @if ($user->user_type == 'business')
-
-                        <div class="row layout-top-spacing" id="cancel-row">
-                            <div class="col-lg-12 layout-spacing">
-                                <div class="statbox widget box box-shadow">
-                                    <div class="widget-content widget-content-area">
-                                        <div class="widget-header">
-                                            <div class="row">
-                                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                                    <h5>Create Product</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="circle-basic" class="">
-                                            <h3>Basic Info</h3>
-                                            <section>
-                                                <form id="contact" class="section contact create_product_form">
-                                                    @csrf
-                                                    <div class="info">
-                                                        <div class="row">
-                                                            <div class="col-md-11 mx-auto">
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="location">Name<span class="text-danger">*</span> </label>
-                                                                            <input type="text" class="form-control mb-4" name="name" placeholder="Enter name of product*" value="">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="country">Category<span class="text-danger">*</span> </label>
-                                                                            <select name="category" class="form-control" required>
-                                                                                <option value="">Select a category for product</option>
-                                                                                @foreach ($categories as $e)
-                                                                                <option value="{{ $e->unique_id }}">{{ $e->name }}</option>
-                                                                                @endforeach
-
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label for="location">Tags<span class="text-danger">*</span> </label>
-                                                                            <input type="text" class="form-control form_tags mb-4" data-role="tagsinput" value="" placeholder="Add tags associated with your product">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-12">
-                                                                        <div class="form-group">
-                                                                            <label for="location">Description<span class="text-danger">*</span> </label>
-                                                                            {{-- <input type="text" class="form-control form_tags mb-4" data-role="tagsinput" value="" placeholder="Add tags associated with your product"> --}}
-                                                                            <textarea id="desc" cols="30" rows="10" class="form-control desc mb-4"></textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </section>
-                                            <h3>Cover Photo</h3>
-                                            <section>
-                                                <div class="row">
-
-                                                    <div class="col-xl-10 col-lg-12 col-md-12 m-auto">
-                                                        <div class="upload mt-4 pr-md-4">
-                                                            <input type="file" id="input-file-max-fs" class="dropify" data-default-file="{{ asset('/user/assets/img/arrow-down.png') }}" data-max-file-size="10M" />
-                                                            <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i> Select a cover Photo</p>
-                                                            <p>Preferrable file size: 730px by 304px</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        @endif
 
                             <div class="row layout-top-spacing" id="cancel-row">
                                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
@@ -128,7 +49,7 @@ $user = Auth::user();
                                         <div class="widget-header">
                                             <div class="row">
                                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                                    <h5>Registered Products</h5>
+                                                    <h5>Registered Users</h5>
                                                 </div>
                                             </div>
                                         </div>
@@ -138,38 +59,41 @@ $user = Auth::user();
                                                     <tr>
                                                         <th>S/n</th>
                                                         <th>Name</th>
-                                                        @if ($user->user_type == 'admin')
-                                                        <th>Company</th>
-                                                        @endif
-                                                        <th>Status</th>
-                                                        <th>Category</th>
-                                                        <th>Total Reviews</th>
-                                                        <th>Scores</th>
+                                                        <th>Type</th>
+                                                        <th>Account Status</th>
+                                                        <th>Email Verification</th>
                                                         <th class="no-content"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     {{-- padding-bottom: 20px; --}}
-                                                    @foreach ($products as $k => $e)
+                                                    @foreach ($all_users as $k => $e)
                                                     <tr>
                                                         <td>{{ $k+1 }}</td>
-                                                        <td>{{ $e->name }}</td>
-                                                        @if ($user->user_type == 'admin')
-                                                        <td>{{ $e->company->company_name }}</td>
+                                                        @if ($e->user_type == 'business')
+                                                        <td>{{ $e->company_name }}</td>
+                                                        @else
+                                                        <td>{{ $e->first_name.' '.$e->last_name }}</td>
                                                         @endif
-                                                        @if ($e->status == 'pending')
-                                                        <td class="text-warning">
-                                                            <strong>{{ $e->status }}</strong>
+                                                        <td class="text-capitalize">{{ $e->user_type }}</td>
+                                                        @if ($e->is_blocked == '0')
+                                                        <td class="text-success">
+                                                            <strong>Active</strong>
                                                         </td>
                                                         @else
-                                                        <td class="text-success">
-                                                            <strong>{{ $e->status }}</strong>
+                                                        <td class="text-danger">
+                                                            <strong>Blocked</strong>
                                                         </td>
                                                         @endif
-
-                                                        <td>{{ $e->categories->name }}</td>
-                                                        <td>{{ $e->total_reviews }}</td>
-                                                        <td>{{ $e->score }}</td>
+                                                        @if ($e->is_email_validated == '1')
+                                                        <td class="text-success">
+                                                            <strong>Verified</strong>
+                                                        </td>
+                                                        @else
+                                                        <td class="text-warning">
+                                                            <strong>Not Verified</strong>
+                                                        </td>
+                                                        @endif
                                                         <td class="text-center">
                                                             <div class="dropdown custom-dropdown">
                                                                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -177,40 +101,19 @@ $user = Auth::user();
                                                                 </a>
                                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
 
-                                                                    <a class="dropdown-item" href="{{ route('view_product',$e->slug ) }}">View</a>
-                                                                    @if ($user->user_type == 'business')
-                                                                    <a class="dropdown-item" href="{{ route('edit_product',$e->unique_id ) }}">Edit</a>
-                                                                    @endif
-                                                                    @if ($user->user_type == 'admin')
+                                                                    <a class="dropdown-item" href="{{ route('edit_product',$e->unique_id ) }}">View</a>
                                                                     <a id="{{ $e->unique_id }}" class="dropdown-item pointer confirm_modal">Confirm</a>
-                                                                    <a id="{{ $e->unique_id }}" class="dropdown-item pointer delete_modal">Delete</a>
+                                                                    @if ($e->is_blocked == 0)
+                                                                    <a id="{{ $e->unique_id }}" class="dropdown-item pointer block_modal">Block</a>
+                                                                    @else
+                                                                    <a id="{{ $e->unique_id }}" class="dropdown-item pointer unblock_modal">Unblock</a>
                                                                     @endif
+                                                                    <a id="{{ $e->unique_id }}" class="dropdown-item pointer delete_modal">Delete</a>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                     </tr>
                                                     @endforeach
-
-                                                    {{-- <tr>
-                                                        <td>2</td>
-                                                        <td>Garrett Winters</td>
-                                                        <td>Accountant</td>
-                                                        <td>Tokyo</td>
-                                                        <td>63</td>
-                                                        <td>2011/07/25</td>
-                                                        <td>$170,750</td>
-                                                        <td><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle table-cancel"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Ashton Cox</td>
-                                                        <td>Junior Technical Author</td>
-                                                        <td>San Francisco</td>
-                                                        <td>66</td>
-                                                        <td>2009/01/12</td>
-                                                        <td>$86,000</td>
-                                                        <td><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle table-cancel"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></td>
-                                                    </tr> --}}
                                                 </tbody>
                                             </table>
                                         </div>
@@ -273,7 +176,8 @@ $user = Auth::user();
                             @csrf
                             <div class="modal-body">
                                 <p class="modal-text">
-                                    If you click continue, this product will be delete permanently. Reviewers won't be able to review this product.
+                                    If you click continue, this account will be deleted permanently. <br>
+                                    Users won't be able to find this account.
                                 </p>
                             </div>
                         </form>
@@ -290,7 +194,7 @@ $user = Auth::user();
                 </div>
             </div>
 
-            <div id="confirmation_modal" class="modal animated zoomInUp custo-zoomInUp" role="dialog">
+            <div id="block_modal" class="modal animated zoomInUp custo-zoomInUp" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
@@ -303,14 +207,45 @@ $user = Auth::user();
                                 </svg>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <p class="modal-text">
-                                If the details for this product is validated, click the `create` button below to continue.
-                            </p>
-                        </div>
+                        <form class="block_form">
+                            @csrf
+                            <div class="modal-body">
+                                <p class="modal-text text-danger ">
+                                    Click continue to deactivate this account. This user wont have access to this account.
+                                </p>
+                            </div>
+                        </form>
                         <div class="modal-footer md-button">
                             <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Cancel</button>
-                            <button type="button" class="btn btn-primary create_product_btn">Create</button>
+                            <button type="button" class="btn btn-primary block_btn">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="unblock_modal" class="modal animated zoomInUp custo-zoomInUp" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            {{-- <h5 class="modal-title">Confirm*</h5> --}}
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <form class="unblock_form">
+                            @csrf
+                            <div class="modal-body">
+                                <p class="modal-text text-danger ">
+                                    Click continue to activate this account. User will regain access to this account.
+                                </p>
+                            </div>
+                        </form>
+                        <div class="modal-footer md-button">
+                            <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Cancel</button>
+                            <button type="button" class="btn btn-primary unblock_btn">Continue</button>
                         </div>
                     </div>
                 </div>
@@ -336,6 +271,45 @@ $user = Auth::user();
                         append_id('delete_id', '.delete_modal_form', '#delete_modal', this)
                         $('#delete_modal').modal('toggle');
                     });
+                    $('.block_modal').click(function(e) {
+                        e.preventDefault();
+                        append_id('block_id', '.block_form', '#block_modal', this)
+                        $('#block_modal').modal('toggle');
+                    });
+                    $('.unblock_modal').click(function(e) {
+                        e.preventDefault();
+                        append_id('unblock_id', '.unblock_form', '#unblock_modal', this)
+                        $('#unblock_modal').modal('toggle');
+                    });
+
+                    $('.block_btn').click(async function(e) {
+                            e.preventDefault();
+                            let data = [];
+                            // basic info
+                            let login = $('.block_form').serializeArray();
+                            // console.log(login);
+                            // return;
+
+                            // append to form data object
+                        let form_data = set_form_data(login);
+                        let returned = await ajaxRequest('/admin/block/'+login[1].value, form_data);
+                            // console.log(returned);return;
+                            validator(returned, '/user/all');
+                        });
+                        $('.unblock_btn').click(async function(e) {
+                            e.preventDefault();
+                            let data = [];
+                            // basic info
+                            let login = $('.unblock_form').serializeArray();
+                            // console.log(login);
+                            // return;
+
+                            // append to form data object
+                            let form_data = set_form_data(login);
+                            let returned = await ajaxRequest('/admin/unblock/'+login[1].value, form_data);
+                            // console.log(returned);return;
+                            validator(returned, '/user/all');
+                        });
 
                     $('.confirm_modal_btn').click(async function(e) {
                         e.preventDefault();
@@ -343,8 +317,8 @@ $user = Auth::user();
                         // console.log(confirm_modal_form);
                         // return;
                         let form_data = set_form_data(confirm_modal_form);
-                        let returned = await ajaxRequest('/confirm_product/'+confirm_modal_form[1].value, form_data);
-                        validator(returned, '/user/products');
+                        let returned = await ajaxRequest('/user/confirm/'+confirm_modal_form[1].value, form_data);
+                        validator(returned, '/user/all');
                     });
                     $('.delete_modal_btn').click(async function(e) {
                         e.preventDefault();
@@ -352,8 +326,8 @@ $user = Auth::user();
                         // console.log(confirm_modal_form);
                         // return;
                         let form_data = set_form_data(delete_modal_form);
-                        let returned = await ajaxRequest('/delete_product/'+delete_modal_form[1].value, form_data);
-                        validator(returned, '/user/products');
+                        let returned = await ajaxRequest('/user/delete/'+delete_modal_form[1].value, form_data);
+                        validator(returned, '/user/all');
                     });
 
                     $("li:contains(Finish)").click(function(e) {
