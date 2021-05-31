@@ -32,3 +32,6 @@ z-index: 10000;
     border: 1px solid rgba(0,0,0,.125);
     border: none;
 }
+.sidebar-wrapper .profile-info figure{
+    background: url('../assets/img/3.jpg') center center / cover no-repeat;
+}

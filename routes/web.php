@@ -23,15 +23,28 @@ use App\Http\Controllers\searchController;
 |
 */
 
-Route::get('/show-csrf', [userController::class,'showToken']);
-Route::get('/clear-cache', [userController::class,'clear_cache']);
+Route::get('/show-csrf', [userController::class, 'showToken']);
+Route::get('/clear-cache', [userController::class, 'clear_cache']);
 
 Route::get('/', function () {
     return view('en.index');
 });
-Route::get('/user/test', function () {
-    return view('user.test');
-});
+
+Route::get('/about', function () {
+    return view('en.about_us');
+})->name('about');
+
+Route::get('/terms', function () {
+    return view('en.terms');
+})->name('terms');
+
+Route::get('/terms', function () {
+    return view('en.terms');
+})->name('terms');
+
+Route::get('/forgot-password', function () {
+    return view('en.forgot-password');
+})->name('forgot_password');
 
 // AUTH REQUESTS
 Route::get('/login', [loginController::class, 'login_page'])->name('login');
@@ -103,6 +116,8 @@ Route::post('/update_product_service', [ProductsServicesController::class, 'upda
 // REVIEW
 Route::get('/review/{id}', [ReviewController::class, 'submit_review_page'])->name('review_page');
 Route::post('/submit_review/{id}', [ReviewController::class, 'create']);
+Route::post('/delete_review/{id}', [ReviewController::class, 'soft_delete']);
+Route::post('/reply_review', [ReviewController::class, 'reply']);
 
 
 
@@ -116,10 +131,13 @@ Route::post('/ticket/reply/{id}', [TicketController::class, 'reply']);
 
 
 // SEARCH
-Route::post('/search/{id}', [searchController::class, 'search']);
+Route::get('/search/{id}', [searchController::class, 'search']);
+// Route::get('/search{id}', [searchController::class, 'search']);
 
 
 
 
 // USERS
 Route::get('/user/all', [userController::class, 'view_users_page'])->name('all_users');
+Route::get('/user/profile/{id}', [userController::class, 'view_user_profile'])->name('user_profile');
+Route::get('/business/profile/{id}', [userController::class, 'business_profile'])->name('business_profile');

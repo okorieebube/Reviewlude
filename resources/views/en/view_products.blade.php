@@ -1,5 +1,6 @@
 @php
 $title = 'All Products';
+$user = Auth::user();
 @endphp
 @include('en_includes.head')
 
@@ -52,11 +53,14 @@ $title = 'All Products';
                         @if (count($products) > 0)
                         @foreach ($products as $e)
                         <div style="float: left;" class="col-md-6 col-lg-4">
-                            <a href="{{ route('view_product',$e->slug) }}">
+                            {{-- <a href="{{ route('view_product',$e->slug) }}"> --}}
                                 <div class="single-blog-card card border-0 shadow-sm">
-                                    <span class="category position-absolute badge badge-pill badge-primary">
+                                    <a href="{{ route('business_profile',$e->user_id) }}">
+
+                                    <span class="category position-absolute badge badge-pill badge-primary text-capitalize">
                                         {{ $e->company->company_name }}
                                     </span>
+                                    </a>
                                     {{-- {{asset('/storage/uploads/products/'.$e->cover_photo)}} --}}
                                     <img src="{{asset('/storage/uploads/products/'.$e->cover_photo)}}" class="card-img-top position-relative" alt="blog" width="213.33px" height="134.81px">
                                     <div class="card-body card-categories pt-0">
@@ -69,10 +73,10 @@ $title = 'All Products';
                                         {{-- <h3 class="h5 card-title">{{ $e->name }}</h3> --}}
 
                                         <p class="h5 card-title over-flow">{{ $e->name }}</p>
-                                        <a href="{{ route('view_product',$e->slug) }}" class="detail-link">Read more <span class="ti-arrow-right"></span></a>
+                                        <a href="{{ route('view_product',$e->slug) }}" class="detail-link purple-text">Read more <span class="ti-arrow-right"></span></a>
                                     </div>
                                 </div>
-                            </a>
+                            {{-- </a> --}}
                         </div>
                     @endforeach
                         @else
@@ -102,7 +106,7 @@ $title = 'All Products';
                 </div>
 
                 <!--pagination start-->
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-12">
                         <nav class="custom-pagination-nav mt-4">
                             <ul class="pagination justify-content-center">
@@ -115,7 +119,7 @@ $title = 'All Products';
                             </ul>
                         </nav>
                     </div>
-                </div>
+                </div> --}}
                 <!--pagination end-->
 
             </div>

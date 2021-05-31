@@ -1,5 +1,6 @@
 @php
-    $title = 'View';
+    $title = 'View Product';
+$user = Auth::user();
 @endphp
 @include('en_includes.head')
 <body>

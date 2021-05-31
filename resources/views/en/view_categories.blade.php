@@ -1,5 +1,6 @@
 @php
 $title = 'Categories';
+$user = Auth::user();
 @endphp
 @include('en_includes.head')
 

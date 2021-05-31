@@ -48,8 +48,9 @@
                                                     <div class="row">
                                                         <div class="col-xl-2 col-lg-12 col-md-4">
                                                             <div class="upload mt-4 pr-md-4">
-                                                                <input type="file" id="input-file-max-fs" class="dropify" data-default-file="{{ asset('/user/assets/img/user-profile.jpeg') }}" data-max-file-size="2M" />
-                                                                <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i> Company Logo</p>
+                                                                <input type="file" id="input-file-max-fs" class="dropify" data-default-file="{{ asset('/storage/uploads/logo/'.$user->settings->logo) }}" data-max-file-size="2M" />
+                                                                <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i> Select company logo</p>
+                                                                {{-- <p>Preferrable file size: 730px by 304px</p> --}}
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-10 col-lg-12 col-md-8 mt-md-0 mt-4">
@@ -125,7 +126,7 @@
                                                                 <label for="profession">
                                                                     <strong>Description</strong><span class="text-danger">*</span>
                                                                 </label>
-                                                                <textarea name="descirption" class="form-control" cols="30" rows="5">{{ @$user->description }}</textarea>
+                                                                <textarea name="description" class="form-control" cols="30" rows="5">{{ @$info->description }}</textarea>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
@@ -500,12 +501,18 @@
                             e.preventDefault();
                             let data = [];
                             // basic info
-                            let login = $('.about_company_form').serializeArray();
-                            // console.log(login);
+                            let form = $('.about_company_form').serializeArray();
+
+                            let cover_img = $('#input-file-max-fs').prop('files')[0];
+                            form.push({
+                                name: "logo_img",
+                                value: cover_img
+                            });
+                            // console.log(form);
                             // return;
 
                             // append to form data object
-                            let form_data = set_form_data(login);
+                            let form_data = set_form_data(form);
                             let returned = await ajaxRequest('/update_about_company', form_data);
                             // console.log(returned);return;
                             validator(returned, '/user/settings');

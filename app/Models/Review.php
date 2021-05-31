@@ -34,6 +34,12 @@ class Review extends Model
     public function user(){
         return $this->belongsTo('App\Models\User', 'user_id');
     }
+    public function settings(){
+        return $this->belongsTo('App\Models\business_settings', 'user_id');
+    }
+    public function product(){
+        return $this->belongsTo('App\Models\products_services', 'product_id');
+    }
 
     public function getSingle($condition){
 

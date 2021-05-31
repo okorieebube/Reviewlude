@@ -1,5 +1,6 @@
 @php
     $title = 'Register';
+$user = Auth::user();
 @endphp
 @include('en_includes.head')
 <body>
@@ -20,7 +21,7 @@
                     <div class="hero-content-left text-white">
                         <h1 class="text-white">Join our Ecosystem</h1>
                         <p class="lead">
-                            Keep your face always toward the sunshine - and shadows will fall behind you.
+                            We are free and open to every business and consumer everywhere.
                         </p>
                     </div>
                 </div>
@@ -28,8 +29,8 @@
                     <div class="card login-signup-card shadow-lg mb-0">
                         <div class="card-body px-md-5 py-5">
                             <div class="mb-5">
-                                <h6 class="h3">Register Business</h6>
-                                <p class="text-muted mb-0">Made with love by developers for developers.</p>
+                                <h6 class="h3"><strong>Register Business</strong></h6>
+                                <p class="text-muted mb-0">Start with a free account.</p>
                             </div>
                             <form class="login-signup-form register_form">
                                 @csrf
@@ -40,17 +41,17 @@
                                     <!-- Input group -->
                                     <div class="input-group input-group-merge">
                                         <div class="input-icon">
-                                            <span class="ti-lock color-primary"></span>
+                                            <span class="ti-briefcase color-primary"></span>
                                         </div>
                                         <input type="text" class="form-control"
-                                            name="company_name"   placeholder="Company name">
+                                            name="company_name"   placeholder="Company name eg. abc">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <!-- Input group -->
                                     <div class="input-group input-group-merge">
                                         <div class="input-icon">
-                                            <span class="ti-lock color-primary"></span>
+                                            <span class="ti-user color-primary"></span>
                                         </div>
                                         <input type="text" class="form-control"
                                             name="full_name"   placeholder="Enter First name then Last name">
@@ -60,10 +61,10 @@
                                     <!-- Input group -->
                                     <div class="input-group input-group-merge">
                                         <div class="input-icon">
-                                            <span class="ti-lock color-primary"></span>
+                                            <span class="ti-email color-primary"></span>
                                         </div>
                                         <input type="email" class="form-control"
-                                            name="email"   placeholder="Work email">
+                                            name="email"   placeholder="Work email eg. info@abc.co">
                                     </div>
                                 </div>
                                 <div class="form-group">

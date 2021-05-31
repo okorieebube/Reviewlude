@@ -8,6 +8,7 @@ use App\Traits\appFunction;
 use Illuminate\Http\Request;
 use App\Models\business_settings;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Auth\loginController;
 
@@ -44,29 +45,59 @@ class settingsController extends Controller
     {
         try {
             $user = $this->user->user_logged();
+            $settings = business_settings::find($user->unique_id);
 
             $validator = Validator::make($request->all(), [
                 'company_name' => 'string|nullable',
                 'website' => 'string|max:100|nullable',
-                // 'email' => 'email|',
                 'phone' => 'string|nullable',
-                // 'description' => 'string|min:50|nullable',
             ]);
 
             if ($validator->fails()) {
                 return response()->json(['errors' => $validator->errors(), 'status' => false]);
             }
             $request->request->add(['id' => $user['unique_id']]);
+
+
+            // update cover image if it was changed
+            if ($request->file('logo_img')) {
+                $validator = Validator::make($request->all(), [
+                    'logo_img' => 'file|image|mimes:jpeg,png,gif|max:4048',
+                ]);
+                if ($validator->fails()) {
+                    return response()->json(['errors' => $validator->errors(), 'status' => false]);
+                }
+                $photo = $request->file('logo_img');
+                $img_name = $this->gen_file_name($user, $user['company_name'], $photo);
+
+                // return response()->json($settings);
+                $upload = $photo->storeAs(
+                    'public/uploads/logo',
+                    $img_name
+                );
+
+                $prev_file_name = $settings->logo;
+                //delete existing file
+                if (file_exists(storage_path('public/uploads/logo/' . $prev_file_name))) {
+
+                    if ($prev_file_name !== 'avatar.png') {
+                        // unlink(storage_path('public/uploads/logo/' . $prev_file_name));
+                        Storage::delete('public/uploads/logo/' . $prev_file_name);
+                    }
+                }
+
+                // add logo to request object
+                $request->request->add(['logo' => $img_name]);
+            }
             // return $request;
             $update_user = $this->user_model->updateUser($request);
 
-            if(!$update_user){
+            if (!$update_user) {
                 throw new Exception($this->errorMsgs(14)['msg']);
             } else {
                 $error = 'Company Details Updated!';
                 return response()->json(["message" => $error, 'status' => true]);
             }
-
         } catch (Exception $e) {
 
             $error = $e->getMessage();
@@ -94,15 +125,15 @@ class settingsController extends Controller
                 return response()->json(['errors' => $validator->errors(), 'status' => false]);
             }
             $request->request->add(['id' => $user['unique_id']]);
+            // return response()->json($request);
             $business_settings = $this->business_settings->updateBusinessSettings($request);
 
-            if(!$business_settings){
+            if (!$business_settings) {
                 throw new Exception($this->errorMsgs(14)['msg']);
             } else {
                 $error = 'Company Information Updated!';
                 return response()->json(["message" => $error, 'status' => true]);
             }
-
         } catch (Exception $e) {
 
             $error = $e->getMessage();

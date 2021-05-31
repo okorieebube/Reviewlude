@@ -9,6 +9,7 @@ use App\Traits\appFunction;
 use Illuminate\Http\Request;
 use App\Models\products_services;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Auth\loginController;
@@ -19,7 +20,7 @@ class ProductsServicesController extends Controller
 {
     use appFunction;
     //
-    public function __construct(User $user_model, loginController $Login, category $categories, products_services $products_services, categories_to_product_services_tb $category_to_product_services, Controller $Controller, Review $review)
+    public function __construct(User $user_model, loginController $Login, category $categories, products_services $products_services, categories_to_product_services_tb $category_to_product_services, Controller $Controller, Review $review, ReviewController $reviewController)
     {
         $this->middleware('auth',  ['except' => ['view_product_page', 'view_all_page']]);
         $this->Login = $Login;
@@ -29,7 +30,7 @@ class ProductsServicesController extends Controller
         $this->category_to_product_services = $category_to_product_services;
         $this->Controller = $Controller;
         $this->review = $review;
-        // categories_to_product_services_tb
+        $this->reviewController = $reviewController;
     }
 
 
@@ -51,6 +52,11 @@ class ProductsServicesController extends Controller
                 ['user_id', $user->unique_id]
             ];
             $products = $this->products_services->getAll($condition);
+        }
+
+        foreach ($products as $e ) {
+            $e->no_of_reviews = $this->Controller->calc_reviews_under_products($e->unique_id);
+            $e->trust_score = $this->reviewController->trust_score($e->unique_id);
         }
 
         $categories = $this->categories->getAll();
@@ -92,6 +98,10 @@ class ProductsServicesController extends Controller
                 ['user_id', $user->unique_id]
             ];
             $products = $this->products_services->getAll($condition);
+        }
+        foreach ($products as $e ) {
+            $e->no_of_reviews = $this->Controller->calc_reviews_under_products($e->unique_id);
+            $e->trust_score = $this->reviewController->trust_score($e->unique_id);
         }
 
         $categories = $this->categories->getAll();
@@ -138,8 +148,11 @@ class ProductsServicesController extends Controller
         ];
         $product = $this->products_services->getSingle($condition);
         $categories = $this->categories->getAll();
+        $trust_score = $this->reviewController->trust_score($product->unique_id);
+        $performance = $this->reviewController->score_performance($trust_score);
         $review_condition = [
-            ['product_id', $product->unique_id]
+            ['product_id', $product->unique_id],
+            ['repy_main_id',null],
         ];
         $product_review = $this->review->getAll($review_condition);
         foreach ($categories as $e ) {
@@ -156,6 +169,8 @@ class ProductsServicesController extends Controller
             'categories' => $categories,
             'product' => $product,
             'reviews' => $product_review,
+            'trust_score' => $trust_score,
+            'performance' => $performance,
         ];
         // print_r($product_review);
         return view('en.view_product_service', $view);

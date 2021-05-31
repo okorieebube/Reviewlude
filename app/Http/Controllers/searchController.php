@@ -17,10 +17,10 @@ class searchController extends Controller
 
     public function search()
     {
+        print_r($_GET);die();
         // Get the search value from the request
         // $search = $request->input('search');
         $search = $_GET['search'];
-
         // Search in the title and body columns from the posts table
         $products = products_services::query()
             ->where('name', 'LIKE', "%{$search}%")

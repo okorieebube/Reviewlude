@@ -100,8 +100,13 @@ $user = Auth::user();
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
                                                                 </a>
                                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
+                                                                    @if ($e->user_type == 'business')
 
-                                                                    <a class="dropdown-item" href="{{ route('edit_product',$e->unique_id ) }}">View</a>
+                                                                    <a class="dropdown-item" href="{{ route('business_profile',$e->unique_id ) }}">View</a>
+                                                                    @else
+
+                                                                    <a class="dropdown-item" href="{{ route('user_profile',$e->unique_id ) }}">View</a>
+                                                                    @endif
                                                                     <a id="{{ $e->unique_id }}" class="dropdown-item pointer confirm_modal">Confirm</a>
                                                                     @if ($e->is_blocked == 0)
                                                                     <a id="{{ $e->unique_id }}" class="dropdown-item pointer block_modal">Block</a>
@@ -148,7 +153,7 @@ $user = Auth::user();
                             @csrf
                             <div class="modal-body">
                                 <p class="modal-text">
-                                    If you click continue, this product will be made visible to reviewers.
+                                    If you click continue, this account's email will be validated. User will have access to their account.
                                 </p>
                             </div>
                         </form>

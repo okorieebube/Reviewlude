@@ -111,6 +111,10 @@ trait appFunction
             case $info == 31:
                 return ['error' => 1, 'msg' => 'Error! To proceed, agree to our terms & conditions'];
                 break;
+
+            case $info == 32:
+                return ['error' => 1, 'msg' => 'Error! Email address should end with company name'];
+                break;
         }
     }
 

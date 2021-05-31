@@ -1,5 +1,6 @@
 @php
     $title = 'Home';
+$user = Auth::user();
 @endphp
 @include('en_includes.head')
 <body>
@@ -25,9 +26,9 @@
                                     {{-- The best businesses live here --}}
                                     Read reviews. write reviews.
                                      </h1>
-                                <p class="lead">Find out exactly how customers feel about different business & services around the globe. </p>
+                                <p class="lead">Find out exactly how consumers feel about different business & services around the globe. </p>
 
-                                <a href="#" class="btn google-play-btn">Get Started</a>
+                                <a href="{{ route('register_reviewer') }}" class="btn google-play-btn">Start Reviewing</a>
                             </div>
                         </div>
                     </div>
@@ -75,8 +76,8 @@
                             <div class="pb-2">
                                 <span class="ti-credit-card icon-md color-secondary"></span>
                             </div>
-                            <div class="pt-2 pb-3"><h5>Modular</h5>
-                                <p class="text-muted mb-0">All components are built to be used in any combination.</p>
+                            <div class="pt-2 pb-3"><h5>For Consumers</h5>
+                                <p class="text-muted mb-0">Consumers can share their experiences.</p>
                             </div>
                         </div>
                     </div>
@@ -87,8 +88,8 @@
                             <div class="pb-2">
                                 <span class="ti-control-record icon-md color-secondary"></span>
                             </div>
-                            <div class="pt-2 pb-3"><h5>Responsive</h5>
-                                <p class="text-muted mb-0">Quick is optimized to work for most devices.</p></div>
+                            <div class="pt-2 pb-3"><h5>For Business</h5>
+                                <p class="text-muted mb-0">Businesses can create better experiences.</p></div>
                         </div>
                     </div>
                 </div>
@@ -98,8 +99,8 @@
                             <div class="pb-2">
                                 <span class="ti-vector icon-md color-secondary"></span>
                             </div>
-                            <div class="pt-2 pb-3"><h5>Scalable</h5>
-                                <p class="text-muted mb-0">Remain consistent while developing new features.</p></div>
+                            <div class="pt-2 pb-3"><h5>Trust</h5>
+                                <p class="text-muted mb-0">Helping consumers shop with confidence.</p></div>
                         </div>
                     </div>
                 </div>
@@ -109,8 +110,8 @@
                             <div class="pb-2">
                                 <span class="ti-receipt icon-md color-secondary"></span>
                             </div>
-                            <div class="pt-2 pb-3"><h5>Customizable</h5>
-                                <p class="text-muted mb-0">Change a few variables and the whole theme adapts.</p></div>
+                            <div class="pt-2 pb-3"><h5>Connection</h5>
+                                <p class="text-muted mb-0">Bringing consumers and businesses together.</p></div>
                         </div>
                     </div>
                 </div>
@@ -125,33 +126,32 @@
             <div class="row align-items-center justify-content-between">
                 <div class="col-md-6">
                     <div class="about-content-left section-heading">
-                        <h2 class="">ReviewLude helps great businesses <span>get customer feedbacks</span></h2>
-                        <p>Proactively syndicate open-source e-markets after low-risk high-yield synergy. Professionally
-                            simplify visionary technology before team driven sources. </p>
+                        <h2 class="">ReviewLude helps businesses <span>get consumer feedbacks</span></h2>
+                        <p>Behind every consumers review is an experience that matters to us alot. </p>
 
                         <div class="single-feature mb-4">
                             <div class="d-flex align-items-center mb-2">
                                 <span class="ti-vector rounded mr-3 icon icon-color-1"></span>
-                                <h5 class="mb-0">Easy to use</h5>
+                                <h5 class="mb-0">Be heard</h5>
                             </div>
-                            <p>Synergistically deliver next-generation relationships whereas bleeding-edge resources. Continually pontificate stand-alone benefits whereas.</p>
+                            <p>Reviewlude is free and open to every company and consumer everywhere. Sharing your experiences helps others make better choices and companies up their game.</p>
                         </div>
                         <div class="single-feature mb-4">
                             <div class="d-flex align-items-center mb-2">
                                 <span class="ti-dashboard rounded mr-3 icon icon-color-2"></span>
-                                <h5 class="mb-0">Trust & Safety</h5>
+                                <h5 class="mb-0">We protect and promote trust</h5>
                             </div>
-                            <p>Phosfluorescently empower compelling intellectual capital and revolutionary web services. Compellingly develop cross-media.</p>
+                            <p>We take the necessary measures and steps to ensure our platform’s integrity.</p>
                         </div>
 
                         <div class="single-feature mb-4">
                             <div class="d-flex align-items-center mb-2">
                                 <span class="ti-alarm-clock rounded mr-3 icon icon-color-3"></span>
-                                <h5 class="mb-0">Thriving Community</h5>
+                                <h5 class="mb-0">Commited to Transparency</h5>
                             </div>
-                            <p>Phosfluorescently matrix enterprise-wide metrics vis-a-vis extensive imperatives. Energistically empower best-of-breed human</p>
+                            <p>We give all consumers a powerful voice and all companies a way to listen, respond and continually improve. This builds trust because this happens in a transparent environment with no pre-moderation or censorship</p>
                         </div>
-                        <a href="#" class="btn solid-btn mt-2">View additional 10+ features</a>
+                        <a href="{{ route('about') }}" class="btn solid-btn mt-2">Learn more</a>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -175,9 +175,9 @@
                         <h5 class="mt-4 text-white">Watch video overview</h5>
 
                         <div class="download-btn mt-5">
-                            <a href="#" class="btn google-play-btn mr-3"><span class="ti-android"></span> Google
-                                Play</a>
-                            <a href="#" class="btn app-store-btn"><span class="ti-apple"></span> App Store</a>
+                            <a href="{{ route('register_business') }}" class="btn google-play-btn mr-3">Join as Business
+                                </a>
+                            <a href="{{ route('register_reviewer') }}" class="btn app-store-btn">Join as Reviewer</a>
                         </div>
                     </div>
                 </div>
@@ -283,8 +283,8 @@
                     <div class="section-heading mb-5">
                         <h2>Testimonials <br><span>what clients say</span></h2>
                         <p class="lead">
-                            Rapidiously morph transparent internal or "organic" sources whereas resource sucking
-                            e-business. Conveniently innovate compelling internal.
+                            I rely a lot on reviews I read on Reviewlude and therefore am always willing to review companies, including Reviewlude itself.
+Its a great resource.
                         </p>
 
                         <div class="client-section-wrap d-flex flex-row align-items-center">
@@ -308,12 +308,12 @@
                                         <img src="{{ asset('en/img/client-1.jpg')}}" alt="client" class="img-fluid rounded-circle">
                                     </div>
                                     <div class="media-body">
-                                        <h5 class="mb-0">John Charles</h5>
+                                        <h5 class="mb-0">William Muir</h5>
                                         <span>Google</span>
                                     </div>
                                 </div>
                                 <div class="client-say">
-                                    <p> <img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid"> Interactively optimize fully researched expertise vis-a-vis plug-and-play relationships. Intrinsicly develop viral core competencies for fully tested customer service. Enthusiastically create next-generation growth strategies and.</p>
+                                    <p> <img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid"> Reviewlude is amazing for finding information and reviews about websites and businesses as well as writing reviews and sharing information with others. I love how easy if is to write a review and as soon as a review is posted it can be seen by others. Reviewlude is really easy to use and is great for finding out and sharing information about businesses or websites.</p>
                                 </div>
                             </div>
                         </div>
@@ -324,12 +324,12 @@
                                         <img src="{{ asset('en/img/client-2.jpg')}}" alt="client" class="img-fluid rounded-circle">
                                     </div>
                                     <div class="media-body">
-                                        <h5 class="mb-0">Arabella Ora</h5>
+                                        <h5 class="mb-0">Lesley Peters</h5>
                                         <span>Amazon</span>
                                     </div>
                                 </div>
                                 <div class="client-say">
-                                    <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid">  Rapidiously develop user friendly growth strategies after extensive initiatives. Conveniently grow innovative benefits through fully tested deliverables. Rapidiously utilize focused platforms through end-to-end schemas.</p>
+                                    <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid">  I love this site since I can share my online business and Social media using experiences here free! It helps me to find legit app and business site reviews simply.</p>
                                 </div>
                             </div>
                         </div>
@@ -345,7 +345,7 @@
                                     </div>
                                 </div>
                                 <div class="client-say">
-                                    <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid"> Objectively synthesize client-centered e-tailers for maintainable channels. Holisticly administrate customer directed vortals whereas tactical functionalities. Energistically monetize reliable imperatives through client-centric best practices. Collaboratively.</p>
+                                    <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid"> I had a negative review to post regarding very bad customer service from the plant website of Sarah Raven. It was easy to navigate Reviewlude and I am happy that I was able to express my opinion.</p>
                                 </div>
                             </div>
                         </div>
@@ -361,7 +361,7 @@
                                     </div>
                                 </div>
                                 <div class="client-say">
-                                    <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid"> Enthusiastically innovate B2C data without clicks-and-mortar convergence. Monotonectally deliver compelling testing procedures vis-a-vis B2B testing procedures. Competently evisculate integrated resources whereas global processes. Enthusiastically.</p>
+                                    <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid"> Truth be told, some websites offer incentives for people to give them five stars on Reviewlude, so some of the reviews are not genuine. Reviewlude is still one of the best guides out there.</p>
                                 </div>
                             </div>
                         </div>
@@ -381,8 +381,7 @@
                     <div class="section-heading text-center mb-5">
                         <h2>Trusted by companies</h2>
                         <p class="lead">
-                            Rapidiously morph transparent internal or "organic" sources whereas resource sucking
-                            e-business. Conveniently innovate compelling internal.
+                            The more consumers use our platform and share their own opinions, the richer the insights we offer businesses.
                         </p>
                     </div>
                 </div>

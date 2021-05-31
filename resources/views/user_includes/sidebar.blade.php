@@ -4,7 +4,7 @@
         <div class="profile-info">
             <figure class="user-cover-image"></figure>
             <div class="user-info">
-                <img src="{{ asset('user/assets/img/profile-17.jpg') }}" alt="avatar">
+                <img src="{{ asset('/storage/uploads/logo/'.$user->settings->logo) }}" alt="avatar">
                 <h6 class="text-capitalize">{{ $user->company_name }}</h6>
                 <p class="">{{ $user->email }}</p>
             </div>
@@ -39,6 +39,24 @@
                     </li>
                 </ul>
             </li>
+            @if ($user->user_type == 'business')
+            <li class="menu {{ @$invite }}">
+                <a href="{{ route('create_invite') }}" aria-expanded="{{ @$aria_invite }}" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg>
+                        <span>Invite Reviewers</span>
+                    </div>
+                </a>
+            </li>
+            <li class="menu {{ @$settings }}">
+                <a href="{{ route('settings') }}" aria-expanded="{{ @$aria_setting }}" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg>
+                        <span>Settings</span>
+                    </div>
+                </a>
+            </li>
+            @endif
             @if ($user->user_type == 'admin')
             <li class="menu {{ @$users }}">
                 <a href="{{ route('all_users') }}" aria-expanded="{{ @$aria_users }}" class="dropdown-toggle">
@@ -66,24 +84,6 @@
                 </a>
             </li>
 
-            @if ($user->user_type == 'business')
-            <li class="menu {{ @$settings }}">
-                <a href="{{ route('settings') }}" aria-expanded="{{ @$aria_setting }}" class="dropdown-toggle">
-                    <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg>
-                        <span>Settings</span>
-                    </div>
-                </a>
-            </li>
-            <li class="menu {{ @$invite }}">
-                <a href="{{ route('create_invite') }}" aria-expanded="{{ @$aria_invite }}" class="dropdown-toggle">
-                    <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg>
-                        <span>Invite Reviewers</span>
-                    </div>
-                </a>
-            </li>
-            @endif
             @if ($user->user_type == 'admin')
             <li class="menu {{ @$admin }}">
                 <a href="{{ route('register_admin') }}" aria-expanded="{{ @$aria_admin }}" class="dropdown-toggle">

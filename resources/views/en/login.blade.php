@@ -1,5 +1,6 @@
 @php
     $title = 'Login';
+$user = Auth::user();
 @endphp
 @include('en_includes.head')
 <body>
@@ -18,9 +19,9 @@
             <div class="row align-items-center justify-content-between pt-5 pt-sm-5 pt-md-5 pt-lg-0">
                 <div class="col-md-7 col-lg-6">
                     <div class="hero-content-left text-white">
-                        <h1 class="text-white">Welcome Back !</h1>
+                        <h1 class="text-white">Welcome Back!</h1>
                         <p class="lead">
-                            Keep your face always toward the sunshine - and shadows will fall behind you.
+                            Read reviews. Write reviews. Find companies.
                         </p>
                     </div>
                 </div>
@@ -51,7 +52,7 @@
                                             <label class="pb-1">Password</label>
                                         </div>
                                         <div class="col-auto">
-                                            <a href="password-reset.html" class="form-text small text-muted">
+                                            <a href="{{ route('forgot_password') }}" class="form-text small text-muted">
                                                 Forgot password?
                                             </a>
                                         </div>

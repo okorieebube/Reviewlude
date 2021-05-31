@@ -22,16 +22,19 @@
                         <a class="nav-link page-scroll" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#about">About</a>
+                        <a class="nav-link page-scroll" href="{{ route('about') }}">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="{{ route('view_categories') }}">Categories</a>
                     </li>
                     {{-- view_categories --}}
                     @auth
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" href="{{ route('overview') }}">Dashboard</a>
-                    </li>
+                        @if (@$user->user_type !== 'reviewer')
+
+                            <li class="nav-item">
+                                <a class="nav-link page-scroll" href="{{ route('overview') }}">Dashboard</a>
+                            </li>
+                        @endif
                     @endauth
 
                     @guest
@@ -49,6 +52,11 @@
                         <a class="nav-link page-scroll" href="{{ route('login') }}">Login</a>
                     </li>
                     @endguest
+                    @auth
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="{{ route('logout') }}">Logout</a>
+                    </li>
+                    @endauth
                     {{-- <li class="nav-item dropdown">
                         <a class="nav-link page-scroll dropdown-toggle" href="#" id="navbarBlogPage" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -24,6 +24,7 @@ class business_settings extends Model
     protected $fillable = [
         'unique_id',
         'description',
+        'logo',
         'street_address',
         'zip_code',
         'city',
@@ -43,6 +44,7 @@ class business_settings extends Model
 
         $business_settings = business_settings::find($requestObject->id);
         $business_settings->description = $requestObject->description ?? $business_settings->description;
+        $business_settings->logo = $requestObject->logo ?? $business_settings->logo;
         $business_settings->street_address = $requestObject->street_address ?? $business_settings->street_address;
         $business_settings->zip_code = $requestObject->zip_code ?? $business_settings->zip_code;
         $business_settings->city = $requestObject->city ?? $business_settings->city;

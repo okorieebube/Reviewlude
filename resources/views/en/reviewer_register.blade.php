@@ -1,5 +1,6 @@
 @php
     $title = 'Register as Reviewer';
+$user = Auth::user();
 @endphp
 @include('en_includes.head')
 <body>
@@ -28,8 +29,8 @@
                     <div class="card login-signup-card shadow-lg mb-0">
                         <div class="card-body px-md-5 py-5">
                             <div class="mb-5">
-                                <h6 class="h3 text-capitalize">Become a reviewer</h6>
-                                <p class="text-muted mb-0">Can't wait to hear your experiences.</p>
+                                <h6 class="h3 text-capitalize"><strong>Become a reviewer</strong></h6>
+                                <p class="text-muted mb-0">We protect and promote trust.</p>
                             </div>
                             <form class="login-signup-form register_form">
                                 @csrf
@@ -40,7 +41,7 @@
                                     <!-- Input group -->
                                     <div class="input-group input-group-merge">
                                         <div class="input-icon">
-                                            <span class="ti-lock color-primary"></span>
+                                            <span class="ti-user color-primary"></span>
                                         </div>
                                         <input type="text" class="form-control"
                                             name="first_name"   placeholder="Enter your first name">
@@ -50,7 +51,7 @@
                                     <!-- Input group -->
                                     <div class="input-group input-group-merge">
                                         <div class="input-icon">
-                                            <span class="ti-lock color-primary"></span>
+                                            <span class="ti-user color-primary"></span>
                                         </div>
                                         <input type="text" class="form-control"
                                             name="last_name"   placeholder="Enter your last name">
@@ -60,7 +61,7 @@
                                     <!-- Input group -->
                                     <div class="input-group input-group-merge">
                                         <div class="input-icon">
-                                            <span class="ti-lock color-primary"></span>
+                                            <span class="ti-email color-primary"></span>
                                         </div>
                                         <input type="email" class="form-control"
                                             name="email"   placeholder="Your personal email address">

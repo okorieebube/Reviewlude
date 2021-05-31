@@ -8,19 +8,20 @@ use App\Traits\appFunction;
 use Illuminate\Http\Request;
 use App\Mail\accountConfirmation;
 use App\Models\business_settings;
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
 
 class registerController extends Controller
 {
     use appFunction;
 
-    function __construct(User $User)
+    function __construct(User $User, Controller $controller)
     {
         // $this->middleware('auth',  ['except' => ['activateCoursesStatus', 'deleteCourses']]);
         $this->User = $User;
+        $this->controller = $controller;
     }
 
 
@@ -90,6 +91,13 @@ class registerController extends Controller
             if ($validator->fails()) {
                 return response()->json(['errors' => $validator->errors(), 'status' => false]);
             }
+            $email = $request->input('email');
+            $company_name = $request->input('company_name');
+            $validate_email = $this->controller->validate_company_email($email,$company_name);
+            return response()->json($validate_email);
+            if(!$validate_email){
+                throw new Exception($this->errorMsgs(32)['msg']);
+            }
 
             $full_name = explode(' ', $request->input('full_name'));
             $first_name = $full_name[0];
@@ -99,11 +107,11 @@ class registerController extends Controller
             $user = User::create([
                 'unique_id' => $unique_id,
                 'user_type' => 'business',
-                'email' => $request->input('email'),
+                'email' => $email,
                 'first_name' => $first_name,
                 'last_name' => $last_name,
                 'password' => Hash::make($request->input('password')),
-                'company_name' => $request->input('company_name'),
+                'company_name' => $company_name,
             ]);
 
             if (!$user->unique_id) {
@@ -112,6 +120,7 @@ class registerController extends Controller
                 // create settings row for business
                 $settings = business_settings::create([
                     'unique_id' => $unique_id,
+                    'logo' => 'avatar.png',
                 ]);
                 Mail::to($user->email)->send(new accountConfirmation($user));
 
@@ -158,6 +167,7 @@ class registerController extends Controller
                 // create settings row for business
                 $settings = business_settings::create([
                     'unique_id' => $unique_id,
+                    'logo' => 'avatar.png',
                 ]);
                 Mail::to($user->email)->send(new accountConfirmation($user));
 
@@ -202,6 +212,7 @@ class registerController extends Controller
                 // create settings row for business
                 $settings = business_settings::create([
                     'unique_id' => $unique_id,
+                    'logo' => 'avatar.png',
                 ]);
                 // Mail::to($user->email)->send(new accountConfirmation($user));
 

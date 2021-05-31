@@ -148,7 +148,7 @@ $user = Auth::user();
                                                         <th>Status</th>
                                                         <th>Category</th>
                                                         <th>Total Reviews</th>
-                                                        <th>Scores</th>
+                                                        <th>Total Score</th>
                                                         <th class="no-content"></th>
                                                     </tr>
                                                 </thead>
@@ -172,8 +172,8 @@ $user = Auth::user();
                                                         @endif
 
                                                         <td>{{ $e->categories->name }}</td>
-                                                        <td>{{ $e->total_reviews }}</td>
-                                                        <td>{{ $e->score }}</td>
+                                                        <td>{{ $e->no_of_reviews }}</td>
+                                                        <td>{{ $e->trust_score }}</td>
                                                         <td class="text-center">
                                                             <div class="dropdown custom-dropdown">
                                                                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

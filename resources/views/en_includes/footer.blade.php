@@ -8,8 +8,7 @@
                 <div class="col-lg-3 mb-3 mb-lg-0">
                     <div class="footer-nav-wrap text-white">
                         <img src="{{ asset('en/img/logo-white-1x.png')}}" alt="footer logo" width="120" class="img-fluid mb-3">
-                        <p>Holisticly empower premium architectures without value-added ideas. Seamlessly evolve
-                            cross-platform experiences.</p>
+                        <p>Sharing your experiences helps others make better choices and companies up their game. Be heard in our free and open ecosystem.</p>
 
                         <div class="social-list-wrap">
                             <ul class="social-list list-inline list-unstyled">
@@ -29,9 +28,11 @@
                     <div class="footer-nav-wrap text-white">
                         <h5 class="mb-3 text-white">Others Links</h5>
                         <ul class="list-unstyled">
-                            <li class="mb-2"><a href="#">Categories</a></li>
-                            <li class="mb-2"><a href="#">Be a Reviewer</a></li>
-                            <li class="mb-2"><a href="#">Register Business</a></li>
+                            <li class="mb-2"><a href="{{ route('about') }}">About</a></li>
+                            <li class="mb-2"><a href="{{ route('terms') }}">Terms & Conditions </a></li>
+                            <li class="mb-2"><a href="{{ route('view_categories') }}">Categories</a></li>
+                            <li class="mb-2"><a href="{{ route('register_reviewer') }}">Be a Reviewer</a></li>
+                            <li class="mb-2"><a href="{{ route('register_business') }}">Register Business</a></li>
                             {{-- <li class="mb-2"><a href="#">Privacy Policy</a></li>
                             <li class="mb-2"><a href="#">Terms and Conditions</a></li> --}}
                         </ul>

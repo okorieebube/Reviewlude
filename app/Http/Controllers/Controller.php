@@ -13,23 +13,24 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function __construct(categories_to_product_services_tb $category_pivot, Review $review) {
+    public function __construct(categories_to_product_services_tb $category_pivot, Review $review)
+    {
         $this->category_pivot = $category_pivot;
         $this->review = $review;
     }
 
 
-    public function calc_products_under_category($category_id){
+    public function calc_products_under_category($category_id)
+    {
         $no_of_products = 0;
-        if($category_id){
+        if ($category_id) {
             $condition = [
-                ['category_id',$category_id],
-                ['deleted_at',null],
+                ['category_id', $category_id],
+                ['deleted_at', null],
             ];
             $category_pivot = $this->category_pivot->getAll($condition);
             $no_of_products = count($category_pivot);
             return $no_of_products;
-
         }
 
         return $no_of_products;
@@ -38,17 +39,31 @@ class Controller extends BaseController
     public function calc_reviews_under_products($product_id)
     {
         $no_of_reviews = 0;
-        if($product_id){
+        if ($product_id) {
             $condition = [
-                ['product_id',$product_id],
-                ['deleted_at',null],
+                ['product_id', $product_id],
+                ['repy_main_id', null],
+                ['deleted_at', null],
             ];
             $reviews = $this->review->getAll($condition);
             $no_of_reviews = count($reviews);
             return $no_of_reviews;
-
         }
 
         return $no_of_reviews;
+    }
+
+    public function validate_company_email($email, $company_name)
+    {
+        $split_by_at = explode('@', $email);
+        $split_by_dot = explode('.', $split_by_at[1]);
+        if (strpos(' ', $company_name)) {
+            $name = $company_name;
+        } else {
+            $name_array = explode(' ', $company_name);
+            $name = implode($name_array);
+        }
+        // return $name;
+        return ($split_by_dot[0] == $name) ? true : false;
     }
 }

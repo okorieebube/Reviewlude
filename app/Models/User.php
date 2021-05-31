@@ -64,7 +64,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\products_services', 'user_id');
     }
     public function settings(){
-        return $this->hasMany('App\Models\business_settings', 'unique_id', 'unique_id');
+        return $this->hasOne('App\Models\business_settings', 'unique_id',);
     }
 
     public function getAll($condition, $id = 'id', $desc = 'desc'){
