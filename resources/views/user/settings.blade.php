@@ -38,6 +38,8 @@
                     <div class="account-content">
                         <div class="scrollspy-example" data-spy="scroll" data-target="#account-settings-scroll" data-offset="-100">
                             <div class="row">
+                                @if ($user->user_type == 'business')
+
                                 <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
                                     <form id="general-info" class="section general-info about_company_form">
                                         @csrf
@@ -421,6 +423,7 @@
                                         </div>
                                     </form>
                                 </div>
+                                @endif
 
                                 <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
                                     <form id="work-platforms" class="section work-platforms password_update_form">

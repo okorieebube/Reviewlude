@@ -42,9 +42,11 @@ Route::get('/terms', function () {
     return view('en.terms');
 })->name('terms');
 
-Route::get('/forgot-password', function () {
-    return view('en.forgot-password');
-})->name('forgot_password');
+
+
+Route::get('/user/test', function () {
+    return view('user.test');
+});
 
 // AUTH REQUESTS
 Route::get('/login', [loginController::class, 'login_page'])->name('login');
@@ -68,13 +70,9 @@ Route::post('/user/delete/{id}', [userController::class, 'delete']);
 Route::get('/email-confirmation/{id}', [registerController::class, 'email_confirmation'])->name('email_confirmation');
 
 
-//
-
-
-
-
 // DASHBOARD HOME PAGE
 Route::get('/user/overview', [overviewController::class, 'overview_page'])->name('overview');
+Route::get('/admin/overview', [overviewController::class, 'admin_overview_page'])->name('admin_overview');
 
 
 // SETTINGS
@@ -131,8 +129,7 @@ Route::post('/ticket/reply/{id}', [TicketController::class, 'reply']);
 
 
 // SEARCH
-Route::get('/search/{id}', [searchController::class, 'search']);
-// Route::get('/search{id}', [searchController::class, 'search']);
+Route::get('/search', [searchController::class, 'search']);
 
 
 
@@ -141,3 +138,12 @@ Route::get('/search/{id}', [searchController::class, 'search']);
 Route::get('/user/all', [userController::class, 'view_users_page'])->name('all_users');
 Route::get('/user/profile/{id}', [userController::class, 'view_user_profile'])->name('user_profile');
 Route::get('/business/profile/{id}', [userController::class, 'business_profile'])->name('business_profile');
+
+
+// PASSWORD RESET
+Route::get('/forgot-password', function () {
+    return view('en.forgot-password');
+})->name('forgot_password');
+Route::get('/reset-password', [userController::class,'reset_password_page']);
+Route::post('/forgot_password', [userController::class, 'forgot_password']);
+Route::post('/reset_password', [userController::class, 'reset_password']);

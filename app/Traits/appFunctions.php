@@ -49,7 +49,7 @@ trait appFunction
                 return ['error' => 1, 'msg' => 'Error! Bitcoin Wallet Address already exist.'];
                 break;
             case $info == 11:
-                return ['error' => 1, 'msg' => 'Error! Email does not exist.'];
+                return ['error' => 1, 'msg' => 'Error! Email address is not registered.'];
                 break;
             case $info == 12:
                 return ['error' => 1, 'msg' => 'Error! Please Image type should be: jpg, png, gif or jpeg.'];

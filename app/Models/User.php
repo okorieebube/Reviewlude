@@ -87,7 +87,6 @@ class User extends Authenticatable
         $user = User::find($requestObject->id);
         $user->first_name = $requestObject->first_name ?? $user->first_name;
         $user->last_name = $requestObject->last_name ?? $user->last_name;
-        $user->password = Hash::make($requestObject->password) ?? $user->password;
         $user->website = $requestObject->website ?? $user->website;
         $user->company_name = $requestObject->company_name ?? $user->company_name;
         $user->job_title = $requestObject->job_title ?? $user->job_title;

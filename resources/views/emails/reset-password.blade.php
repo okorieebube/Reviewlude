@@ -1,3 +1,5 @@
+@php
+@endphp
 <!doctype html>
 <html>
   <head>
@@ -350,14 +352,14 @@
                   <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                       <tr>
                           <h2>
-                              <strong>{{ $site_name }} Account Confirmation.</strong> <!-- Title -->
+                              <strong>{{ $site_name }} Reset Password.</strong> <!-- Title -->
                           </h2>
                       </tr>
                     <tr>
                       <td>
                         <p>Hi {{ ucwords($details->first_name) }},</p><!-- First name -->
-                        <p>We're glad to welcome you, to our community. <br> Just confirm that you own this email address, to gain unlimited access to your account! <br>
-                            To proceed with the confirmation, click the button below.
+                        <p>You've requested to reset the password linked with your {{ $site_name }} account.! <br>
+                            To proceed with the password reset, click the button below.
                         </p>
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                           <tbody>
@@ -366,7 +368,7 @@
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                   <tbody>
                                     <tr>
-                                      <td> <a style="background-color: #6730e3" href="{{ $site_root }}email-confirmation/{{ $details->unique_id }}" target="_blank">Confirm Email Address</a> </td>
+                                      <td> <a style="background-color: #6730e3" href="{{ $site_root }}reset-password?em={{ $details->email }}&ip=01ea33b6f1515958a014aa66178" target="_blank">Reset Password</a> </td>
                                     </tr>
                                   </tbody>
                                 </table>
@@ -374,7 +376,7 @@
                             </tr>
                           </tbody>
                         </table>
-                        <!-- <p>This is a really simple email template. Its sole purpose is to get the recipient to click the button with no distractions.</p> -->
+                         <p>If you don't recognize this activity, please contact our customer support immediately</p>
                         <p>Thanks, <br> The {{ $site_name }} Team.</p>
                       </td>
                     </tr>

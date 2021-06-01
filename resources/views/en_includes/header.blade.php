@@ -10,9 +10,9 @@
             </button>
 
             <div class="collapse navbar-collapse main-menu" id="navbarSupportedContent">
-                <form action="/search/" method="GET" class="subscribe-form">
+                <form action="/search" method="GET" class="subscribe-form" enctype="multipart/form-data">
                     <div class="d-flex align-items-center">
-                        <input type="text" class="form-control input home-search" id="email" name="search"
+                        <input type="text" class="form-control input home-search" value="{{ @$_GET['search'] }}" id="email" name="search"
                                placeholder="Search for a product...">
                         <input type="submit" class="button btn solid-btn" id="submit" value="Search">
                     </div>

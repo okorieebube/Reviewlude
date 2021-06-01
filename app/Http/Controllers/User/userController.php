@@ -5,14 +5,17 @@ namespace App\Http\Controllers\User;
 use Exception;
 use App\Models\User;
 use App\Models\Review;
+use App\Mail\resetPassword;
 use App\Traits\appFunction;
 use Illuminate\Http\Request;
+use App\Models\business_settings;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Auth\loginController;
-use App\Models\business_settings;
 
 class userController extends Controller
 {
@@ -23,7 +26,10 @@ class userController extends Controller
         $this->middleware('auth',  ['except' => [
             'clear_cache',
             'showToken',
-            'view_user_profile'
+            'view_user_profile',
+            'forgot_password',
+            'reset_password_page',
+            'reset_password'
         ]]);
         $this->Login = $Login;
         $this->user_model = $user_model;
@@ -51,6 +57,15 @@ class userController extends Controller
         return csrf_token();
     }
 
+    public function reset_password_page()
+    {
+        // print_r(bcrypt('okorieebube1'));
+        // die();
+        if ($_GET['ip'] !== '01ea33b6f1515958a014aa66178') {
+            return redirect('/');
+        }
+        return view('en.reset-password');
+    }
 
     public function view_users_page()
     {
@@ -119,14 +134,16 @@ class userController extends Controller
             if ($validator->fails()) {
                 return response()->json(['errors' => $validator->errors(), 'status' => false]);
             }
-            $request->request->add(['id' => $user['unique_id']]);
-            $update_user = $this->user_model->updateUser($request);
 
-            if (!$update_user) {
-                throw new Exception($this->errorMsgs(14)['msg']);
-            } else {
+            if (Hash::check($request->input('password'),$user->password)) {
+                $user->fill([
+                    'password' => Hash::make($request->password)
+                ])->save();
                 $error = 'Company Password Updated!';
                 return response()->json(["message" => $error, 'status' => true]);
+            } else {
+                $message = 'Error! The old password entered, is incorrect';
+                throw new Exception($message);
             }
         } catch (Exception $e) {
 
@@ -222,7 +239,7 @@ class userController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'email' => ['required', 'string','email'],
+                'email' => ['required', 'string', 'email'],
             ]);
             if ($validator->fails()) {
                 return response()->json(['errors' => $validator->errors(), 'status' => false]);
@@ -233,11 +250,45 @@ class userController extends Controller
             $user = $this->user_model->getSingle($condition);
 
             if (!$user) {
-                $error = 'User account is deleted!';
-                return response()->json(["message" => $error, 'status' => true]);
-            } else {
-                throw new Exception($this->errorMsgs(14)['msg']);
+                return $this->errorMsgs(11);
             }
+
+            Mail::to($user->email)->send(new resetPassword($user));
+            if (count(Mail::failures()) > 0) {
+                throw new Exception($this->errorMsgs(15)['msg']);
+            } else {
+                $message = 'Mail sent successfully. Check ' . $user->email . ' for Password Reset Link!';
+                return response()->json(["message" => $message, 'status' => true]);
+            }
+        } catch (Exception $e) {
+
+            $error = $e->getMessage();
+            $error = [
+                'errors' => [$error],
+            ];
+            return response()->json(["errors" => $error, 'status' => false]);
+        }
+    }
+
+    public function reset_password(Request $request)
+    {
+        try {
+            $condition = [
+                ['email', $request->input('email')]
+            ];
+            $user = $this->user_model->getSingle($condition);
+            $validator = Validator::make($request->all(), [
+                'password' => ['required', 'string', 'confirmed'], //'min:8'
+            ]);
+            if ($validator->fails()) {
+                return response()->json(['errors' => $validator->errors(), 'status' => false]);
+            }
+            $user->fill([
+                'password' => Hash::make($request->password)
+            ])->save();
+
+            $error = 'Password Reset Successfully. Proceed to login!';
+            return response()->json(["message" => $error, 'status' => true]);
         } catch (Exception $e) {
 
             $error = $e->getMessage();

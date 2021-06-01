@@ -1,5 +1,5 @@
 @php
-    $title = 'Forgot Password';
+    $title = 'Reset Password';
 $user = Auth::user();
 @endphp
 @include('en_includes.head')
@@ -19,7 +19,7 @@ $user = Auth::user();
                     <div class="bg-cover vh-100 ml-n3 background-img" style="background-image: url(en/img/hero-bg-3.jpg);">
                         <div class="position-absolute login-signup-content">
                             <div class="position-relative text-white col-md-12 col-lg-7">
-                                <h2 class="text-white">Forgot Password ? <br> Don't Worry You Can Reset it.</h2>
+                                <h2 class="text-white">Reset Password <br> Try not to lose it this time.</h2>
                                 {{-- <p class="lead">Keep your face always toward the sunshine - and shadows will fall behind you. Continually pursue fully researched niches whereas timely platforms. Credibly parallel task optimal catalysts for change after focused catalysts for change.</p> --}}
                             </div>
                         </div>
@@ -36,18 +36,27 @@ $user = Auth::user();
 
                         <!-- Subheading -->
                         <p class="text-muted text-center mb-5">
-                            Enter your email to get a password reset link.
+                            Enter a new Password for your account.
                         </p>
 
                         <!-- Form -->
                         <form class="login-signup-form reset_form">
                             @csrf
+                            <input type="hidden" value="{{ $_GET['em'] }}" name="email">
                             <div class="form-group">
                                 <div class="input-group input-group-merge">
                                     <div class="input-icon">
                                         <span class="ti-email color-primary"></span>
                                     </div>
-                                    <input type="email" name="email" class="form-control" placeholder="abc@xyz.com">
+                                    <input type="password" name="password" class="form-control" placeholder="New password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group input-group-merge">
+                                    <div class="input-icon">
+                                        <span class="ti-email color-primary"></span>
+                                    </div>
+                                    <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm new password">
                                 </div>
                             </div>
                             <!-- Submit -->
@@ -88,9 +97,9 @@ $(document).ready(function() {
 
         // append to form data object
         let form_data = set_form_data(login);
-        let returned = await ajaxRequest('/forgot_password', form_data);
+        let returned = await ajaxRequest('/reset_password', form_data);
         // console.log(returned);return;
-        validator(returned, '/forgot-password');
+        validator(returned, '/login');
     });
 
 });

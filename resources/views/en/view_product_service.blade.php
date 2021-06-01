@@ -63,7 +63,7 @@ $user = Auth::user();
                                 </div>
                                 <div class="tag-cloud text-lowercase">
                                     @foreach ($tags as $e)
-                                    <a href="#">{{ $e }}</a>
+                                    <a href="/search?search={{ $e }}">{{ $e }}</a>
                                     @endforeach
                                     {{-- <a href="#">portfolio</a>
                                 <a href="#">responsive</a>
@@ -133,6 +133,13 @@ $user = Auth::user();
                         @if (count($reviews) > 0)
                             @foreach ($reviews as $e)
                                 <div class="testimonial-quote-wrap my-lg-3 my-md-3 rounded white-bg shadow-sm p-4">
+                                    @auth
+
+                                    @if ($user->user_type == 'admin')
+
+                                    <button style="float: right;" id="{{ $e->unique_id }}" type="button" class="btn btn-danger btn-sm delete_btn">Delete</button>
+                                    @endif
+                                    @endauth
                                     <div class="media author-info mb-3">
                                         <div class="author-img mr-3">
                                             <a href="{{ route('user_profile',$e->user->unique_id) }}">
@@ -151,13 +158,6 @@ $user = Auth::user();
                                                 <?php } ?>
                                             </a>
                                             <div class="client-rating{{ $e->unique_id }}"></div>
-                                            @auth
-
-                                            @if ($user->user_type == 'admin')
-
-                                            <button style="float: right;" id="{{ $e->unique_id }}" type="button" class="btn btn-danger btn-sm delete_btn">Delete</button>
-                                            @endif
-                                            @endauth
                                         </div>
                                     </div>
                                     <div class="client-say">
@@ -176,6 +176,11 @@ $user = Auth::user();
                                     </p>
                                     @endif
                                     @endauth
+                                    <p>
+                                        <strong id="{{ $e->unique_id }}" class="purple-text">
+                                            Posted {{ $e->created_at->diffForhumans() }}
+                                        </strong>
+                                    </p>
                                 </div>
                                 @if ($e->replies)
                                     @foreach ($e->replies as $k)
@@ -198,6 +203,11 @@ $user = Auth::user();
                                         <div class="client-say">
                                             <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid"> {{ $k->review }}</p>
                                         </div>
+                                        <p>
+                                            <strong id="{{ $e->unique_id }}" class="purple-text">
+                                                Posted {{ $k->created_at->diffForhumans() }}
+                                            </strong>
+                                        </p>
                                     </div>
                                     @endforeach
                                 @endif

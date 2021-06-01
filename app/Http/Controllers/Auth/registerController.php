@@ -149,6 +149,7 @@ class registerController extends Controller
             if ($request->input('terms') !== 'on') {
                 throw new Exception($this->errorMsgs(31)['msg']);
             }
+            // Mail::to($user->email)->send(new accountConfirmation($user));
 
             $unique_id = $this->rand_id();
 

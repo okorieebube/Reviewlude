@@ -14,7 +14,7 @@ $user = Auth::user();
 
     <!--hero section start-->
     <section class="hero-section ptb-100 background-img full-screen"
-             style="background: url('img/hero-bg-1.jpg')no-repeat center center / cover">
+             style="background: url('en/img/hero-bg-1.jpg')no-repeat center center / cover">
         <div class="container">
             <div class="row align-items-center justify-content-between pt-5 pt-sm-5 pt-md-5 pt-lg-0">
                 <div class="col-md-7 col-lg-6">
@@ -117,10 +117,12 @@ $(document).ready(function() {
         if (returned.status == false) {
             validator(returned, '/user/overview');
         }else if(returned.status == true){
-            if(returned.user_type == 'business' || returned.user_type == 'admin'){
+            if(returned.user_type == 'business'){
                 validator(returned, '/user/overview');
             }else if(returned.user_type == 'reviewer'){
                 validator(returned, '/categories');
+            }else if(returned.user_type == 'admin'){
+                validator(returned, '/admin/overview');
             }
         }
     });

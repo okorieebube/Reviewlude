@@ -17,7 +17,8 @@ class searchController extends Controller
 
     public function search()
     {
-        print_r($_GET);die();
+        // return view('en.index');
+        // print_r($_GET);die();
         // Get the search value from the request
         // $search = $request->input('search');
         $search = $_GET['search'];
