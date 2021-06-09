@@ -357,7 +357,7 @@
                   <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                       <tr>
                           <h2>
-                              <strong>Reviewlude Reset Password.</strong> <!-- Title -->
+                              <strong>Trustmigo Reset Password.</strong> <!-- Title -->
                           </h2>
                       </tr>
                     <tr>

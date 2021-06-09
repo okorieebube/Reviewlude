@@ -72,7 +72,7 @@
             <div class="row text-center justify-content-center">
                 <div class="col-md-6 col-lg-5"><p class="copyright-text pb-0 mb-0">Copyrights © <?php print date('Y') ?> All
                     rights reserved by
-                    <a href="/">ReviewLude</a></p>
+                    <a href="/">Trustmigo</a></p>
                 </div>
             </div>
         </div>

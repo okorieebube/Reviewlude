@@ -126,7 +126,7 @@ $user = Auth::user();
             <div class="row align-items-center justify-content-between">
                 <div class="col-md-6">
                     <div class="about-content-left section-heading">
-                        <h2 class="">ReviewLude helps businesses <span>get consumer feedbacks</span></h2>
+                        <h2 class="">Trustmigo helps businesses <span>get consumer feedbacks</span></h2>
                         <p>Behind every consumers review is an experience that matters to us alot. </p>
 
                         <div class="single-feature mb-4">
@@ -134,7 +134,7 @@ $user = Auth::user();
                                 <span class="ti-vector rounded mr-3 icon icon-color-1"></span>
                                 <h5 class="mb-0">Be heard</h5>
                             </div>
-                            <p>Reviewlude is free and open to every company and consumer everywhere. Sharing your experiences helps others make better choices and companies up their game.</p>
+                            <p>Trustmigo is free and open to every company and consumer everywhere. Sharing your experiences helps others make better choices and companies up their game.</p>
                         </div>
                         <div class="single-feature mb-4">
                             <div class="d-flex align-items-center mb-2">
@@ -283,7 +283,7 @@ $user = Auth::user();
                     <div class="section-heading mb-5">
                         <h2>Testimonials <br><span>what clients say</span></h2>
                         <p class="lead">
-                            I rely a lot on reviews I read on Reviewlude and therefore am always willing to review companies, including Reviewlude itself.
+                            I rely a lot on reviews I read on Trustmigo and therefore am always willing to review companies, including Trustmigo itself.
 Its a great resource.
                         </p>
 
@@ -313,7 +313,7 @@ Its a great resource.
                                     </div>
                                 </div>
                                 <div class="client-say">
-                                    <p> <img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid"> Reviewlude is amazing for finding information and reviews about websites and businesses as well as writing reviews and sharing information with others. I love how easy if is to write a review and as soon as a review is posted it can be seen by others. Reviewlude is really easy to use and is great for finding out and sharing information about businesses or websites.</p>
+                                    <p> <img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid"> Trustmigo is amazing for finding information and reviews about websites and businesses as well as writing reviews and sharing information with others. I love how easy if is to write a review and as soon as a review is posted it can be seen by others. Trustmigo is really easy to use and is great for finding out and sharing information about businesses or websites.</p>
                                 </div>
                             </div>
                         </div>
@@ -345,7 +345,7 @@ Its a great resource.
                                     </div>
                                 </div>
                                 <div class="client-say">
-                                    <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid"> I had a negative review to post regarding very bad customer service from the plant website of Sarah Raven. It was easy to navigate Reviewlude and I am happy that I was able to express my opinion.</p>
+                                    <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid"> I had a negative review to post regarding very bad customer service from the plant website of Sarah Raven. It was easy to navigate Trustmigo and I am happy that I was able to express my opinion.</p>
                                 </div>
                             </div>
                         </div>
@@ -361,7 +361,7 @@ Its a great resource.
                                     </div>
                                 </div>
                                 <div class="client-say">
-                                    <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid"> Truth be told, some websites offer incentives for people to give them five stars on Reviewlude, so some of the reviews are not genuine. Reviewlude is still one of the best guides out there.</p>
+                                    <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid"> Truth be told, some websites offer incentives for people to give them five stars on Trustmigo, so some of the reviews are not genuine. Trustmigo is still one of the best guides out there.</p>
                                 </div>
                             </div>
                         </div>

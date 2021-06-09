@@ -43,22 +43,22 @@ $user = Auth::user();
                                     <li><strong>Email:</strong><span> yourname@domain.com</span></li>
                                 </ul> --}}
                                 <div class="text-content mt-20 text-left">
-                                    <p>These user terms and conditions (hereinafter referred to as the "User Terms") apply to any use of Reviewlude's website (hereinafter referred to as the "Website"), including - but not limited to - www.Reviewlude.com. <br><br>
+                                    <p>These user terms and conditions (hereinafter referred to as the "User Terms") apply to any use of Trustmigo's website (hereinafter referred to as the "Website"), including - but not limited to - www.Trustmigo.com. <br><br>
 
-                                        The Website is supplied by Reviewlude, Inc., a Delaware corporation situated at 245 5th Avenue, 5th floor, New York, NY 10016, USA ("Reviewlude"). In these User Terms, the words "we", "us" and "ours" refer to Reviewlude.<br><br>
+                                        The Website is supplied by Trustmigo, Inc., a Delaware corporation situated at 245 5th Avenue, 5th floor, New York, NY 10016, USA ("Trustmigo"). In these User Terms, the words "we", "us" and "ours" refer to Trustmigo.<br><br>
 
                                         These User Terms are deemed to include all other operating rules, policies, and guidelines that are referred to herein or that we may otherwise publish on the Website (as such, rules, policies and guidelines may be amended from time to time), including without limitation:<br><br>
 
-                                        Our "Guidelines for the use of the Reviewlude Services" (hereinafter referred to as the "User Guidelines"), which are located at legal.Reviewlude.com/for-reviewers/guidelines-for-reviewers
-                                        Our Privacy Policy, which is located at legal.Reviewlude.com/for-reviewers/end-user-privacy-terms
-                                        Our Copyright Dispute Policy, which is located at legal.Reviewlude.com/for-everyone/copyright
+                                        Our "Guidelines for the use of the Trustmigo Services" (hereinafter referred to as the "User Guidelines"), which are located at legal.Trustmigo.com/for-reviewers/guidelines-for-reviewers
+                                        Our Privacy Policy, which is located at legal.Trustmigo.com/for-reviewers/end-user-privacy-terms
+                                        Our Copyright Dispute Policy, which is located at legal.Trustmigo.com/for-everyone/copyright
                                         In the event of any conflict between the terms contained herein and those of the User Guidelines, the User Guidelines will govern and control.<br><br>
 
                                         By using the Website, you accept to be subject to the User Terms, including the User Guidelines. If you do not accept these User Terms, you are not permitted to use the Website and are kindly requested not to use the Website any further. The registration as a user requires your express acceptance of these User Terms.<br><br>
 
                                         THE SERVICES ON THE WEBSITE<br>
                                         1. Registered User<br>
-                                        1.1 Reviewlude grants you the non-exclusive, non-transferable, revocable, limited right to access and use the Website. In order to gain full access and use of the Website, you must create a profile and register as a user (hereinafter referred to as "Registered User").<br><br>
+                                        1.1 Trustmigo grants you the non-exclusive, non-transferable, revocable, limited right to access and use the Website. In order to gain full access and use of the Website, you must create a profile and register as a user (hereinafter referred to as "Registered User").<br><br>
 
                                         1.2 You are only permitted to register one profile per person on the Website. The profile is personal and you must not transfer it to others.<br>
 
@@ -66,7 +66,7 @@ $user = Auth::user();
 
                                         1.4 During the registration process, you must choose a username. The username will be shown on the Website whenever you write or comment on reviews or produce user-generated content (see 2.1 below) on the Website. Therefore, you must consider whether you wish to use a username from which you can be identified by others. The username must not (i) be offensive or in other ways insulting, (ii) contain the terms "Guest", "Admin", ".dk", ".com", etc. or (iii) contain characteristics which belong to a third party, including names of famous persons, or personal names to which you do not own the rights. You warrant that your username does not infringe on any rights (including any intellectual property rights) belonging to any third party and/or pertaining to the User Terms.<br><br>
 
-                                        1.5 Changes to the username may only be made by us. If you want to change your username, please contact us at support@Reviewlude.com.<br><br>
+                                        1.5 Changes to the username may only be made by us. If you want to change your username, please contact us at support@Trustmigo.com.<br><br>
 
                                         1.6 We are entitled at any time, without notice and without prejudice, to delete, suspend or change your profile in the event of your violation or suspected violation of these User Terms or applicable law. When deleting your profile, you will no longer have access to services on the Website which require your registration and/or login as a Registered User. When deleting your profile, we reserve the right to delete the user-generated content (see 2.1) you have made on the Website.<br><br>
 
@@ -93,7 +93,7 @@ $user = Auth::user();
                                         violates these User Terms, including the User Guidelines, reveals any personal information about another individual, including another person's name, address, phone number, email address, credit card information or any other information that could be used to track, contact or impersonate that person,<br>
                                         has a disloyal or unlawful purpose and/or content (or promotes unlawful purposes), or
                                         is technically harmful (including without limitation computer viruses, logic bombs, Trojan horses, worms, harmful components, corrupted data or other malicious software, harmful data or conduct).
-                                        2.7 Contributors of UGC warrant in every context that the UGC is lawful and in compliance with the User Terms. If Reviewlude receives notice or otherwise becomes aware that UGC violates current legislation and/or the User Terms, we may delete the UGC without any notice, and we - dependent on the character of the violation - may inform the violated party and/or the authorities of the violation. Our right to delete will not be conditioned on an explanation, although we will strive to inform the Registered User about the deletion and the reason hereof.<br><br>
+                                        2.7 Contributors of UGC warrant in every context that the UGC is lawful and in compliance with the User Terms. If Trustmigo receives notice or otherwise becomes aware that UGC violates current legislation and/or the User Terms, we may delete the UGC without any notice, and we - dependent on the character of the violation - may inform the violated party and/or the authorities of the violation. Our right to delete will not be conditioned on an explanation, although we will strive to inform the Registered User about the deletion and the reason hereof.<br><br>
 
                                         2.8 The Registered User hereby grants us the right to initiate and take any legal actions which we deem necessary in case of infringement of the Registered User's UGC.<br><br>
 
@@ -116,14 +116,14 @@ $user = Auth::user();
                                         3.6 All company names, trademarks and other business characteristics on the Website is or will be our property or the property of a third party (other than the Registered User) and must only be used for business purposes upon prior approval from us or the third party owner, respectively.<br><br>
 
                                         4. Personal data<br>
-                                        4.1 We perform different types of processing of personal data in connection with the use of the Website. Our processing of personal data takes place under observance of our Privacy Policy, which can be obtained here: legal.Reviewlude.com/for-reviewers/end-user-privacy-terms.<br><br>
+                                        4.1 We perform different types of processing of personal data in connection with the use of the Website. Our processing of personal data takes place under observance of our Privacy Policy, which can be obtained here: legal.Trustmigo.com/for-reviewers/end-user-privacy-terms.<br><br>
 
                                         By accepting these User Terms, you confirm to have read and accepted our Privacy Policy.<br><br>
 
                                         5. Disclaimers<br>
-                                        5.1 THE WEBSITE, CONTENT AND SERVICES OFFERED ON THE WEBSITE ARE PROVIDED 'AS IS' AND AS AVAILABLE WITHOUT REPRESENTATIONS OR WARRANTIES OF ANY KIND. Reviewlude EXPRESSLY DISCLAIMS ANY AND ALL WARRANTIES, EXPRESS, IMPLIED OR STATUTORY, INCLUDING WITHOUT LIMITATION ANY WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. THE WEBSITE AND SERVICES MAY BE MODIFIED, UPDATED, INTERRUPTED, SUSPENDED OR DISCONTINUED AT ANY TIME WITHOUT NOTICE OR LIABILITY.<br><br>
+                                        5.1 THE WEBSITE, CONTENT AND SERVICES OFFERED ON THE WEBSITE ARE PROVIDED 'AS IS' AND AS AVAILABLE WITHOUT REPRESENTATIONS OR WARRANTIES OF ANY KIND. Trustmigo EXPRESSLY DISCLAIMS ANY AND ALL WARRANTIES, EXPRESS, IMPLIED OR STATUTORY, INCLUDING WITHOUT LIMITATION ANY WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. THE WEBSITE AND SERVICES MAY BE MODIFIED, UPDATED, INTERRUPTED, SUSPENDED OR DISCONTINUED AT ANY TIME WITHOUT NOTICE OR LIABILITY.<br><br>
 
-                                        5.2 We make no representations or warranties with respect to any UGC published on the Website. Notwithstanding the foregoing, Reviewlude may at all times investigate and edit (including anonymizing) UGC, e.g. if such actions are (i) prompted by third party requests, (ii) required under applicable law or (iii) necessary for the UGC's compliance with our User Guidelines.<br><br>
+                                        5.2 We make no representations or warranties with respect to any UGC published on the Website. Notwithstanding the foregoing, Trustmigo may at all times investigate and edit (including anonymizing) UGC, e.g. if such actions are (i) prompted by third party requests, (ii) required under applicable law or (iii) necessary for the UGC's compliance with our User Guidelines.<br><br>
 
                                         5.3 We disclaim all liability for the content of UGC. Our non-liability applies, without limitation, to any UGC, including UGC which has been edited by us (see 5.2). We are not liable for any links to third party websites in the UGC, including for the content of the page to which the UGC links.<br><br>
 
@@ -143,20 +143,20 @@ $user = Auth::user();
                                         8.1 We may terminate your right to access and use the services offered on the Website at any time for any reason without liability. If we do so, or if you elect to delete your profile, any rights granted to you herein will immediately cease. Sections 2-10 will survive any termination of the User Terms.
                                         <br><br>
                                         9. Applicable law and venue<br>
-                                        9.1 The User Terms and the relationship between you and Reviewlude are governed by the laws of the State of New York, without regard to the conflicts of law provisions thereof. Any disputes must be brought exclusively in the state or federal courts located in New York, and the parties hereby consent to the jurisdiction of such courts.<br><br>
+                                        9.1 The User Terms and the relationship between you and Trustmigo are governed by the laws of the State of New York, without regard to the conflicts of law provisions thereof. Any disputes must be brought exclusively in the state or federal courts located in New York, and the parties hereby consent to the jurisdiction of such courts.<br><br>
 
                                         10. Copyright dispute policy<br>
-                                        10.1 It is Reviewlude's policy to (i) block access to or remove material that it believes in good faith to be copyrighted material that has been illegally copied and distributed by any of our advertisers, affiliates, content providers or members or users; and (ii) remove and discontinue service to repeat offenders. Reviewlude has adopted a policy toward copyright infringement in accordance with the Digital Millennium Copyright Act or DMCA (posted at http://www.copyright.gov/legislation/dmca.pdf). This policy is available at legal.Reviewlude.com/for-everyone/copyright and contains instructions for contacting Reviewlude's Designated Agent to Receive Notification of Claimed Infringement ("Designated Agent").<br><br>
+                                        10.1 It is Trustmigo's policy to (i) block access to or remove material that it believes in good faith to be copyrighted material that has been illegally copied and distributed by any of our advertisers, affiliates, content providers or members or users; and (ii) remove and discontinue service to repeat offenders. Trustmigo has adopted a policy toward copyright infringement in accordance with the Digital Millennium Copyright Act or DMCA (posted at http://www.copyright.gov/legislation/dmca.pdf). This policy is available at legal.Trustmigo.com/for-everyone/copyright and contains instructions for contacting Trustmigo's Designated Agent to Receive Notification of Claimed Infringement ("Designated Agent").<br><br>
 
                                         11. Miscellaneous<br>
-                                        11.1 You acknowledge and agree that these User Terms constitute the complete and exclusive agreement between you and Reviewlude concerning your use of the Website and supersede and govern all prior proposals, agreements or other communications.<br>
+                                        11.1 You acknowledge and agree that these User Terms constitute the complete and exclusive agreement between you and Trustmigo concerning your use of the Website and supersede and govern all prior proposals, agreements or other communications.<br>
 
                                         11.2 Nothing contained in these User Terms can be construed as creating any agency, partnership or other form of joint enterprise between us. Our failure to require your performance of any provision hereof will not affect our full right to require such performance at any time thereafter, nor may our waiver of a breach of any provision hereof be taken or held to be a waiver of the provision itself. You may not assign any rights granted to you hereunder, and any such attempts are void.<br><br>
 
                                         12. Contact<br>
-                                        12.1 You may contact Reviewlude via email at support@Reviewlude.com or the following mailing address:
+                                        12.1 You may contact Trustmigo via email at support@Trustmigo.com or the following mailing address:
                                         <br><br>
-                                        Reviewlude, Inc.,<br>
+                                        Trustmigo, Inc.,<br>
                                         5th Avenue, 5th floor,<br>
                                         New York, NY 10016, USA</p>
                                 </div>

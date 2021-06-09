@@ -1,9 +1,9 @@
 <?php
 trait mail
 {
-    private $site_name = 'Reviewlude';
-    private $site_email = 'support@reviewlude.com';
-    private $site_url = 'reviewlude.com';
+    private $site_name = 'Trustmigo';
+    private $site_email = 'support@Trustmigo.com';
+    private $site_url = 'Trustmigo.com';
 
 
 

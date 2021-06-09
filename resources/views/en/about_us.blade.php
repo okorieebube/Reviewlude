@@ -39,8 +39,8 @@ $user = Auth::user();
                         </div>
                         <div class="col-lg-5">
                             <span class="badge badge-primary badge-pill">Know about us</span>
-                            <h2 class="mt-4">We're Reviewlude</h2>
-                            <p class="mb-4 lh-190">Reviewlude hosts reviews to help consumers shop with confidence, and deliver rich insights to help businesses improve the experiences they offer. The more consumers use our platform and share their own opinions, the richer the insights we offer businesses, and the more opportunities they have to earn the trust of consumers from all around the world.</p>
+                            <h2 class="mt-4">We're Trustmigo</h2>
+                            <p class="mb-4 lh-190">Trustmigo hosts reviews to help consumers shop with confidence, and deliver rich insights to help businesses improve the experiences they offer. The more consumers use our platform and share their own opinions, the richer the insights we offer businesses, and the more opportunities they have to earn the trust of consumers from all around the world.</p>
                             <ul class="list-unstyled">
                                 <li class="py-2">
                                     <div class="d-flex align-items-center">
