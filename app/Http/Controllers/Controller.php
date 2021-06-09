@@ -57,13 +57,13 @@ class Controller extends BaseController
     {
         $split_by_at = explode('@', $email);
         $split_by_dot = explode('.', $split_by_at[1]);
-        if (strpos(' ', $company_name)) {
-            $name = $company_name;
-        } else {
+        if (strpos($company_name,' ')) {
             $name_array = explode(' ', $company_name);
             $name = implode($name_array);
+        } else {
+            $name = $company_name;
         }
         // return $name;
-        return ($split_by_dot[0] == $name) ? true : false;
+        return (strtolower($split_by_dot[0]) == strtolower($name)) ? true : false;
     }
 }

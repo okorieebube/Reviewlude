@@ -113,7 +113,7 @@ trait appFunction
                 break;
 
             case $info == 32:
-                return ['error' => 1, 'msg' => 'Error! Email address should end with company name'];
+                return ['error' => 1, 'msg' => 'Error! Email address should end with company domain name'];
                 break;
         }
     }

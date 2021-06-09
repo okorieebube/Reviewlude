@@ -39,7 +39,18 @@
     <!-- CUSTOM CSS -->
     <link rel="stylesheet" type="text/css" href="{{asset('user/custom/js-snackbar/dist/js-snackbar.css')}}">
     <link rel="stylesheet" href="{{asset('user/custom/custom-app.css')}}">
+    <link rel="stylesheet" href="{{ asset('user/custom/loader/assets/loader.css') }}">
 
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
 </head>
+
+    <!-- ajax loader -->
+    <div style="display: none;" id="the_load_screen">
+        <div class="loader">
+            <div class="loader-content">
+                <div class="spinner-grow align-self-center"></div>
+            </div>
+        </div>
+    </div>
+    <!-- ajax loader -->

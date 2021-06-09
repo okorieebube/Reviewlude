@@ -26,6 +26,7 @@
     <!-- CUSTOM SCRIPTS -->
     <script src="{{ asset('user/custom/custom-tagify.js') }}"></script>
     <script src="{{ asset('/user/plugins/bootstrap-4-Tag-Input/tagsinput.js') }}"></script>
+    <script src="{{ asset('/user/custom/loader/assets/loader.js') }}"></script>
 
     <!-- Snackbar toaster -->
     <script src="{{ asset('user/custom/js-snackbar/dist/js-snackbar.js') }}"></script>

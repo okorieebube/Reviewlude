@@ -51,5 +51,16 @@
     {{-- <link rel="stylesheet" type="text/css" href="{{asset('en/custom/custom-app.css')}}"> --}}
     <link rel="stylesheet" type="text/css" href="{{asset('en/custom/js-snackbar/dist/js-snackbar.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('en/custom/star-rating-svg/src/css/star-rating-svg.css')}}">
+    <link rel="stylesheet" href="{{ asset('en/custom/loader/assets/loader.css') }}">
 
 </head>
+
+    <!-- ajax loader -->
+    <div style="display: none;" id="the_load_screen">
+        <div class="loader">
+            <div class="loader-content">
+                <div class="spinner-grow align-self-center"></div>
+            </div>
+        </div>
+    </div>
+    <!-- ajax loader -->

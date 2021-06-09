@@ -91,10 +91,14 @@ class registerController extends Controller
             if ($validator->fails()) {
                 return response()->json(['errors' => $validator->errors(), 'status' => false]);
             }
+
+            if ($request->input('terms') !== 'on') {
+                throw new Exception($this->errorMsgs(31)['msg']);
+            }
             $email = $request->input('email');
             $company_name = $request->input('company_name');
             $validate_email = $this->controller->validate_company_email($email,$company_name);
-            return response()->json($validate_email);
+            // return response()->json($validate_email);
             if(!$validate_email){
                 throw new Exception($this->errorMsgs(32)['msg']);
             }

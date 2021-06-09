@@ -23,6 +23,7 @@
 <!-- Snackbar toaster -->
 <script src="{{ asset('en/custom/js-snackbar/dist/js-snackbar.js') }}"></script>
 <script src="{{ asset('en/custom/js-snackbar/dist/site.js') }}"></script>
+<script src="{{ asset('en/custom/loader/assets/loader.js') }}"></script>
 <!-- Snackbar toaster -->
 <script src="{{asset('en/custom/Basic-function.js')}}"></script>
 </body>
