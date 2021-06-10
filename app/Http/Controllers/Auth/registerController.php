@@ -174,7 +174,8 @@ class registerController extends Controller
                     'unique_id' => $unique_id,
                     'logo' => 'avatar.png',
                 ]);
-                Mail::to($user->email)->send(new accountConfirmation($user));
+                $em = Mail::to($user->email)->send(new accountConfirmation($user));
+                // return response()->json($em);
 
                 $error = 'Proceed to your Email, for confirmation!';
                 return response()->json(["message" => $error, 'status' => true]);

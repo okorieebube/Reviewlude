@@ -305,11 +305,11 @@ Its a great resource.
                             <div class="testimonial-quote-wrap">
                                 <div class="media author-info mb-3">
                                     <div class="author-img mr-3">
-                                        <img src="{{ asset('en/img/client-1.jpg')}}" alt="client" class="img-fluid rounded-circle">
+                                        <img src="{{ asset('en/img/clients/client-1.jpg')}}" alt="client" class="img-fluid rounded-circle">
                                     </div>
                                     <div class="media-body">
                                         <h5 class="mb-0">William Muir</h5>
-                                        <span>Google</span>
+                                        <span>US</span>
                                     </div>
                                 </div>
                                 <div class="client-say">
@@ -321,11 +321,11 @@ Its a great resource.
                             <div class="testimonial-quote-wrap">
                                 <div class="media author-info mb-3">
                                     <div class="author-img mr-3">
-                                        <img src="{{ asset('en/img/client-2.jpg')}}" alt="client" class="img-fluid rounded-circle">
+                                        <img src="{{ asset('en/img/clients/client-2.jpg')}}" alt="client" class="img-fluid rounded-circle">
                                     </div>
                                     <div class="media-body">
                                         <h5 class="mb-0">Lesley Peters</h5>
-                                        <span>Amazon</span>
+                                        <span>BJ</span>
                                     </div>
                                 </div>
                                 <div class="client-say">
@@ -337,15 +337,15 @@ Its a great resource.
                             <div class="testimonial-quote-wrap">
                                 <div class="media author-info mb-3">
                                     <div class="author-img mr-3">
-                                        <img src="{{ asset('en/img/client-1.jpg')}}" alt="client" class="img-fluid rounded-circle">
+                                        <img src="{{ asset('en/img/clients/client-3.jpg')}}" alt="client" class="img-fluid rounded-circle">
                                     </div>
                                     <div class="media-body">
-                                        <h5 class="mb-0">Jeremy Jere</h5>
-                                        <span>Themetags</span>
+                                        <h5 class="mb-0">John Biggar</h5>
+                                        <span>GB</span>
                                     </div>
                                 </div>
                                 <div class="client-say">
-                                    <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid"> I had a negative review to post regarding very bad customer service from the plant website of Sarah Raven. It was easy to navigate Trustmigo and I am happy that I was able to express my opinion.</p>
+                                    <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid">FAIR AND HONEST is how I rate Trustmigo - I find it a very useful site when checking on basically everything I am considering buying</p>
                                 </div>
                             </div>
                         </div>
@@ -353,15 +353,83 @@ Its a great resource.
                             <div class="testimonial-quote-wrap">
                                 <div class="media author-info mb-3">
                                     <div class="author-img mr-3">
-                                        <img src="{{ asset('en/img/client-1.jpg')}}" alt="client" class="img-fluid rounded-circle">
+                                        <img src="{{ asset('en/img/clients/client-4.jpg')}}" alt="client" class="img-fluid rounded-circle">
                                     </div>
                                     <div class="media-body">
-                                        <h5 class="mb-0">John Charles</h5>
-                                        <span>Google</span>
+                                        <h5 class="mb-0">Dot Chicski</h5>
+                                        <span>US</span>
                                     </div>
                                 </div>
                                 <div class="client-say">
-                                    <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid"> Truth be told, some websites offer incentives for people to give them five stars on Trustmigo, so some of the reviews are not genuine. Trustmigo is still one of the best guides out there.</p>
+                                    <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid"> I trust their judgment!
+                                        They allow Good People to give Honest opinions about companies and services.
+                                        They know what they are doing.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-quote-wrap">
+                                <div class="media author-info mb-3">
+                                    <div class="author-img mr-3">
+                                        <img src="{{ asset('en/img/clients/client-5.jpg')}}" alt="client" class="img-fluid rounded-circle">
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="mb-0">Karin Pierre</h5>
+                                        <span>BE</span>
+                                    </div>
+                                </div>
+                                <div class="client-say">
+                                    <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid">You are giving a great service.
+                                        It helps a lot to read others experiences and avoid bad companies;
+                                        thanks a lot</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-quote-wrap">
+                                <div class="media author-info mb-3">
+                                    <div class="author-img mr-3">
+                                        <img src="{{ asset('en/img/clients/client-6.jpg')}}" alt="client" class="img-fluid rounded-circle">
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="mb-0">Amo</h5>
+                                        <span>GB</span>
+                                    </div>
+                                </div>
+                                <div class="client-say">
+                                    <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid">The technical support I received from the TM agent was very good. Clear concise instructions on how to overcome the problems I was having with my account. Thank you.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-quote-wrap">
+                                <div class="media author-info mb-3">
+                                    <div class="author-img mr-3">
+                                        <img src="{{ asset('en/img/clients/client-7.jpg')}}" alt="client" class="img-fluid rounded-circle">
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="mb-0">Michael Ginzburg</h5>
+                                        <span>IL</span>
+                                    </div>
+                                </div>
+                                <div class="client-say">
+                                    <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid">Trustmigo is very easy to install on my website and to collect clients comments. I'm very happy.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-quote-wrap">
+                                <div class="media author-info mb-3">
+                                    <div class="author-img mr-3">
+                                        <img src="{{ asset('en/img/clients/client-8.jpg')}}" alt="client" class="img-fluid rounded-circle">
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="mb-0">Grace Peters</h5>
+                                        <span>BJ</span>
+                                    </div>
+                                </div>
+                                <div class="client-say">
+                                    <p><img src="{{ asset('en/img/quote.png')}}" alt="quote" class="img-fluid">  Trustmigo are doing an awesome job keeping us safe from scammers and rip-off artists. My only regret is not coming here first to check the validity of the scammers that have ripped me off!</p>
                                 </div>
                             </div>
                         </div>

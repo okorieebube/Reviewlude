@@ -49,9 +49,9 @@
                             <li class="mb-2 d-flex align-items-center"><span class="ti-mobile mr-2"></span> <a
                                     href="tel:+61283766284"> +61 2 8376 6284</a></li>
                             <li class="mb-2 d-flex align-items-center"><span class="ti-email mr-2"></span><a
-                                    href="mailto:mail@example.com"> mail@example.com</a></li>
+                                    href="mailto:mail@example.com"> support@trustmigo.com</a></li>
                             <li class="mb-2 d-flex align-items-center"><span class="ti-world mr-2"></span><a
-                                    href="#"> www.yourdomain.com</a></li>
+                                    href="/"> www.trustmigo.com</a></li>
                         </ul>
                     </div>
                 </div>

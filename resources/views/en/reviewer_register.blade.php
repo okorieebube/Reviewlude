@@ -91,7 +91,7 @@ $user = Auth::user();
                                 <div class="my-4">
                                     <div class="custom-control custom-checkbox mb-3">
                                         <input type="checkbox" class="custom-control-input" name="terms" id="check-terms">
-                                        <label class="custom-control-label" for="check-terms">I agree to the <a href="#">terms and conditions</a></label>
+                                        <label class="custom-control-label" for="check-terms">I agree to the <a href="{{ route('terms') }}">terms and conditions</a></label>
                                     </div>
                                 </div>
 
