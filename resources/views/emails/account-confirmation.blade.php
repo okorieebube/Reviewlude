@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Simple Transactional Email</title>
+    <title>Account Confirmation</title>
     <style>
       /* -------------------------------------
           GLOBAL RESETS
@@ -398,7 +398,7 @@
                 </tr>
                 <tr>
                   <td class="content-block powered-by">
-                    Powered by <a href="http://htmlemail.io">KelvinIOT</a>.
+                    Powered by <a href="http://htmlemail.io">TrustMigo</a>.
                   </td>
                 </tr>
               </table>

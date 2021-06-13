@@ -41,7 +41,7 @@
     <link rel="stylesheet" href="{{asset('user/custom/custom-app.css')}}">
     <link rel="stylesheet" href="{{ asset('user/custom/loader/assets/loader.css') }}">
 
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/9i5sc4g5yoc5l52pzw35vmppg9xeavlwwiq0zu1ibg68uudh/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
 </head>
 

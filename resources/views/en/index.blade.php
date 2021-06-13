@@ -16,8 +16,6 @@ $user = Auth::user();
     <section class="hero-section background-img" style="background: url('{{ asset('en/img/hero-bg-2.jpg') }}')no-repeat center center / cover">
         <div class="video-section-wrap">
             <div class="background-video-overly ptb-100">
-                <div class="player"
-                     data-property="{videoURL:'https://www.youtube.com/watch?v=gOqlwlQjVis',containment:'.video-section-wrap', quality:'highres', autoPlay:true, showControls: false, startAt:0, mute:true, opacity: 1}"></div>
                 <div class="container">
                     <div class="row align-items-center justify-content-center">
                         <div class="col-md-8 col-lg-7">

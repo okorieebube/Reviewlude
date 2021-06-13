@@ -70,12 +70,12 @@ class loginController extends Controller
                     throw new Exception('Email address has\'nt been confirmed!');
                 }
                 if ($User->is_blocked == 1) {
-                    throw new Exception('Error! This Account Is deactivated. Contact Your Administrator.');
+                    throw new Exception('Error! This Account Is deactivated. Contact the Administrator.');
                 }
             }
 
             if (!$token = Auth::attempt(['email' => $email, 'password' => $password])) {
-                throw new Exception('Authentication Failed!');
+                throw new Exception('Authorization Failed!');
             } else {
                 $first_name = ucwords($this->user_logged()['full_name']);
 

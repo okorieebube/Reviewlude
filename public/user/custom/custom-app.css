@@ -35,3 +35,6 @@ z-index: 10000;
 .sidebar-wrapper .profile-info figure{
     background: url('../assets/img/3.jpg') center center / cover no-repeat;
 }
+.header-container .navbar-nav .theme-text {
+    width: 138px;
+}

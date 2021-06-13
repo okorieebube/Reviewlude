@@ -36,7 +36,7 @@ class accountConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.account-confirmation')
+        return $this->from('support@trustmigo.com')->view('emails.account-confirmation')
         ->with([
             'site_root' => $this->site_root,
             'site_name' => $this->site_name,

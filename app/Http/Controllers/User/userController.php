@@ -169,7 +169,7 @@ class userController extends Controller
             if (!$user->save()) {
                 throw new Exception($this->errorMsgs(14)['msg']);
             } else {
-                $error = 'User account is blocked!';
+                $error = 'Account is blocked!';
                 return response()->json(["message" => $error, 'status' => true]);
             }
         } catch (Exception $e) {
@@ -223,7 +223,7 @@ class userController extends Controller
             if (!$user) {
                 throw new Exception($this->errorMsgs(14)['msg']);
             } else {
-                $error = 'User account is deleted!';
+                $error = 'Account deleted successfully!';
                 return response()->json(["message" => $error, 'status' => true]);
             }
         } catch (Exception $e) {

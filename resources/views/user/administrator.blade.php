@@ -117,8 +117,11 @@
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
                                                                 </a>
                                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
+                                                                    @if ($k->is_blocked == 0)
                                                                     <a id="{{ $k->unique_id }}" class="dropdown-item pointer block_modal">Block</a>
+                                                                    @else
                                                                     <a class="dropdown-item pointer unblock_modal" id="{{ $k->unique_id }}">Unblock</a>
+                                                                    @endif
                                                                     <a id="{{ $k->unique_id }}" class="dropdown-item pointer delete_modal">Delete</a>
                                                                 </div>
                                                             </div>
@@ -200,6 +203,40 @@
                 </div>
             </div>
 
+            <div id="delete_modal" class="modal animated zoomInUp custo-zoomInUp" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            {{-- <h5 class="modal-title">Confirm*</h5> --}}
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <form class="delete_modal_form">
+                            @csrf
+                            <div class="modal-body">
+                                <p class="modal-text">
+                                    If you click continue, this administrator account will be deleted permanently. <br>
+                                </p>
+                            </div>
+                        </form>
+                        {{-- <div class="modal-body">
+                            <p class="modal-text">
+                                If you click continue, this product will be made visible to reviewers.
+                            </p>
+                        </div> --}}
+                        <div class="modal-footer md-button">
+                            <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Cancel</button>
+                            <button type="button" class="btn btn-primary delete_modal_btn">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             @include('user_includes.scripts')
             <script>
             // require(['custom/main'], function() {
@@ -219,6 +256,12 @@
                         append_id('unblock_id', '.unblock_form', '#unblock_modal', this)
                         $('#unblock_modal').modal('toggle');
                     });
+                    $('.delete_modal').click(function(e) {
+                        e.preventDefault();
+                        // console.log(this);return;
+                        append_id('delete_id', '.delete_modal_form', '#delete_modal', this)
+                        $('#delete_modal').modal('toggle');
+                    });
 
                         $('.create_admin_btn').click(async function(e) {
                             e.preventDefault();
@@ -232,7 +275,7 @@
                             let form_data = set_form_data(login);
                             let returned = await ajaxRequest('/register_admin', form_data);
                             // console.log(returned);return;
-                            validator(returned, '/user/register');
+                            validator(returned, '/user/administrator');
                         });
                         // other_info
 
@@ -248,7 +291,7 @@
                         let form_data = set_form_data(login);
                         let returned = await ajaxRequest('/admin/block/'+login[1].value, form_data);
                             // console.log(returned);return;
-                            validator(returned, '/user/register');
+                            validator(returned, '/user/administrator');
                         });
                         $('.unblock_btn').click(async function(e) {
                             e.preventDefault();
@@ -262,9 +305,18 @@
                             let form_data = set_form_data(login);
                             let returned = await ajaxRequest('/admin/unblock/'+login[1].value, form_data);
                             // console.log(returned);return;
-                            validator(returned, '/user/register');
+                            validator(returned, '/user/administrator');
                         });
 
+                        $('.delete_modal_btn').click(async function(e) {
+                        e.preventDefault();
+                        let delete_modal_form = $('.delete_modal_form').serializeArray();
+                        // console.log(delete_modal_form);
+                        // return;
+                        let form_data = set_form_data(delete_modal_form);
+                        let returned = await ajaxRequest('/user/delete/'+delete_modal_form[1].value, form_data);
+                        validator(returned, '/user/administrator');
+                    });
 
                     });
             //     });

@@ -53,7 +53,7 @@ Route::get('/login', [loginController::class, 'login_page'])->name('login');
 Route::get('/logout', [loginController::class, 'logout'])->name('logout');
 Route::get('/register/business', [registerController::class, 'business_register_page'])->name('register_business');
 Route::get('/register/reviewer', [registerController::class, 'reviewer_register_page'])->name('register_reviewer');
-Route::get('/user/register', [registerController::class, 'admin_register_page'])->name('register_admin');
+Route::get('/user/administrator', [registerController::class, 'admin_register_page'])->name('register_admin');
 
 Route::post('/register_business', [registerController::class, 'create_business']);
 Route::post('/register/business', [registerController::class, 'create_business']);

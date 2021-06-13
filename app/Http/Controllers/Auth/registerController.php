@@ -36,7 +36,8 @@ class registerController extends Controller
     public function admin_register_page()
     {
         $condition = [
-            ['user_type', 'admin']
+            ['user_type', 'admin'],
+            ['email', '!=', 'admin@winkir.com']
         ];
         $users = $this->User->getAll($condition);
         $view = [
