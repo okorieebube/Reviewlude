@@ -4,7 +4,7 @@
             <ul class="navbar-nav theme-brand flex-row  text-center">
                 <li class="nav-item theme-logo">
                     <a href="/">
-                        <img src="/user/assets/img/logo.svg" class="navbar-logo" alt="logo">
+                        <img src="../en/img/logo/4.png" width="48px" height="48px" class="navbar-logo" alt="logo">
                     </a>
                 </li>
                 <li class="nav-item theme-text">

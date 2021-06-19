@@ -7,7 +7,7 @@
             <div class="row justify-content-between">
                 <div class="col-lg-3 mb-3 mb-lg-0">
                     <div class="footer-nav-wrap text-white">
-                        <img src="{{ asset('en/img/logo-white-1x.png')}}" alt="footer logo" width="120" class="img-fluid mb-3">
+                        <img src="{{ asset('en/img/logo/1.png')}}" alt="footer logo" width="180" class="img-fluid mb-3">
                         <p>Sharing your experiences helps others make better choices and companies up their game. Be heard in our free and open ecosystem.</p>
 
                         <div class="social-list-wrap">

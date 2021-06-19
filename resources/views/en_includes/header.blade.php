@@ -2,7 +2,7 @@
     <!--start navbar-->
     <nav class="navbar navbar-expand-lg fixed-top bg-transparent">
         <div class="container">
-            <a class="navbar-brand" href="/"><img src="{{ asset('en/img/logo-white-1x.png')}}" width="120" alt="logo"
+            <a class="navbar-brand" href="/"><img src="{{ asset('en/img/logo/1.png')}}" width="161px" height="45px" alt="logo"
                                                            class="img-fluid"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
